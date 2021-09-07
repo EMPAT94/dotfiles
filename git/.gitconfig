@@ -1,0 +1,11 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Pritesh Tupe
+	email = priteshtupe@gmail.com
+[init]
+	defaultBranch = main
+[advice]
+	addIgnoredFile = false
+[core]
+	editor = nvim
