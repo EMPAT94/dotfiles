@@ -19,9 +19,7 @@ setopt inc_append_history                                       # save commands 
 ###################
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 
 ######################
 ##### COMPLETION #####
@@ -34,10 +32,10 @@ zstyle ':completion:*' rehash true                              # automatically 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-
+zstyle ':completion:*:functions' ignored-patterns '_*'          # Ignore completion functions for commands
 
 ##################
-##### CONFIG ##### 
+##### CONFIG #####
 ##################
 
 HISTFILE=~/.zhistory
@@ -67,10 +65,6 @@ bindkey '^[[C'  forward-char                                    # Right key
 bindkey '^[[D'  backward-char                                   # Left key
 bindkey '^[[5~' history-beginning-search-backward               # Page up key
 bindkey '^[[6~' history-beginning-search-forward                # Page down key
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up			
-bindkey '^[[B' history-substring-search-down
 
 
 #################
@@ -81,6 +75,8 @@ alias v="nvim"
 alias a="agenda"
 alias n="note"
 
+alias -g ...='../..'
+alias -g ....='../../..'
 alias cp="cp -uv"
 alias mv="mv -uv"
 alias ls="ls -lah"
@@ -96,7 +92,7 @@ alias story="vi -S ~/MEGASync/story.vim"
 alias agenda="vi -S ~/MEGASync/agenda.vim"
 
 alias show-public-ip="curl ifconfig.co";
-alias show-private-ip="ipconfig getifaddr en0";
+alias show-private-ip="ip addr"; # TODO get only ip from output
 alias adb-connect="adb connect 192.168.0.190:5555";
 alias http-server="echo Starting server on 8080; python3 -m http.server 8080 &";
 alias scrcap="adb shell screencap /sdcard/scrcap.png && \
