@@ -51,7 +51,7 @@ Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 
 " A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'kyazdani42/nvim-web-devicons'
 
 " A dark theme
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -98,6 +98,9 @@ Plug 'norcalli/snippets.nvim'
 " TODO Debug why not working
 " Extensions for the built-in Language Server Protocol for eclipse.jdt.ls.
 " Plug 'mfussenegger/nvim-jdtls'
+
+" A (Neo)vim plugin for formatting code.
+Plug 'sbdchd/neoformat'
 
 call plug#end()
 
@@ -146,18 +149,18 @@ noremap <silent> gb :bprevious<CR>
 noremap <silent> gB :bnext<CR>
 
 " Next and prev tab
-noremap <silent> <C-n> :tabprevious<CR>
-noremap <silent> <C-m> :tabnext<CR>
+" noremap <silent> <M-n> :tabprevious<CR>
+" noremap <silent> <M-m> :tabnext<CR>
 
 " Split window jumps
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
+noremap <M-h> <C-w>h
+noremap <M-j> <C-w>j
+noremap <M-k> <C-w>k
+noremap <M-l> <C-w>l
+tnoremap <M-h> <C-\><C-n><C-w>h
+tnoremap <M-j> <C-\><C-n><C-w>j
+tnoremap <M-k> <C-\><C-n><C-w>k
+tnoremap <M-l> <C-\><C-n><C-w>l
 
 " Quick vertical & horizontal split
 noremap <silent> <leader>vn :vsplit<CR>
@@ -255,7 +258,7 @@ set updatetime=100
 set signcolumn=yes
 
 " Use system clipboard for yank and delete by default
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " A comma separated list of word list names.
 " When the 'spell' option is on spellchecking will be done for these languages.
@@ -393,27 +396,42 @@ endfunction
 "   return strftime("%d %h %I:%M %p")
 " endfunction
 
+" Neoformat
+" Enable alignment
+let g:neoformat_basic_format_align = 1
+
+" Enable tab to spaces conversion
+let g:neoformat_basic_format_retab = 1
+
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
+
+" Only msg when there is an error
+" let g:neoformat_only_msg_on_error = 1
+
+nnoremap <leader>p :Neoformat<CR>
+
 " Prettier
-nnoremap <silent> <leader>p :call Format()<CR>
+" nnoremap <silent> <leader>p :call Format()<CR>
 " vnoremap <silent> <leader>p :call FormatRange()<CR>
 
 " FIXME call prettier for files that support it, else call lsp formatting
-function! Format()
-  try
-    exec "silent %!" . g:prettier . " --config ~/.config/.prettierrc.json --stdin-filepath %"
-  catch
-    exec "lua vim.lsp.buf.formatting()"
-  endtry
-endfunction
+" function! Format()
+"   try
+"     exec "silent %!" . g:prettier . " --config ~/.config/.prettierrc.json --stdin-filepath %"
+"   catch
+"     exec "lua vim.lsp.buf.formatting()"
+"   endtry
+" endfunction
 
 " TODO
-function! FormatRange()
-  try
-    exec "format range somehow"
-  catch
-    exec "'<,'>lua vim.lsp.buf.range_formatting()"
-  endtry
-endfunction
+" function! FormatRange()
+"   try
+"     exec "format range somehow"
+"   catch
+"     exec "'<,'>lua vim.lsp.buf.range_formatting()"
+"   endtry
+" endfunction
 
 " }}
 
@@ -445,6 +463,9 @@ augroup CustomCmds
 
   " Start java lsp for java files
   " autocmd FileType java lua require'jdtls_config'.setup()
+
+  " Start lua lsp for lua files
+  autocmd FileType java lua require'luals_config'.setup()
 augroup END
 
 function! MyHighlights()
@@ -507,3 +528,44 @@ colorscheme dracula
 set secure
 
 " }}
+"
+"
+" Add the following in your vim config
+
+function! ShowResult()
+
+  " command to run on current buffer
+  let op = system("lua", bufnr())
+ 
+  " name of output buffer
+  let win = bufwinnr("__OUTPUT__")
+
+  " Check if existing output buffer exists
+  if win == -1
+    " If not exists, create a new one
+    vsplit __OUTPUT__
+    " Do not save to disk or create backups
+    setlocal buftype=nofile 
+    setlocal nobackup noswapfile nowritebackup
+  else
+    " If exists, switch to it
+    exe win . "wincmd w"
+    " Clear buffer
+    normal! ggdG
+  endif
+
+  " Append output
+  call append(0, split(op, '\v\n'))
+
+endfunction
+
+" Bind to a command 
+command! -nargs=0 Lua :call ShowResult()
+
+map <C-e> :Lua<CR>
+
+" To close the window on exit
+augroup nodeOP
+  autocmd!
+  autocmd BufLeave __OUTPUT__ bwipe
+augroup end
