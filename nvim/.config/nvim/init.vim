@@ -59,10 +59,10 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 " Provides mappings to easily delete, change and add such surroundings in pairs.
 Plug 'tpope/vim-surround'
 
-" Vim sugar for the UNIX shell commands 
+" Vim sugar for the UNIX shell commands
 Plug 'tpope/vim-eunuch'
 
-" Neovim plugin to comment text in and out, written in lua. 
+" Neovim plugin to comment text in and out, written in lua.
 Plug 'b3nj5m1n/kommentary'
 
 " Provides a single command that deletes the current buffer in a smart way.
@@ -107,18 +107,21 @@ call plug#end()
 command! LoadCodi execute "call plug#load('codi.vim') | Codi"
 command! LoadWiki execute "call plug#load('vimwiki') | vsplit | VimwikiIndex"
 
-" Providers
-" npm i -g neovim
-" pip install pynvim
-
-" Language Servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md 
+" Language Servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 " npm i -g typescript
 " npm i -g typescript-language-server
 " npm i -g bash-language-server
 " npm i -g vscode-langservers-extracted
 " npm i -g vim-language-server
-" ghcup install hls OR sudo pacman -S haskell-language-server
+" yay -S haskell-language-server _disabled in current config_
+" yay -S lua-language-server
 
+" Providers, Formatters, Linters
+" npm i -g neovim
+" pip install pynvim
+" npm i -g prettier
+" luarocks install --server=https://luarocks.org/dev luaformatter
+"
 " }}
 
 "---------- GENERAL MAPPINGS ---------- {{
@@ -165,17 +168,17 @@ tnoremap <M-l> <C-\><C-n><C-w>l
 " Quick vertical & horizontal split
 noremap <silent> <leader>vn :vsplit<CR>
 noremap <silent> <leader>vt :vsplit \| terminal <CR>
-noremap <leader>vh :vertical help 
-noremap <leader>vj :vsplit \| terminal 
+noremap <leader>vh :vertical help
+noremap <leader>vj :vsplit \| terminal
 noremap <silent> <leader>xn :split<CR>
 noremap <silent> <leader>xt :split \| terminal <CR>
-noremap <leader>xj :split \| terminal 
+noremap <leader>xj :split \| terminal
 
 " Quick tabs
 nnoremap <silent> <leader>tn :tabnew <CR>
 nnoremap <silent> <leader>tt :tabnew \| terminal <CR>
-nnoremap <leader>th :tab help 
-nnoremap <leader>tj :tabnew \| terminal 
+nnoremap <leader>th :tab help
+nnoremap <leader>tj :tabnew \| terminal
 
 " Yank till end of line
 nnoremap Y yg_
@@ -258,7 +261,7 @@ set updatetime=100
 set signcolumn=yes
 
 " Use system clipboard for yank and delete by default
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " A comma separated list of word list names.
 " When the 'spell' option is on spellchecking will be done for these languages.
@@ -354,7 +357,7 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 
 " Vimwiki has a feature called "Temporary Wikis",
 " that will treat every file with configured file-extension as a wiki.
-" Disable this feature 
+" Disable this feature
 let g:vimwiki_global_ext = 0
 let g:vimwiki_folding='custom'
 
@@ -523,49 +526,30 @@ endfunction
 
 colorscheme dracula
 
+function! ShowResult()
+  " Use and throw function for quick lua eval
+  let op = system("lua", bufnr())
+  let win = bufwinnr("__OUTPUT__")
+  if win == -1
+    vsplit __OUTPUT__
+    setlocal buftype=nofile
+    setlocal nobackup noswapfile nowritebackup
+  else
+    exe win . "wincmd w"
+    normal! ggdG
+  endif
+  call append(0, split(op, '\v\n'))
+endfunction
+
+" map <C-e> :call ShowResult()<CR>
+
+augroup nodeOP
+  autocmd!
+  autocmd BufLeave __OUTPUT__ bwipe
+augroup end
+
 " When on, ":autocmd", shell and write commands are not allowed in
 " .nvimrc and .exrc in the current directory and map commands are displayed.
 set secure
 
 " }}
-"
-"
-" Add the following in your vim config
-
-function! ShowResult()
-
-  " command to run on current buffer
-  let op = system("lua", bufnr())
- 
-  " name of output buffer
-  let win = bufwinnr("__OUTPUT__")
-
-  " Check if existing output buffer exists
-  if win == -1
-    " If not exists, create a new one
-    vsplit __OUTPUT__
-    " Do not save to disk or create backups
-    setlocal buftype=nofile 
-    setlocal nobackup noswapfile nowritebackup
-  else
-    " If exists, switch to it
-    exe win . "wincmd w"
-    " Clear buffer
-    normal! ggdG
-  endif
-
-  " Append output
-  call append(0, split(op, '\v\n'))
-
-endfunction
-
-" Bind to a command 
-command! -nargs=0 Lua :call ShowResult()
-
-map <C-e> :Lua<CR>
-
-" To close the window on exit
-augroup nodeOP
-  autocmd!
-  autocmd BufLeave __OUTPUT__ bwipe
-augroup end

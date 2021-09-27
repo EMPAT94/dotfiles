@@ -71,25 +71,25 @@ bindkey '^[[6~' history-beginning-search-forward                # Page down key
 ##### ALIAS #####
 #################
 
+alias -g ...='../..'
+
 alias v="nvim"
 alias a="agenda"
 alias n="note"
 
-alias -g ...='../..'
-alias -g ....='../../..'
 alias cp="cp -uv"
 alias mv="mv -uv"
 alias ls="ls -lah"
 alias top="bashtop";
 alias open="xdg-open"
+alias lua="luajit"
 
-alias vi="nvim";
-alias vim="nvim";
-alias note="vi ~/MEGASync/notes/private/index.md";
-alias wnote="vi ~/MEGASync/notes/private/Programming_Notes.md";
-alias bnote="vi ~/MEGASync/notes/private/Bookmarks.md";
-alias story="vi -S ~/MEGASync/story.vim"
-alias agenda="vi -S ~/MEGASync/agenda.vim"
+alias vi="v";
+alias vim="v";
+alias note="v ~/MEGASync/notes/private/index.md";
+alias wnote="v ~/MEGASync/notes/private/Programming_Notes.md";
+alias story="v -S ~/MEGASync/story.vim"
+alias agenda="v -S ~/MEGASync/agenda.vim"
 
 alias show-public-ip="curl ifconfig.co";
 alias show-private-ip="ip addr"; # TODO get only ip from output
