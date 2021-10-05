@@ -220,4 +220,4 @@ SidPlay2_PlaySubTunes = no
 #
 # Example:    OnSongChange = "/home/jack/.moc/myscript %a %r"
 #
-OnSongChange = notify-send "%r - %a - %d"
+OnSongChange = "/home/pritesh/.dotfiles/moc/.moc/notify.sh %t"
