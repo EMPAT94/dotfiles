@@ -376,7 +376,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 " nvim-compe
 inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <CR>     compe#confirm('<CR>')
 
 " lightline
 let g:lightline.active = {
