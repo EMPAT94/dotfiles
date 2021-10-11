@@ -25,9 +25,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Collection of common configurations for Neovim's built-in language server client.
 Plug 'neovim/nvim-lspconfig'
 
-" Auto completion plugin for nvim.
-Plug 'hrsh7th/nvim-compe'
-
 " An implementation of the Popup API from vim in Neovim.
 Plug 'nvim-lua/popup.nvim'
 
@@ -43,6 +40,14 @@ Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 " Wraps the Neovim treesitter API to provide functionnalities such as highlighting and incremental selection,
 " and a command to easily install parsers.
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
+" A completion engine plugin for neovim written in Lua.
+Plug 'hrsh7th/cmp-nvim-lsp'
+
+" Completion Sources
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-path'
 
 " A file system explorer for the Vim editor.
 Plug 'preservim/nerdtree'
@@ -92,8 +97,8 @@ Plug 'metakirby5/codi.vim', { 'on': [] }
 " Distraction-free writing in Vim.
 Plug 'junegunn/goyo.vim'
 
-" Snippets plugin written in lua
-Plug 'norcalli/snippets.nvim'
+" UltiSnips is the ultimate solution for snippets in Vim.
+Plug 'SirVer/ultisnips'
 
 " A (Neo)vim plugin for formatting code.
 Plug 'sbdchd/neoformat'
@@ -279,7 +284,7 @@ set numberwidth=5
 set list listchars=tab:\ \ ,trail:·,extends:»,precedes:«
 
 " Insert mode completion.
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 
 " Don't give insert mode messages.
 set shortmess+=c
@@ -318,8 +323,6 @@ nnoremap <c-s> <cmd>lua require('telescope').extensions.fzf_writer.staged_grep({
 " Nerdtree
 nnoremap <leader>z :NERDTreeToggle<CR>
 
-" Lightline
-let g:lightline = { 'colorscheme': 'simpleblack' }
 
 " Goyo
 let g:goyo_width = 120
@@ -363,11 +366,9 @@ let g:fugitive_no_maps = 1
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
-" nvim-compe
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>     compe#confirm('<CR>')
+" Lightline
+let g:lightline = { 'colorscheme': 'simpleblack' }
 
-" lightline
 let g:lightline.active = {
       \ 'left': [ [ 'mode', 'paste' ],
       \           [ 'dir', 'branch', 'filename', 'modified' ] ],
@@ -385,6 +386,8 @@ function! Dir()
 endfunction
 
 " Neoformat
+nnoremap <leader>p :Neoformat<CR>
+
 " Enable alignment
 let g:neoformat_basic_format_align = 1
 
@@ -394,7 +397,10 @@ let g:neoformat_basic_format_retab = 1
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
 
-nnoremap <leader>p :Neoformat<CR>
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " }}
 

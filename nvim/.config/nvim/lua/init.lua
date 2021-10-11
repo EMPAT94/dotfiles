@@ -24,7 +24,7 @@ require("nvim-treesitter.configs").setup {
 }
 
 local nvim_lsp = require("lspconfig")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
@@ -107,35 +107,50 @@ nvim_lsp.sumneko_lua.setup {
   },
 }
 
-require("compe").setup {
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 2,
-  preselect = "enable",
-  throttle_time = 80,
-  source_timeout = 200,
-  incomplete_delay = 400,
-  max_abbr_width = 100,
-  max_kind_width = 100,
-  max_menu_width = 100,
-  documentation = true,
-  source = {
-    nvim_lsp = {
-      priority = 10,
-      sort = false,
+local cmp = require("cmp")
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["UltiSnips#Anon"](args.body)
+    end,
+  },
+  documentation = {
+    maxheight = 180,
+  },
+  mapping = {
+    ["<TAB>"] = cmp.mapping.select_next_item({
+      behavior = cmp.SelectBehavior.Insert,
+    }),
+    ["<C-n>"] = cmp.mapping.select_next_item({
+      behavior = cmp.SelectBehavior.Insert,
+    }),
+    ["<C-p>"] = cmp.mapping.select_prev_item({
+      behavior = cmp.SelectBehavior.Insert,
+    }),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    }),
+  },
+  sources = {
+    {
+      name = "nvim_lsp",
     },
-    path = {
-      priority = 9,
+    {
+      name = "ultisnips",
     },
-    snippets_nvim = {
-      priority = 9,
+    {
+      name = "path",
     },
-    buffer = {
-      priority = 8,
+    {
+      name = "buffer",
     },
   },
-}
+})
 
 require("colorizer").setup()
 
