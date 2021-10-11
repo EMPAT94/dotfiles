@@ -95,10 +95,6 @@ Plug 'junegunn/goyo.vim'
 " Snippets plugin written in lua
 Plug 'norcalli/snippets.nvim'
 
-" TODO Debug why not working
-" Extensions for the built-in Language Server Protocol for eclipse.jdt.ls.
-" Plug 'mfussenegger/nvim-jdtls'
-
 " A (Neo)vim plugin for formatting code.
 Plug 'sbdchd/neoformat'
 
@@ -150,10 +146,6 @@ noremap <silent> Q :Sayonara!<CR>
 " Next & prev buffer
 noremap <silent> gb :bprevious<CR>
 noremap <silent> gB :bnext<CR>
-
-" Next and prev tab
-" noremap <silent> <M-n> :tabprevious<CR>
-" noremap <silent> <M-m> :tabnext<CR>
 
 " Split window jumps
 noremap <M-h> <C-w>h
@@ -305,8 +297,6 @@ let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
 
-let g:prettier = '/home/pritesh/.npm-global/bin/prettier'
-
 let g:markdown_folding = 1
 
 " }}
@@ -329,7 +319,6 @@ nnoremap <c-s> <cmd>lua require('telescope').extensions.fzf_writer.staged_grep({
 nnoremap <leader>z :NERDTreeToggle<CR>
 
 " Lightline
-" TODO Customize for branch and better inactive separation
 let g:lightline = { 'colorscheme': 'simpleblack' }
 
 " Goyo
@@ -389,15 +378,11 @@ let g:lightline.inactive = {
 let g:lightline.tabline = {
       \ 'left': [ [ 'tabs' ] ],
       \ 'right': [] }
-let g:lightline.component_function = { 'branch': 'FugitiveHead', 'dir': 'Dir'} ", 'date': 'Date' }
+let g:lightline.component_function = { 'branch': 'FugitiveHead', 'dir': 'Dir'}
 
 function! Dir()
   return fnamemodify(getcwd(), ':t')
 endfunction
-
-" function! Date()
-"   return strftime("%d %h %I:%M %p")
-" endfunction
 
 " Neoformat
 " Enable alignment
@@ -409,32 +394,7 @@ let g:neoformat_basic_format_retab = 1
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
 
-" Only msg when there is an error
-" let g:neoformat_only_msg_on_error = 1
-
 nnoremap <leader>p :Neoformat<CR>
-
-" Prettier
-" nnoremap <silent> <leader>p :call Format()<CR>
-" vnoremap <silent> <leader>p :call FormatRange()<CR>
-
-" FIXME call prettier for files that support it, else call lsp formatting
-" function! Format()
-"   try
-"     exec "silent %!" . g:prettier . " --config ~/.config/.prettierrc.json --stdin-filepath %"
-"   catch
-"     exec "lua vim.lsp.buf.formatting()"
-"   endtry
-" endfunction
-
-" TODO
-" function! FormatRange()
-"   try
-"     exec "format range somehow"
-"   catch
-"     exec "'<,'>lua vim.lsp.buf.range_formatting()"
-"   endtry
-" endfunction
 
 " }}
 
@@ -525,28 +485,6 @@ endfunction
 "---------- OTHER SETTINGS ---------- {{
 
 colorscheme dracula
-
-function! ShowResult()
-  " Use and throw function for quick lua eval
-  let op = system("lua", bufnr())
-  let win = bufwinnr("__OUTPUT__")
-  if win == -1
-    vsplit __OUTPUT__
-    setlocal buftype=nofile
-    setlocal nobackup noswapfile nowritebackup
-  else
-    exe win . "wincmd w"
-    normal! ggdG
-  endif
-  call append(0, split(op, '\v\n'))
-endfunction
-
-" map <C-e> :call ShowResult()<CR>
-
-augroup nodeOP
-  autocmd!
-  autocmd BufLeave __OUTPUT__ bwipe
-augroup end
 
 " When on, ":autocmd", shell and write commands are not allowed in
 " .nvimrc and .exrc in the current directory and map commands are displayed.
