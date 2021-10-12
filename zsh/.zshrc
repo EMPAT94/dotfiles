@@ -80,9 +80,9 @@ alias n="note"
 alias cp="cp -uv"
 alias mv="mv -uv"
 alias ls="ls -lah"
-alias top="bashtop";
+alias top="bpytop";
 alias open="xdg-open"
-alias lua="luajit"
+# alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
 
 alias vi="v";
 alias vim="v";

@@ -91,9 +91,6 @@ Plug 'vimwiki/vimwiki', { 'on': [] }
 "  Preview Markdown in real-time with a web browser.
 Plug 'iamcco/markdown-preview.nvim'
 
-" The interactive scratchpad for hackers.
-Plug 'metakirby5/codi.vim', { 'on': [] }
-
 " Distraction-free writing in Vim.
 Plug 'junegunn/goyo.vim'
 
@@ -103,9 +100,11 @@ Plug 'SirVer/ultisnips'
 " A (Neo)vim plugin for formatting code.
 Plug 'sbdchd/neoformat'
 
+" A simple rss reader plugin for neovim
+Plug 'empat94/nvim-rss'
+
 call plug#end()
 
-command! LoadCodi execute "call plug#load('codi.vim') | Codi"
 command! LoadWiki execute "call plug#load('vimwiki') | vsplit | VimwikiIndex"
 
 " Language Servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
@@ -207,7 +206,7 @@ tnoremap <Esc> <C-\><C-n>
 
 " Sigh... Things were not supposed to break like this
 " Open url under cursor into browser
-nmap gx yiW:!open <cWORD><CR> <C-r>" & <CR><CR>
+nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
 
 " }}
 
@@ -406,7 +405,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "---------- LUA CODE ---------- {{
 
-" See lua/init.lua
 lua require("init")
 
 " }}

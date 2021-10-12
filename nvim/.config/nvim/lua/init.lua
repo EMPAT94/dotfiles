@@ -205,3 +205,7 @@ remap("i", "<CR>", "v:lua.MUtils.completion_confirm()", {
   expr = true,
   noremap = true,
 })
+
+require("nvim-rss").setup({
+  feeds_dir = "~/.config/nvim"
+})
