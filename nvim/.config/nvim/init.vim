@@ -308,9 +308,10 @@ let g:markdown_folding = 1
 "---------- PLUGIN SETTINGS ---------- {{
 
 " Telescope
-nnoremap <C-t> <cmd>lua require('telescope').extensions.fzf_writer.files({
-      \ previewer = false,
-      \ prompt_title = "Files" })<cr>
+" nnoremap <C-t> <cmd>lua require('telescope').extensions.fzf_writer.files({
+"       \ previewer = false,
+"       \ prompt_title = "Files" })<cr>
+nnoremap <C-t> <cmd>FZF<CR>
 
 nnoremap <silent> <C-p> :Telescope buffers<cr>
 
@@ -493,5 +494,14 @@ colorscheme dracula
 " When on, ":autocmd", shell and write commands are not allowed in
 " .nvimrc and .exrc in the current directory and map commands are displayed.
 set secure
+
+lua << EOF
+  require("nvim-rss").setup({
+    feeds_dir = "~/.config/nvim"
+  })
+EOF
+
+command! OpenRssView lua require("nvim-rss").open_feeds_tab()
+command! FetchFeed lua require("nvim-rss").fetch_feed()
 
 " }}

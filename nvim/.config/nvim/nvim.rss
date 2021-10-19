@@ -1,6 +1,5 @@
 Blogs
 ----------
-http://antirez.com/rss
 http://feeds.feedburner.com/pragandy
 http://www.aaronsw.com/2002/feeds/pgessays.rss
 http://www.codesimplicity.com/feed/atom/
@@ -16,12 +15,12 @@ https://www.perforce.com/blog/feed
 https://www.priteshtupe.com/feed.xml
 https://www.rockyourcode.com/index.xml/
 https://www.semicolonandsons.com/feed
+https://joshspector.com/feed
 
 News
 ----------
 http://feeds.bbci.co.uk/news/rss.xml
 http://rss.cnn.com/rss/cnn_topstories.rss
-
 
 Reddit
 ----------
@@ -29,3 +28,4 @@ https://www.reddit.com/r/aoe2/.rss?sort=new
 https://www.reddit.com/r/lua/.rss?sort=new
 https://www.reddit.com/r/neovim/.rss?sort=new
 https://www.reddit.com/r/asusrog/.rss?sort=new
+https://www.reddit.com/r/asksience/.rss?sort=new
