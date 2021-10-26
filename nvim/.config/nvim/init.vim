@@ -337,14 +337,14 @@ noremap <silent> <leader><CR> :Goyo<CR>
 
 " Vimwiki
 let wiki_1 = {}
-let wiki_1.path = "~/MEGASync/notes/private"
+let wiki_1.path = "~/MEGASync/notes"
 let wiki_1.syntax = "markdown"
 let wiki_1.ext =  ".md"
 let wiki_1.name = "Main Wiki"
 let wiki_1.links_space_char = "_"
 
 let wiki_2 = {}
-let wiki_2.path = "~/Projects/empat94.github.io/_includes/notes"
+let wiki_2.path = "~/Projects/Notes"
 let wiki_2.syntax = "markdown"
 let wiki_2.ext =  ".md"
 let wiki_2.name = "Code Wiki"
@@ -415,7 +415,9 @@ lua require("init")
 
 " }}
 
-"---------- GENERAL AUTO COMMANDS ---------- {{
+"---------- GENERAL SETTINGS ---------- {{
+
+command! Notes execute "FZF ~/Projects/Notes"
 
 augroup CustomCmds
   autocmd!
@@ -488,10 +490,6 @@ function! s:empty_message(timer)
     echon ''
   endif
 endfunction
-
-" }}
-
-"---------- OTHER SETTINGS ---------- {{
 
 colorscheme dracula
 

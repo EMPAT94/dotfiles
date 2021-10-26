@@ -86,8 +86,8 @@ alias open="xdg-open"
 
 alias vi="v";
 alias vim="v";
-alias note="v ~/MEGASync/notes/private/index.md";
-alias wnote="v ~/MEGASync/notes/private/Programming_Notes.md";
+alias note="v ~/MEGASync/notes/index.md";
+alias wnote="v ~/Projects/Notes";
 alias story="v -S ~/MEGASync/story.vim"
 alias agenda="v -S ~/MEGASync/agenda.vim"
 
