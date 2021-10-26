@@ -1,12 +1,5 @@
 -- TODO Split into multiple files
 require("telescope").setup {
-  extensions = {
-    fzf_writer = {
-      minimum_grep_characters = 2,
-      minimum_files_characters = 2,
-      use_highlighter = true,
-    },
-  },
   defaults = {
     mappings = {
       i = {
@@ -41,9 +34,7 @@ local on_attach = function(client, bufnr)
   }
 
   buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   buf_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
   if client.resolved_capabilities.document_highlight then
@@ -86,20 +77,15 @@ nvim_lsp.sumneko_lua.setup {
   settings = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = "LuaJIT",
-        -- Setup your lua path
         path = runtime_path,
       },
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
         globals = { "vim", "describe", "it" },
       },
       workspace = {
-        -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
       },
-      -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
         enable = false,
       },
@@ -128,7 +114,7 @@ cmp.setup({
       behavior = cmp.SelectBehavior.Insert,
     }),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-u>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm({
@@ -142,6 +128,9 @@ cmp.setup({
     },
     {
       name = "ultisnips",
+    },
+    {
+      name = "treesitter",
     },
     {
       name = "path",
@@ -201,8 +190,8 @@ MUtils.completion_confirm = function()
     return npairs.check_break_line_char()
   end
 end
+
 remap("i", "<CR>", "v:lua.MUtils.completion_confirm()", {
   expr = true,
   noremap = true,
 })
-

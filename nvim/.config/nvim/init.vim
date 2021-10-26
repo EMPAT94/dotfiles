@@ -34,29 +34,25 @@ Plug 'nvim-lua/plenary.nvim'
 " A highly extendable fuzzy finder over lists.
 Plug 'nvim-telescope/telescope.nvim'
 
-" Use fzf instead of builtin finder in telescope
-Plug 'nvim-telescope/telescope-fzf-writer.nvim'
-
 " Wraps the Neovim treesitter API to provide functionnalities such as highlighting and incremental selection,
 " and a command to easily install parsers.
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 " A completion engine plugin for neovim written in Lua.
-Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp'
 
 " Completion Sources
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'ray-x/cmp-treesitter'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 " A file system explorer for the Vim editor.
 Plug 'preservim/nerdtree'
 
 " A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
-
-" A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-" Plug 'kyazdani42/nvim-web-devicons'
 
 " A dark theme
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -88,6 +84,9 @@ Plug 'norcalli/nvim-colorizer.lua'
 " Create a personal wiki using the Vim text editor.
 Plug 'vimwiki/vimwiki', { 'on': [] }
 
+" Give it a try later
+" Plug 'nvim-neorg/neorg'
+
 "  Preview Markdown in real-time with a web browser.
 Plug 'iamcco/markdown-preview.nvim'
 
@@ -103,23 +102,28 @@ Plug 'sbdchd/neoformat'
 " A simple rss reader plugin for neovim
 Plug 'empat94/nvim-rss'
 
+" A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+" Plug 'kyazdani42/nvim-web-devicons'
+
+" Adds file type icons to Vim plugins
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 command! LoadWiki execute "call plug#load('vimwiki') | vsplit | VimwikiIndex"
 
 " Language Servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-" npm i -g typescript
-" npm i -g typescript-language-server
+" npm i -g typescript typescript-language-server
 " npm i -g bash-language-server
 " npm i -g vscode-langservers-extracted
 " npm i -g vim-language-server
-" yay -S haskell-language-server _disabled in current config_
 " yay -S lua-language-server
+" yay -S haskell-language-server _disabled in current config_
 
 " Providers, Formatters, Linters
 " npm i -g neovim
-" pip install pynvim
 " npm i -g prettier
+" pip install pynvim
 " luarocks install --server=https://luarocks.org/dev luaformatter
 "
 " }}
@@ -308,17 +312,18 @@ let g:markdown_folding = 1
 "---------- PLUGIN SETTINGS ---------- {{
 
 " Telescope
-" nnoremap <C-t> <cmd>lua require('telescope').extensions.fzf_writer.files({
-"       \ previewer = false,
-"       \ prompt_title = "Files" })<cr>
-nnoremap <C-t> <cmd>FZF<CR>
-
-nnoremap <silent> <C-p> :Telescope buffers<cr>
-
 nnoremap gr <cmd>Telescope lsp_references<CR>
+nnoremap gi <cmd>Telescope lsp_implementation<CR>
+nnoremap gd <cmd>Telescope lsp_definitions<CR>
 
-nnoremap <c-s> <cmd>lua require('telescope').extensions.fzf_writer.staged_grep({
-      \ prompt_title = "grep" })<cr>
+nnoremap <silent> <C-t> <cmd>lua require('telescope.builtin').find_files({
+      \ prompt_title = "Find File" })<CR>
+
+nnoremap <silent> <C-p> <cmd>lua require('telescope.builtin').buffers({
+      \ prompt_title = "Find Buffer" })<CR>
+
+nnoremap <silent> <C-s> <cmd>lua require('telescope.builtin').live_grep({
+      \ prompt_title = "Live Grep" })<CR>
 
 " Nerdtree
 nnoremap <leader>z :NERDTreeToggle<CR>
@@ -438,12 +443,11 @@ augroup END
 
 function! MyHighlights()
   highlight Normal guibg=none
-  highlight LineNr guibg=NONE
   highlight Folded gui=bold guibg=NONE guifg=#6272A4
   highlight SpecialKey guibg=NONE
   highlight SignColumn guibg=NONE
   highlight Todo gui=bold,italic guibg=NONE guifg=Purple
-  highlight Search guibg=#a8a8a8
+  highlight Search guibg=#707070
   highlight Trail guifg=Red
   match Trail /\s\+$/
 
@@ -496,9 +500,9 @@ colorscheme dracula
 set secure
 
 lua << EOF
-  require("nvim-rss").setup({
-    feeds_dir = "~/.config/nvim"
-  })
+require("nvim-rss").setup({
+  feeds_dir = "~/.config/nvim"
+})
 EOF
 
 command! OpenRssView lua require("nvim-rss").open_feeds_tab()
