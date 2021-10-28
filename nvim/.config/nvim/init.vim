@@ -34,6 +34,9 @@ Plug 'nvim-lua/plenary.nvim'
 " A highly extendable fuzzy finder over lists.
 Plug 'nvim-telescope/telescope.nvim'
 
+" fzf-native is a c port of fzf
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 " Wraps the Neovim treesitter API to provide functionnalities such as highlighting and incremental selection,
 " and a command to easily install parsers.
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -42,9 +45,10 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'hrsh7th/nvim-cmp'
 
 " Completion Sources
+Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'ray-x/cmp-treesitter'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
@@ -84,7 +88,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 " Create a personal wiki using the Vim text editor.
 Plug 'vimwiki/vimwiki', { 'on': [] }
 
-" Give it a try later
+" TODO Give it a try later
 " Plug 'nvim-neorg/neorg'
 
 "  Preview Markdown in real-time with a web browser.
@@ -109,8 +113,6 @@ Plug 'empat94/nvim-rss'
 Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
-
-command! LoadWiki execute "call plug#load('vimwiki') | vsplit | VimwikiIndex"
 
 " Language Servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 " npm i -g typescript typescript-language-server
@@ -168,17 +170,16 @@ tnoremap <M-l> <C-\><C-n><C-w>l
 " Quick vertical & horizontal split
 noremap <silent> <leader>vn :vsplit<CR>
 noremap <silent> <leader>vt :vsplit \| terminal <CR>
-noremap <leader>vh :vertical help
-noremap <leader>vj :vsplit \| terminal
+noremap <leader>vh :vertical help 
+noremap <leader>vj :vsplit \| terminal 
 noremap <silent> <leader>xn :split<CR>
 noremap <silent> <leader>xt :split \| terminal <CR>
-noremap <leader>xj :split \| terminal
 
 " Quick tabs
 nnoremap <silent> <leader>tn :tabnew <CR>
 nnoremap <silent> <leader>tt :tabnew \| terminal <CR>
-nnoremap <leader>th :tab help
-nnoremap <leader>tj :tabnew \| terminal
+nnoremap <leader>th :tab help 
+nnoremap <leader>tj :tabnew \| terminal 
 
 " Yank till end of line
 nnoremap Y yg_
@@ -201,9 +202,9 @@ nnoremap <leader>r :%s//g<Left><Left>
 " Clear search highlights
 noremap <silent> <localleader><CR> :nohls<CR>
 
-" Use tab for completion selection
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<C-x><C-o>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Tab for completion and snippets
+inoremap <TAB> <CMD>lua tab_selection()<CR>
+inoremap <S-TAB> <CMD>lua S_tab_selection()<CR>
 
 " Inbuild terminal ESC normal mode
 tnoremap <Esc> <C-\><C-n>
@@ -312,18 +313,12 @@ let g:markdown_folding = 1
 "---------- PLUGIN SETTINGS ---------- {{
 
 " Telescope
-nnoremap gr <cmd>Telescope lsp_references<CR>
-nnoremap gi <cmd>Telescope lsp_implementation<CR>
-nnoremap gd <cmd>Telescope lsp_definitions<CR>
-
-nnoremap <silent> <C-t> <cmd>lua require('telescope.builtin').find_files({
-      \ prompt_title = "Find File" })<CR>
-
-nnoremap <silent> <C-p> <cmd>lua require('telescope.builtin').buffers({
-      \ prompt_title = "Find Buffer" })<CR>
-
-nnoremap <silent> <C-s> <cmd>lua require('telescope.builtin').live_grep({
-      \ prompt_title = "Live Grep" })<CR>
+nnoremap <silent> gr <cmd>Telescope lsp_references<CR>
+nnoremap <silent> gi <cmd>Telescope lsp_implementation<CR>
+nnoremap <silent> gd <cmd>Telescope lsp_definitions<CR>
+nnoremap <silent> <C-t> <cmd>Telescope find_files<CR>
+nnoremap <silent> <C-p> <cmd>Telescope buffers<CR>
+nnoremap <silent> <C-s> <cmd>Telescope live_grep<CR>
 
 " Nerdtree
 nnoremap <leader>z :NERDTreeToggle<CR>
@@ -358,8 +353,8 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_folding='custom'
 
-" Character that is used to show that an item of a todo list will not be done.
-let g:vimwiki_listsym_rejected = '✗'
+command! Notes execute "call plug#load('vimwiki') | tabnew | tcd  ~/Projects/Notes | Telescope find_files"
+command! Wiki execute "call plug#load('vimwiki') | tabnew | tcd ~/MEGASync/notes | e index.md | Telescope find_files"
 
 " Fugitive
 nnoremap <silent> <localleader>s :G<CR>
@@ -402,10 +397,14 @@ let g:neoformat_basic_format_retab = 1
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
 
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" UltiSnips (basically disable default maps)
+let g:UltiSnipsExpandTrigger="<F12>"
+let g:UltiSnipsJumpForwardTrigger="<F12>"
+let g:UltiSnipsJumpBackwardTrigger="<F12>"
+
+" Nvim-rss
+command! OpenRssView lua require("nvim-rss").open_feeds_tab()
+command! FetchFeed lua require("nvim-rss").fetch_feed()
 
 " }}
 
@@ -417,8 +416,6 @@ lua require("init")
 
 "---------- GENERAL SETTINGS ---------- {{
 
-command! Notes execute "FZF ~/Projects/Notes"
-
 augroup CustomCmds
   autocmd!
   " Blink yanked text
@@ -426,9 +423,6 @@ augroup CustomCmds
 
   " Set custom highlights
   autocmd ColorScheme * call MyHighlights()
-
-  " Auto load vimwiki if opening notes
-  autocmd VimEnter */notes/** call plug#load('vimwiki')
 
   " Set custom terminal options on open
   autocmd TermOpen * call TermOptions()
@@ -496,14 +490,5 @@ colorscheme dracula
 " When on, ":autocmd", shell and write commands are not allowed in
 " .nvimrc and .exrc in the current directory and map commands are displayed.
 set secure
-
-lua << EOF
-require("nvim-rss").setup({
-  feeds_dir = "~/.config/nvim"
-})
-EOF
-
-command! OpenRssView lua require("nvim-rss").open_feeds_tab()
-command! FetchFeed lua require("nvim-rss").fetch_feed()
 
 " }}

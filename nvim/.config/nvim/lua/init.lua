@@ -7,7 +7,31 @@ require("telescope").setup {
       },
     },
   },
+  pickers = {
+    find_files = {
+      theme = "dropdown",
+      previewer = false,
+      prompt_prefix = "",
+    },
+    buffers = {
+      prompt_title = "Find Buffer",
+      prompt_prefix = "",
+    },
+    live_grep = {
+      prompt_prefix = "",
+    },
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+    },
+  },
 }
+
+require("telescope").load_extension("fzf")
 
 require("nvim-treesitter.configs").setup {
   ensure_installed = "maintained",
@@ -94,6 +118,16 @@ nvim_lsp.sumneko_lua.setup {
 }
 
 local cmp = require("cmp")
+
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+  local col = vim.fn.col(".") - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
+end
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -104,25 +138,19 @@ cmp.setup({
     maxheight = 180,
   },
   mapping = {
-    ["<TAB>"] = cmp.mapping.select_next_item({
-      behavior = cmp.SelectBehavior.Insert,
+    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    ["<C-e>"] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
     }),
-    ["<C-n>"] = cmp.mapping.select_next_item({
-      behavior = cmp.SelectBehavior.Insert,
-    }),
-    ["<C-p>"] = cmp.mapping.select_prev_item({
-      behavior = cmp.SelectBehavior.Insert,
-    }),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-u>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
   },
-  sources = {
+  sources = cmp.config.sources({
     {
       name = "nvim_lsp",
     },
@@ -135,11 +163,34 @@ cmp.setup({
     {
       name = "path",
     },
+  }, {
     {
       name = "buffer",
     },
-  },
+  }),
 })
+
+_G.tab_selection = function()
+  if cmp.visible() then
+    vim.fn.feedkeys(t("<C-n>"), "")
+  elseif vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+    return vim.fn.feedkeys(t("<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>"))
+  elseif check_back_space() then
+    vim.fn.feedkeys(t("<tab>"), "")
+  else
+    cmp.mapping.complete()
+  end
+end
+
+_G.S_tab_selection = function()
+  if cmp.pumvisible() then
+    vim.fn.feedkeys(t("<C-p>"), "")
+  elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+    vim.fn.feedkeys(t("<C-R>=UltiSnips#JumpBackwards()<CR>"))
+  else
+    vim.fn.feedkeys(t("<tab>"), "")
+  end
+end
 
 require("colorizer").setup()
 
@@ -169,29 +220,9 @@ require("gitsigns").setup {
 }
 
 require("nvim-autopairs").setup()
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
--- Enable bracket spread on CR
-local remap = vim.api.nvim_set_keymap
-local npairs = require("nvim-autopairs")
-_G.MUtils = {}
-vim.g.completion_confirm_key = ""
-MUtils.completion_confirm = function()
-  if vim.fn.pumvisible() ~= 0 then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      vim.fn["compe#confirm"]()
-      return npairs.esc("<c-y>")
-    else
-      vim.defer_fn(function()
-        vim.fn["compe#confirm"]("<cr>")
-      end, 20)
-      return npairs.esc("<c-n>")
-    end
-  else
-    return npairs.check_break_line_char()
-  end
-end
-
-remap("i", "<CR>", "v:lua.MUtils.completion_confirm()", {
-  expr = true,
-  noremap = true,
+require("nvim-rss").setup({
+  feeds_dir = "~/.config/nvim",
 })
