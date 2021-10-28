@@ -75,6 +75,7 @@ alias -g ...='../..'
 
 alias v="nvim"
 alias a="agenda"
+alias w="wiki"
 alias n="note"
 
 alias cp="cp -uv"
@@ -84,12 +85,13 @@ alias top="bpytop";
 alias open="xdg-open"
 # alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
 
-alias vi="v";
-alias vim="v";
-alias note="v ~/MEGASync/notes/index.md";
-alias wnote="v ~/Projects/Notes";
-alias story="v -S ~/MEGASync/story.vim"
-alias agenda="v -S ~/MEGASync/agenda.vim"
+alias vi="nvim";
+alias vim="nvim";
+alias wiki="nvim -S ~/MEGASync/wiki.vim"
+alias note="nvim -S ~/MEGASync/notes.vim"
+alias notes="nvim -S ~/MEGASync/notes.vim"
+alias story="nvim -S ~/MEGASync/story.vim"
+alias agenda="nvim -S ~/MEGASync/agenda.vim"
 
 alias show-public-ip="curl ifconfig.co";
 alias show-private-ip="ip addr"; # TODO get only ip from output
