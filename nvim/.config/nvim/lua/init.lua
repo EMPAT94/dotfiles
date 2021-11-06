@@ -183,7 +183,7 @@ _G.tab_selection = function()
 end
 
 _G.S_tab_selection = function()
-  if cmp.pumvisible() then
+  if cmp.visible() then
     vim.fn.feedkeys(t("<C-p>"), "")
   elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
     vim.fn.feedkeys(t("<C-R>=UltiSnips#JumpBackwards()<CR>"))
@@ -223,6 +223,6 @@ require("nvim-autopairs").setup()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-require("nvim-rss").setup({
+--[[ require("nvim-rss").setup({
   feeds_dir = "~/.config/nvim",
-})
+}) ]]

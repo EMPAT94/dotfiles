@@ -104,7 +104,7 @@ Plug 'SirVer/ultisnips'
 Plug 'sbdchd/neoformat'
 
 " A simple rss reader plugin for neovim
-Plug 'empat94/nvim-rss'
+" Plug 'empat94/nvim-rss'
 
 " A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
 " Plug 'kyazdani42/nvim-web-devicons'
@@ -287,11 +287,15 @@ set numberwidth=5
 " List mode on, but hide tabs.
 set list listchars=tab:\ \ ,trail:·,extends:»,precedes:«
 
+" Avoid trailing tilde symbols on end of buffer
+set fcs=eob:\ 
+" let &fcs='eob: ' " This works too
+
 " Insert mode completion.
 set completeopt=menu,menuone,noselect
 
 " Don't give insert mode messages.
-set shortmess+=c
+set shortmess=aoOstTIcF
 
 " Don't fold on high-levels on start.
 set foldlevel=10
@@ -321,7 +325,7 @@ nnoremap <silent> <C-p> <cmd>Telescope buffers<CR>
 nnoremap <silent> <C-s> <cmd>Telescope live_grep<CR>
 
 " Nerdtree
-nnoremap <leader>z :NERDTreeToggle<CR>
+nnoremap <silent> <leader>z :NERDTreeToggle<CR>
 
 
 " Goyo
@@ -367,23 +371,40 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 " Lightline
+
+" Cannot use this with colorscheme, find fix or change plugin
+" let g:lightline = {
+"       \ 'mode_map': {
+"         \ 'n' : 'N',
+"         \ 'i' : 'I',
+"         \ 'R' : 'R',
+"         \ 'v' : 'V',
+"         \ 'V' : 'VL',
+"         \ "\<C-v>": 'VB',
+"         \ 'c' : 'C',
+"         \ 's' : 'S',
+"         \ 'S' : 'SL',
+"         \ "\<C-s>": 'SB',
+"         \ 't': 'T',
+"         \ },
+"       \ }
+
 let g:lightline = { 'colorscheme': 'simpleblack' }
 
 let g:lightline.active = {
       \ 'left': [ [ 'mode', 'paste' ],
-      \           [ 'dir', 'branch', 'filename', 'modified' ] ],
-      \ 'right': [ [ 'date' ] ] }
+      \           [ 'branch', 'filename', 'modified' ] ],
+      \ 'right': [ ] }
+
 let g:lightline.inactive = {
-      \ 'left': [ [ 'relativepath', 'modified' ] ],
-      \ 'right': [] }
+      \ 'left': [ ],
+      \ 'right': [ ] }
+
 let g:lightline.tabline = {
       \ 'left': [ [ 'tabs' ] ],
-      \ 'right': [] }
-let g:lightline.component_function = { 'branch': 'FugitiveHead', 'dir': 'Dir'}
+      \ 'right': [ ] }
 
-function! Dir()
-  return fnamemodify(getcwd(), ':t')
-endfunction
+let g:lightline.component_function = { 'branch': 'FugitiveHead' }
 
 " Neoformat
 nnoremap <leader>p :Neoformat<CR>
@@ -403,8 +424,8 @@ let g:UltiSnipsJumpForwardTrigger="<F12>"
 let g:UltiSnipsJumpBackwardTrigger="<F12>"
 
 " Nvim-rss
-command! OpenRssView lua require("nvim-rss").open_feeds_tab()
-command! FetchFeed lua require("nvim-rss").fetch_feed()
+" command! OpenRssView lua require("nvim-rss").open_feeds_tab()
+" command! FetchFeed lua require("nvim-rss").fetch_feed()
 
 " }}
 
@@ -435,6 +456,9 @@ augroup CustomCmds
 
   " Start lua lsp for lua files
   autocmd FileType java lua require'luals_config'.setup()
+
+  " Disable nvim-cmp on the specific buffer
+  autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
 augroup END
 
 function! MyHighlights()
