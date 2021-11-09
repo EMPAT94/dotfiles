@@ -56,7 +56,7 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'preservim/nerdtree'
 
 " A light and configurable statusline/tabline plugin for Vim
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 
 " A dark theme
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -218,9 +218,13 @@ nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
 "---------- EDITOR OPTIONS ---------- {{
 
 " Enables full color mode
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 set t_Co=256
+
+set statusline=
+set laststatus=0
+set noruler
 
 " Name of the shell to use for ! and :! commands.
 set shell=/bin/zsh
@@ -327,10 +331,11 @@ nnoremap <silent> <C-s> <cmd>Telescope live_grep<CR>
 " Nerdtree
 nnoremap <silent> <leader>z :NERDTreeToggle<CR>
 
+let NERDTreeStatusline=''
 
 " Goyo
-let g:goyo_width = 120
-let g:goyo_height = 90
+let g:goyo_width = 100
+let g:goyo_height = 100
 
 noremap <silent> <leader><CR> :Goyo<CR>
 
@@ -389,22 +394,22 @@ set foldexpr=nvim_treesitter#foldexpr()
 "         \ },
 "       \ }
 
-let g:lightline = { 'colorscheme': 'simpleblack' }
+" let g:lightline = { 'colorscheme': 'simpleblack' }
 
-let g:lightline.active = {
-      \ 'left': [ [ 'mode', 'paste' ],
-      \           [ 'branch', 'filename', 'modified' ] ],
-      \ 'right': [ ] }
+" let g:lightline.active = {
+"       \ 'left': [ [ 'mode', 'paste' ],
+"       \           [ 'branch', 'filename', 'modified' ] ],
+"       \ 'right': [ ] }
 
-let g:lightline.inactive = {
-      \ 'left': [ ],
-      \ 'right': [ ] }
+" let g:lightline.inactive = {
+"       \ 'left': [ ],
+"       \ 'right': [ ] }
 
-let g:lightline.tabline = {
-      \ 'left': [ [ 'tabs' ] ],
-      \ 'right': [ ] }
+" let g:lightline.tabline = {
+"       \ 'left': [ [ 'tabs' ] ],
+"       \ 'right': [ ] }
 
-let g:lightline.component_function = { 'branch': 'FugitiveHead' }
+" let g:lightline.component_function = { 'branch': 'FugitiveHead' }
 
 " Neoformat
 nnoremap <leader>p :Neoformat<CR>
@@ -463,6 +468,8 @@ augroup END
 
 function! MyHighlights()
   highlight Normal guibg=none
+  highlight Tabline gui=bold guibg=none guifg=DraculaYellow
+  highlight TablineFill gui=none guifg=none guibg=none
   highlight Folded gui=bold guibg=NONE guifg=#6272A4
   highlight SpecialKey guibg=NONE
   highlight SignColumn guibg=NONE
