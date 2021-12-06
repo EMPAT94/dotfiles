@@ -78,9 +78,10 @@ alias a="agenda"
 alias w="wiki"
 alias n="note"
 
+alias ls="exa --icons"
+alias ll="exa --icons --long --header"
 alias cp="cp -uv"
 alias mv="mv -uv"
-alias ls="ls -lah"
 alias top="bpytop";
 alias open="xdg-open"
 # alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
