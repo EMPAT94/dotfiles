@@ -103,8 +103,11 @@ Plug 'SirVer/ultisnips'
 " A (Neo)vim plugin for formatting code.
 Plug 'sbdchd/neoformat'
 
+" A calendar application for Vim
+Plug 'itchyny/calendar.vim'
+
 " A simple rss reader plugin for neovim
-" Plug 'empat94/nvim-rss'
+Plug 'empat94/nvim-rss'
 
 " A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
 " Plug 'kyazdani42/nvim-web-devicons'
@@ -314,7 +317,7 @@ let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
 
-let g:markdown_folding = 1
+" let g:markdown_folding = 1
 
 " }}
 
@@ -360,7 +363,7 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 " that will treat every file with configured file-extension as a wiki.
 " Disable this feature
 let g:vimwiki_global_ext = 0
-let g:vimwiki_folding='custom'
+" let g:vimwiki_folding='custom'
 
 command! Notes execute "call plug#load('vimwiki') | tabnew | tcd  ~/Projects/Notes | Telescope find_files"
 command! Wiki execute "call plug#load('vimwiki') | tabnew | tcd ~/MEGASync/notes | e index.md | Telescope find_files"
@@ -417,20 +420,23 @@ nnoremap <leader>p :Neoformat<CR>
 " Enable alignment
 let g:neoformat_basic_format_align = 1
 
-" Enable tab to spaces conversion
-let g:neoformat_basic_format_retab = 1
-
-" Enable trimmming of trailing whitespace
-let g:neoformat_basic_format_trim = 1
-
 " UltiSnips (basically disable default maps)
 let g:UltiSnipsExpandTrigger="<F12>"
 let g:UltiSnipsJumpForwardTrigger="<F12>"
 let g:UltiSnipsJumpBackwardTrigger="<F12>"
 
 " Nvim-rss
-" command! OpenRssView lua require("nvim-rss").open_feeds_tab()
-" command! FetchFeed lua require("nvim-rss").fetch_feed()
+
+command! OpenRssView lua require("nvim-rss").open_feeds_tab()
+
+command! FetchFeed lua require("nvim-rss").fetch_feed()
+
+command! FetchAllFeeds lua require("nvim-rss").fetch_all_feeds()
+
+command! ViewFeed lua require("nvim-rss").view_feed()
+
+command! -nargs=1 ImportOpml lua require("nvim-rss").import_opml(<args>)
+
 
 " }}
 
@@ -441,6 +447,40 @@ lua require("init")
 " }}
 
 "---------- GENERAL SETTINGS ---------- {{
+
+set tabline=%!MyTabLine()
+
+function MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+    let s .= '%' . (i + 1) . 'T' 
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  let s .= '%#TabLineFill#%T'
+
+  if tabpagenr('$') > 1 
+    let s .= '%=%#TabLine#%999Xclose'
+  endif
+
+  return s
+endfunction
+
+function MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let label =  bufname(buflist[winnr - 1])
+  let bufname = fnamemodify(label, ":t")
+  if bufname == ""
+    let bufname = "new"
+  endif
+  return bufname
+endfunction
 
 augroup CustomCmds
   autocmd!
@@ -468,14 +508,15 @@ augroup END
 
 function! MyHighlights()
   highlight Normal guibg=none
-  highlight Tabline gui=bold guibg=none guifg=DraculaYellow
+  highlight Tabline gui=none guibg=none guifg=#6272A4
   highlight TablineFill gui=none guifg=none guibg=none
+  highlight TablineSel gui=bold guibg=none guifg=#F1FA8C
   highlight Folded gui=bold guibg=NONE guifg=#6272A4
   highlight SpecialKey guibg=NONE
   highlight SignColumn guibg=NONE
   highlight Todo gui=bold,italic guibg=NONE guifg=Purple
   highlight Search guibg=#707070
-  highlight Trail guifg=Red
+  highlight Trail guifg=#FF5555
   match Trail /\s\+$/
 
   highlight! link GitSignsAdd NONE

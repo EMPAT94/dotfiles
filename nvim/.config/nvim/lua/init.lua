@@ -223,6 +223,6 @@ require("nvim-autopairs").setup()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
---[[ require("nvim-rss").setup({
-  feeds_dir = "~/.config/nvim",
-}) ]]
+require("nvim-rss").setup({
+  feeds_dir = "/home/pritesh/.config/nvim",
+})
