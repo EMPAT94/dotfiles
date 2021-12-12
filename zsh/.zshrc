@@ -49,7 +49,7 @@ export MANPAGER='nvim +Man!'
 # export MANWIDTH=999
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export TERMINAL="konsole"
+export TERMINAL="kitty"
 export BROWSER="firefox"
 export KEYTIMEOUT=1
 
@@ -71,15 +71,14 @@ bindkey '^[[6~' history-beginning-search-forward                # Page down key
 ##### ALIAS #####
 #################
 
-alias -g ...='../..'
-
+alias ...='../..'
 alias v="nvim"
 alias a="agenda"
 alias w="wiki"
 alias n="note"
+alias l="exa --icons --long --header"
 
 alias ls="exa --icons"
-alias ll="exa --icons --long --header"
 alias cp="cp -uv"
 alias mv="mv -uv"
 alias top="bpytop";
@@ -101,7 +100,6 @@ alias http-server="echo Starting server on 8080; python3 -m http.server 8080 &";
 alias scrcap="adb shell screencap /sdcard/scrcap.png && \
   adb pull /sdcard/scrcap.png ~/Documents/scr/$(date '+%s').png && \
   adb shell rm /sdcard/scrcap.png"
-alias music="nohup mpv --no-audio-display --shuffle ~/Music < /dev/null > /dev/null 2>&1 & disown"
 alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
 
 
