@@ -5,10 +5,6 @@ if !has('nvim-0.5')
   finish
 endif
 
-if exists('g:vscode')
-  finish
-endif
-
 "---------- PLUGIN MANAGER---------- {{
 
 " If vim-plug not present, install it.
@@ -55,9 +51,6 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 " A file system explorer for the Vim editor.
 Plug 'preservim/nerdtree'
 
-" A light and configurable statusline/tabline plugin for Vim
-" Plug 'itchyny/lightline.vim'
-
 " A dark theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 
@@ -88,9 +81,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 " Create a personal wiki using the Vim text editor.
 Plug 'vimwiki/vimwiki', { 'on': [] }
 
-" TODO Give it a try later
-" Plug 'nvim-neorg/neorg'
-
 "  Preview Markdown in real-time with a web browser.
 Plug 'iamcco/markdown-preview.nvim'
 
@@ -108,9 +98,6 @@ Plug 'itchyny/calendar.vim'
 
 " A simple rss reader plugin for neovim
 Plug 'empat94/nvim-rss'
-
-" A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-" Plug 'kyazdani42/nvim-web-devicons'
 
 " Adds file type icons to Vim plugins
 Plug 'ryanoasis/vim-devicons'
@@ -296,7 +283,6 @@ set list listchars=tab:\ \ ,trail:·,extends:»,precedes:«
 
 " Avoid trailing tilde symbols on end of buffer
 set fcs=eob:\ 
-" let &fcs='eob: ' " This works too
 
 " Insert mode completion.
 set completeopt=menu,menuone,noselect
@@ -316,8 +302,6 @@ let g:python3_host_prog = "/usr/bin/python3"
 let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
-
-" let g:markdown_folding = 1
 
 " }}
 
@@ -378,42 +362,6 @@ let g:fugitive_no_maps = 1
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
-" Lightline
-
-" Cannot use this with colorscheme, find fix or change plugin
-" let g:lightline = {
-"       \ 'mode_map': {
-"         \ 'n' : 'N',
-"         \ 'i' : 'I',
-"         \ 'R' : 'R',
-"         \ 'v' : 'V',
-"         \ 'V' : 'VL',
-"         \ "\<C-v>": 'VB',
-"         \ 'c' : 'C',
-"         \ 's' : 'S',
-"         \ 'S' : 'SL',
-"         \ "\<C-s>": 'SB',
-"         \ 't': 'T',
-"         \ },
-"       \ }
-
-" let g:lightline = { 'colorscheme': 'simpleblack' }
-
-" let g:lightline.active = {
-"       \ 'left': [ [ 'mode', 'paste' ],
-"       \           [ 'branch', 'filename', 'modified' ] ],
-"       \ 'right': [ ] }
-
-" let g:lightline.inactive = {
-"       \ 'left': [ ],
-"       \ 'right': [ ] }
-
-" let g:lightline.tabline = {
-"       \ 'left': [ [ 'tabs' ] ],
-"       \ 'right': [ ] }
-
-" let g:lightline.component_function = { 'branch': 'FugitiveHead' }
-
 " Neoformat
 nnoremap <leader>p :Neoformat<CR>
 
@@ -426,17 +374,11 @@ let g:UltiSnipsJumpForwardTrigger="<F12>"
 let g:UltiSnipsJumpBackwardTrigger="<F12>"
 
 " Nvim-rss
-
 command! OpenRssView lua require("nvim-rss").open_feeds_tab()
-
 command! FetchFeed lua require("nvim-rss").fetch_feed()
-
 command! FetchAllFeeds lua require("nvim-rss").fetch_all_feeds()
-
 command! ViewFeed lua require("nvim-rss").view_feed()
-
 command! -nargs=1 ImportOpml lua require("nvim-rss").import_opml(<args>)
-
 
 " }}
 
