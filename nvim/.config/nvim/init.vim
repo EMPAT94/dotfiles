@@ -5,7 +5,7 @@ if !has('nvim-0.5')
   finish
 endif
 
-"---------- PLUGIN MANAGER---------- {{
+"---------- PLUGIN MANAGER ---------- {{
 
 " If vim-plug not present, install it.
 let plug_dir=expand('~/.config/nvim/autoload/plug.vim')
@@ -281,8 +281,8 @@ set numberwidth=5
 " List mode on, but hide tabs.
 set list listchars=tab:\ \ ,trail:·,extends:»,precedes:«
 
-" Avoid trailing tilde symbols on end of buffer
-set fcs=eob:\ 
+" Remove end of buffer ~, diff delted - and fold closed -
+set fcs=eob:\ ,diff:\ ,fold:\ 
 
 " Insert mode completion.
 set completeopt=menu,menuone,noselect
@@ -461,7 +461,7 @@ function! MyHighlights()
   highlight Trail guifg=#FF5555
   match Trail /\s\+$/
 
-  highlight! link GitSignsAdd NONE
+  highlight link GitSignsAdd NONE
   highlight DiffAdd guibg=#254035 guifg=NONE gui=NONE
   highlight DiffDelete guibg=#440000 guifg=NONE gui=NONE
   highlight DiffChange guibg=#292929 guifg=NONE gui=NONE
