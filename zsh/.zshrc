@@ -50,7 +50,7 @@ export MANPAGER='nvim +Man!'
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export TERMINAL="kitty"
-export BROWSER="firefox"
+export BROWSER="brave"
 export KEYTIMEOUT=1
 
 
