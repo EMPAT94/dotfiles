@@ -76,13 +76,14 @@ alias v="nvim"
 alias a="agenda"
 alias w="wiki"
 alias n="note"
-alias l="exa --icons --long --header"
+alias l="exa --icons --long --header --all"
 
 alias ls="exa --icons"
 alias cp="cp -uv"
 alias mv="mv -uv"
 alias top="bpytop";
 alias open="xdg-open"
+alias tree="exa --icons --tree"
 # alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
 
 alias vi="nvim";
@@ -96,7 +97,7 @@ alias agenda="nvim -S ~/MEGASync/agenda.vim"
 alias show-public-ip="curl ifconfig.co";
 alias show-private-ip="ip addr"; # TODO get only ip from output
 alias adb-connect="adb connect 192.168.0.190:5555";
-alias http-server="echo Starting server on 8080; python3 -m http.server 8080 &";
+alias http-server="echo Starting server on 8889; python3 -m http.server 8889 &";
 alias scrcap="adb shell screencap /sdcard/scrcap.png && \
   adb pull /sdcard/scrcap.png ~/Documents/scr/$(date '+%s').png && \
   adb shell rm /sdcard/scrcap.png"
@@ -107,13 +108,13 @@ alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
 ##### PATH #####
 ################
 
-export PATH="/usr/local/bin\
+export PATH="$HOME/.local/bin/\
+:$HOME/.local/npm/bin\
+:/usr/local/bin\
 :/usr/local/sbin\
-:$HOME/.local/bin\
-:$HOME/.npm-global/bin\
 :/usr/bin\
-:/bin\
 :/usr/sbin\
+:/bin\
 :/sbin";
 
 
