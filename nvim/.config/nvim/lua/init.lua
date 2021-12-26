@@ -48,9 +48,6 @@ local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
 
   local opts = {
     noremap = true,
@@ -119,14 +116,42 @@ nvim_lsp.sumneko_lua.setup {
 
 local cmp = require("cmp")
 
-local t = function(str)
+local function t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local check_back_space = function()
+local function check_back_space()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
 end
+
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
 
 cmp.setup({
   snippet = {
@@ -134,12 +159,9 @@ cmp.setup({
       vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
-  documentation = {
-    maxheight = 180,
-  },
   mapping = {
-    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
@@ -163,11 +185,17 @@ cmp.setup({
     {
       name = "path",
     },
-  }, {
-    {
-      name = "buffer",
-    },
   }),
+  formatting = {
+    fields = { "abbr", "kind" },
+    format = function(_, vim_item)
+      vim_item.kind = string.format("%s", kind_icons[vim_item.kind] or "")
+      return vim_item
+    end,
+  },
+  documentation = {
+    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  },
 })
 
 _G.tab_selection = function()
@@ -188,7 +216,7 @@ _G.S_tab_selection = function()
   elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
     vim.fn.feedkeys(t("<C-R>=UltiSnips#JumpBackwards()<CR>"))
   else
-    vim.fn.feedkeys(t("<tab>"), "")
+    vim.fn.feedkeys(t("<S-tab>"), "")
   end
 end
 
@@ -223,6 +251,9 @@ require("nvim-autopairs").setup()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-require("nvim-rss").setup({
-  feeds_dir = "/home/pritesh/.config/nvim",
-})
+local ok, rss = pcall(require, "nvim-rss")
+if ok then
+  rss.setup({
+    feeds_dir = "/home/pritesh/.config/nvim",
+  })
+end

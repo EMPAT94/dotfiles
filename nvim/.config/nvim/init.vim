@@ -97,7 +97,7 @@ Plug 'sbdchd/neoformat'
 Plug 'itchyny/calendar.vim'
 
 " A simple rss reader plugin for neovim
-Plug 'empat94/nvim-rss'
+" Plug 'empat94/nvim-rss'
 
 " Adds file type icons to Vim plugins
 Plug 'ryanoasis/vim-devicons'
@@ -215,6 +215,7 @@ set t_Co=256
 set statusline=
 set laststatus=0
 set noruler
+set showtabline=2
 
 " Name of the shell to use for ! and :! commands.
 set shell=/bin/zsh
@@ -419,7 +420,7 @@ function MyTabLabel(n)
   let label =  bufname(buflist[winnr - 1])
   let bufname = fnamemodify(label, ":t")
   if bufname == ""
-    let bufname = "new"
+    let bufname = "[No Name]"
   endif
   return bufname
 endfunction
