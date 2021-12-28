@@ -67,7 +67,7 @@ Plug 'b3nj5m1n/kommentary'
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 
 " Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', { 'on': 'G' }
 
 " A minimalist autopairs for Neovim written by Lua.
 Plug 'windwp/nvim-autopairs'
@@ -76,25 +76,19 @@ Plug 'windwp/nvim-autopairs'
 Plug 'lewis6991/gitsigns.nvim'
 
 " Color highlighter for Neovim
-Plug 'norcalli/nvim-colorizer.lua'
-
-" Create a personal wiki using the Vim text editor.
-Plug 'vimwiki/vimwiki', { 'on': [] }
+Plug 'norcalli/nvim-colorizer.lua', { 'on': 'Colourize' }
 
 "  Preview Markdown in real-time with a web browser.
-Plug 'iamcco/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' }
 
 " Distraction-free writing in Vim.
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 
 " UltiSnips is the ultimate solution for snippets in Vim.
 Plug 'SirVer/ultisnips'
 
 " A (Neo)vim plugin for formatting code.
 Plug 'sbdchd/neoformat'
-
-" A calendar application for Vim
-Plug 'itchyny/calendar.vim'
 
 " A simple rss reader plugin for neovim
 " Plug 'empat94/nvim-rss'
@@ -105,10 +99,10 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Language Servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-" npm i -g typescript typescript-language-server
-" npm i -g bash-language-server
-" npm i -g vscode-langservers-extracted
-" npm i -g vim-language-server
+" yay -S typescript typescript-language-server
+" yay -S bash-language-server
+" yay -S vscode-langservers-extracted
+" yay -S vim-language-server
 " yay -S lua-language-server
 " yay -S haskell-language-server _disabled in current config_
 
@@ -124,6 +118,9 @@ call plug#end()
 
 let mapleader = ","
 let maplocalleader = " "
+
+" Quick escape
+inoremap jk <ESC>
 
 " Remap j and k to scroll by visual lines
 nnoremap j gj
@@ -174,6 +171,9 @@ nnoremap <leader>tj :tabnew \| terminal
 " Yank till end of line
 nnoremap Y yg_
 
+" Do not overwrite copied content with replaced one
+vnoremap p "_dP
+
 " Indents
 nnoremap < <<
 nnoremap > >>
@@ -203,6 +203,12 @@ tnoremap <Esc> <C-\><C-n>
 " Open url under cursor into browser
 nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
 
+" Do not search for ctags... LSP FTW!
+noremap <C-]> <NOP>
+
+" Go to file but in vertical split
+nnoremap <silent> gf :vsp <cfile><CR>
+
 " }}
 
 "---------- EDITOR OPTIONS ---------- {{
@@ -215,7 +221,6 @@ set t_Co=256
 set statusline=
 set laststatus=0
 set noruler
-set showtabline=2
 
 " Name of the shell to use for ! and :! commands.
 set shell=/bin/zsh
@@ -327,32 +332,6 @@ let g:goyo_height = 100
 
 noremap <silent> <leader><CR> :Goyo<CR>
 
-" Vimwiki
-let wiki_1 = {}
-let wiki_1.path = "~/MEGASync/notes"
-let wiki_1.syntax = "markdown"
-let wiki_1.ext =  ".md"
-let wiki_1.name = "Main Wiki"
-let wiki_1.links_space_char = "_"
-
-let wiki_2 = {}
-let wiki_2.path = "~/Projects/Notes"
-let wiki_2.syntax = "markdown"
-let wiki_2.ext =  ".md"
-let wiki_2.name = "Code Wiki"
-let wiki_2.links_space_char = "_"
-
-let g:vimwiki_list = [wiki_1, wiki_2]
-
-" Vimwiki has a feature called "Temporary Wikis",
-" that will treat every file with configured file-extension as a wiki.
-" Disable this feature
-let g:vimwiki_global_ext = 0
-" let g:vimwiki_folding='custom'
-
-command! Notes execute "call plug#load('vimwiki') | tabnew | tcd  ~/Projects/Notes | Telescope find_files"
-command! Wiki execute "call plug#load('vimwiki') | tabnew | tcd ~/MEGASync/notes | e index.md | Telescope find_files"
-
 " Fugitive
 nnoremap <silent> <localleader>s :G<CR>
 nnoremap <silent> <localleader>d :Gvdiffsplit<CR>
@@ -407,7 +386,7 @@ function MyTabLine()
 
   let s .= '%#TabLineFill#%T'
 
-  if tabpagenr('$') > 1 
+  if tabpagenr('$') > 1
     let s .= '%=%#TabLine#%999Xclose'
   endif
 
@@ -437,43 +416,51 @@ augroup CustomCmds
   autocmd TermOpen * call TermOptions()
 
   " Clear commandline after 5 seconds
-  autocmd CmdlineLeave : call timer_start(3000, funcref('s:empty_message'))
+  autocmd CmdlineLeave : call timer_start(4000, funcref('s:empty_message'))
 
   " Start java lsp for java files
   " autocmd FileType java lua require'jdtls_config'.setup()
-
-  " Start lua lsp for lua files
-  autocmd FileType java lua require'luals_config'.setup()
 
   " Disable nvim-cmp on the specific buffer
   autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
 augroup END
 
 function! MyHighlights()
-  highlight Normal guibg=none
-  highlight Tabline gui=none guibg=none guifg=#6272A4
-  highlight TablineFill gui=none guifg=none guibg=none
-  highlight TablineSel gui=bold guibg=none guifg=#F1FA8C
-  highlight Folded gui=bold guibg=NONE guifg=#6272A4
-  highlight SpecialKey guibg=NONE
-  highlight SignColumn guibg=NONE
-  highlight Todo gui=bold,italic guibg=NONE guifg=Purple
-  highlight Search guibg=#707070
-  highlight Trail guifg=#FF5555
+  highlight! Normal guibg=none
+  highlight! Tabline gui=none guibg=none guifg=#6272A4
+  highlight! TablineFill gui=none guifg=none guibg=none
+  highlight! TablineSel gui=bold guibg=none guifg=#F1FA8C
+  highlight! Folded gui=bold guibg=NONE guifg=#6272A4
+  highlight! SpecialKey guibg=NONE
+  highlight! SignColumn guibg=NONE
+  highlight! Todo gui=bold,italic guibg=NONE guifg=Purple
+  highlight! Search guibg=#707070
+  highlight! VertSplit gui=none guifg=#6272a4 guibg=black
+  highlight! Trail guifg=#FF5555
   match Trail /\s\+$/
 
-  highlight link GitSignsAdd NONE
-  highlight DiffAdd guibg=#254035 guifg=NONE gui=NONE
-  highlight DiffDelete guibg=#440000 guifg=NONE gui=NONE
-  highlight DiffChange guibg=#292929 guifg=NONE gui=NONE
-  highlight DiffText guibg=#252525 guifg=orange gui=underline
+  highlight! link GitSignsAdd NONE
+  highlight! DiffAdd guibg=#254035 guifg=NONE gui=NONE
+  highlight! DiffDelete guibg=#440000 guifg=NONE gui=NONE
+  highlight! DiffChange guibg=#292929 guifg=NONE gui=NONE
+  highlight! DiffText guibg=#252525 guifg=orange gui=underline
 
-  highlight link LspDiagnosticsDefaultHint NonText
-  highlight link LspDiagnosticsDefaultInformation NonText
-  highlight link LspDiagnosticsUnderlineHint NONE
-  highlight link LspDiagnosticsUnderlineInformation NONE
-  highlight link LspDiagnosticsUnderlineError NONE
-  highlight link LspDiagnosticsUnderlineWarning NONE
+  highlight! link DiagnosticHint NonText
+  highlight! link DiagnosticInfo NonText
+  highlight! link DiagnosticSignHint NonText
+  highlight! link DiagnosticSignInfo NonText
+  highlight! link DiagnosticVirtualTextHint NonText
+  highlight! link DiagnosticVirtualTextInfo NonText
+  highlight! link LspDiagnosticsDefaultHint NonText
+  highlight! link LspDiagnosticsDefaultInformation NonText
+  highlight! link DiagnosticUnderlineHint NONE
+  highlight! link DiagnosticUnderlineInfo NONE
+  highlight! link DiagnosticUnderlineError NONE
+  highlight! link DiagnosticUnderlineWarn NONE
+  highlight! link LspDiagnosticsUnderlineHint NONE
+  highlight! link LspDiagnosticsUnderlineInformation NONE
+  highlight! link LspDiagnosticsUnderlineError NONE
+  highlight! link LspDiagnosticsUnderlineWarning NONE
 endfunction
 
 function! TermOptions()
