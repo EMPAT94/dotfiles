@@ -1,4 +1,3 @@
--- TODO Split into multiple files
 require("telescope").setup {
   defaults = {
     mappings = {
@@ -35,7 +34,11 @@ require("telescope").load_extension("fzf")
 
 require("nvim-treesitter.configs").setup {
   ensure_installed = "maintained",
+  sync_install = false,
   highlight = {
+    enable = true,
+  },
+  indent = {
     enable = true,
   },
 }
@@ -44,7 +47,7 @@ local nvim_lsp = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local on_attach = function(client, bufnr)
+local function on_attach(client, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
@@ -58,16 +61,17 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
-  if client.resolved_capabilities.document_highlight then
+  --[=[ if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
       hi LspReferenceRead guibg=Grey gui=bold
       hi LspReferenceText guibg=Grey gui=bold
       hi LspReferenceWrite guibg=Grey gui=bold
     ]], false)
   end
+  ]=]
 end
 
-local servers = { "jsonls", "cssls", "bashls", "html" }
+local servers = { "jsonls", "cssls", "bashls", "html", "vls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -220,7 +224,10 @@ _G.S_tab_selection = function()
   end
 end
 
-require("colorizer").setup()
+local ok, colorizer = pcall(require, "colorizer")
+if ok then
+  colorizer.setup()
+end
 
 require("gitsigns").setup {
   signs = {

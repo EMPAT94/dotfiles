@@ -320,6 +320,7 @@ nnoremap <silent> gd <cmd>Telescope lsp_definitions<CR>
 nnoremap <silent> <C-t> <cmd>Telescope find_files<CR>
 nnoremap <silent> <C-p> <cmd>Telescope buffers<CR>
 nnoremap <silent> <C-s> <cmd>Telescope live_grep<CR>
+nnoremap <silent> <C-a> <cmd>Telescope lsp_code_actions theme=cursor<CR>
 
 " Nerdtree
 nnoremap <silent> <leader>z :NERDTreeToggle<CR>
