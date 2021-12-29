@@ -92,7 +92,6 @@ alias wiki="nvim -S ~/MEGASync/wiki.vim"
 alias note="nvim -S ~/MEGASync/notes.vim"
 alias notes="nvim -S ~/MEGASync/notes.vim"
 alias story="nvim -S ~/MEGASync/story.vim"
-alias agenda="nvim -S ~/MEGASync/agenda.vim"
 
 alias show-public-ip="curl ifconfig.co";
 alias show-private-ip="ip addr"; # TODO get only ip from output
@@ -137,3 +136,5 @@ zstyle ':vcs_info:*' enable git
 ################
 
 eval "$(rbenv init -)"
+
+echo; fortune -s | figlet -ctf term; echo;
