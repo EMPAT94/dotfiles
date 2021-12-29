@@ -1,0 +1,86 @@
+local set = vim.opt
+
+-- Enables full color mode
+set.termguicolors = true
+
+-- Very clean UI, no statusline at all
+set.laststatus = 0
+set.ruler = false
+set.showmode = false
+
+-- Enables mouse support for all modes
+set.mouse = "a"
+
+-- Natural splitting of windows
+set.splitright = true
+set.splitbelow = true
+
+-- Hybrid number line
+set.number = true
+set.relativenumber = true
+
+-- Case of normal letters in pattern is ignored unless capital
+set.ignorecase = true
+set.smartcase = true
+
+-- Convert tabs to spaces, one tab = 2 spaces, one indent = 2 spaces
+set.expandtab = true
+set.tabstop = 2
+set.shiftwidth = 2
+
+-- Copy indent from previous line smartly
+set.smartindent = true
+set.autoindent = true
+
+-- Allows closing buffer windows without needing to save first
+set.hidden = true
+
+-- Do not create backup or swapfiles
+set.backup = false
+set.swapfile = false
+set.writebackup = false
+
+-- Time after cursor no update after which to run autocmds
+set.updatetime = 100
+
+-- Always show sign column beside the number line
+set.signcolumn = "yes"
+
+-- Use system clipboard for yank and delete by default
+set.clipboard = "unnamedplus"
+
+-- Minimal number of screen lines to keep above and below the cursor.
+set.scrolloff = 5
+set.sidescrolloff = 5
+
+-- Number of screen lines to use for the command-line.
+set.cmdheight = 2
+
+-- The screen will not be redrawn while executing macros, registers and other commands that have not been typed.
+-- Also, updating the window title is postponed.
+set.lazyredraw = true
+
+-- Minimal number of columns to use for the line number.
+set.numberwidth = 5
+
+-- List mode on, with custom chars
+set.list = true
+set.listchars = {
+  tab = "  ",
+  trail = "·",
+  extends = "»",
+  precedes = "«",
+}
+
+-- Remove end of buffer ~, diff delted - and fold closed -
+-- For some reason, table don't work
+set.fcs = "eob: ,diff: ,fold: "
+
+-- Insert mode completion.
+set.completeopt = { "menu", "menuone", "noselect" }
+
+-- Don't give insert mode messages.
+set.shortmess:append "c"
+
+-- Don't fold on high-levels on start.
+set.foldlevel = 10
