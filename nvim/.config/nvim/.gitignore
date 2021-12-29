@@ -3,3 +3,4 @@ plugged/
 eviline.lua
 autoload/
 lua-language-server
+plugin
