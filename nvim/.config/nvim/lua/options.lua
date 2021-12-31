@@ -8,6 +8,9 @@ set.laststatus = 0
 set.ruler = false
 set.showmode = false
 
+-- No tabline either, prefer terminal tabs instead
+set.showtabline = 0
+
 -- Enables mouse support for all modes
 set.mouse = "a"
 
@@ -79,8 +82,8 @@ set.fcs = "eob: ,diff: ,fold: "
 -- Insert mode completion.
 set.completeopt = { "menu", "menuone", "noselect" }
 
--- Don't give insert mode messages.
-set.shortmess:append "c"
+-- Don't give long insert mode messages.
+set.shortmess = "aosTwAIcFs"
 
 -- Don't fold on high-levels on start.
 set.foldlevel = 10
