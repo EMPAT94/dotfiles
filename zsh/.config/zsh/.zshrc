@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 ###################
 ##### OPTIONS #####
 ###################
@@ -12,7 +14,6 @@ setopt appendhistory                                            # Immediately ap
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
 setopt autocd                                                   # if only directory path is entered, cd there.
 setopt inc_append_history                                       # save commands are added to the history immediately, otherwise only when shell exits.
-
 
 ###################
 ##### PLUGINS #####
@@ -31,28 +32,26 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored comple
 zstyle ':completion:*' rehash true                              # automatically find new executables in path
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' cache-path /tmp/cache
 zstyle ':completion:*:functions' ignored-patterns '_*'          # Ignore completion functions for commands
 
 ##################
 ##### CONFIG #####
 ##################
 
-HISTFILE=~/.zhistory
-HISTSIZE=10000
-SAVEHIST=10000
+HISTFILE=${ZDOTDIR}/.zhistory
+HISTSIZE=1000
+SAVEHIST=1000
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 DISABLE_UNTRACKED_FILES_DIRTY="true"                            # Disable marking untracked files under VCS as dirty.
 DISABLE_AUTO_TITLE="true";
 export LC_ALL=en_US.UTF-8                                       # solves locale warnings
 export MANPAGER='nvim +Man!'
-# export MANWIDTH=999
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export TERMINAL="kitty"
 export BROWSER="brave"
 export KEYTIMEOUT=1
-
 
 #######################
 ##### KEYBINDINGS #####
@@ -66,6 +65,18 @@ bindkey '^[[D'  backward-char                                   # Left key
 bindkey '^[[5~' history-beginning-search-backward               # Page up key
 bindkey '^[[6~' history-beginning-search-forward                # Page down key
 
+################
+##### PATH #####
+################
+
+export PATH="$HOME/.local/bin/\
+:$HOME/.local/npm/bin\
+:/usr/local/bin\
+:/usr/local/sbin\
+:/usr/bin\
+:/usr/sbin\
+:/bin\
+:/sbin";
 
 #################
 ##### ALIAS #####
@@ -102,21 +113,6 @@ alias scrcap="adb shell screencap /sdcard/scrcap.png && \
   adb shell rm /sdcard/scrcap.png"
 alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
 
-
-################
-##### PATH #####
-################
-
-export PATH="$HOME/.local/bin/\
-:$HOME/.local/npm/bin\
-:/usr/local/bin\
-:/usr/local/sbin\
-:/usr/bin\
-:/usr/sbin\
-:/bin\
-:/sbin";
-
-
 ##################
 ##### PROMPT #####
 ##################
@@ -129,7 +125,6 @@ setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{yellow}%b'
 zstyle ':vcs_info:*' enable git
-
 
 ################
 ##### INIT #####
