@@ -1,0 +1,10 @@
+moc/.moc/pid
+moc/.moc/equalizer
+moc/.moc/last_directory
+moc/.moc/softmixer
+moc/.moc/playlist*
+
+nvim/.config/nvim/nvim.rss.db
+
+zsh/.config/zsh/.zhistory
+zsh/.config/zsh/.zcompdump
