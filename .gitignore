@@ -5,6 +5,7 @@ moc/.moc/softmixer
 moc/.moc/playlist*
 
 nvim/.config/nvim/nvim.rss.db
+nvim/.config/nvim/plugin
 
 zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zcompdump
