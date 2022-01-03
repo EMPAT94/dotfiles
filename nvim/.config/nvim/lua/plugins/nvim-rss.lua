@@ -1,9 +1,11 @@
 local ok, rss = pcall(require, "nvim-rss")
-if ok then
-  rss.setup({
-    feeds_dir = "/home/pritesh/.config/nvim",
-  })
+if not ok then
+  return
 end
+
+rss.setup({
+  feeds_dir = "/home/pritesh/.config/nvim",
+})
 
 vim.cmd [=[
   command! OpenRssView lua require("nvim-rss").open_feeds_tab()

@@ -42,14 +42,14 @@ packer.startup(function(use)
   -- Have package manager manage package manager
   use "wbthomason/packer.nvim"
 
-  -- Collection of common configurations for Neovim's built-in language server client.
-  use { "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer" }
+  -- Library of lua functions.
+  use "nvim-lua/plenary.nvim"
 
   -- An implementation of the Popup API from vim in Neovim.
   use "nvim-lua/popup.nvim"
 
-  -- Library of lua functions.
-  use "nvim-lua/plenary.nvim"
+  -- Collection of common configurations for Neovim's built-in language server client.
+  use { "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer" }
 
   -- A highly extendable fuzzy finder over lists.
   use "nvim-telescope/telescope.nvim"
@@ -91,8 +91,12 @@ packer.startup(function(use)
   -- Vim sugar for the UNIX shell commands
   use "tpope/vim-eunuch"
 
-  -- Neovim plugin to comment text in and out, written in lua.
-  use "b3nj5m1n/kommentary"
+  use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  }
 
   -- Provides a single command that deletes the current buffer in a smart way.
   use {
@@ -110,10 +114,15 @@ packer.startup(function(use)
   use "lewis6991/gitsigns.nvim"
 
   -- Color highlighter for Neovim
-  use "norcalli/nvim-colorizer.lua"
+  use {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({ "css", "html" })
+    end,
+  }
 
   --  Preview Markdown in real-time with a web browser.
-  use  "iamcco/markdown-preview.nvim"
+  use "iamcco/markdown-preview.nvim"
 
   -- Distraction-free writing in Vim.
   use {
@@ -125,10 +134,7 @@ packer.startup(function(use)
   use "SirVer/ultisnips"
 
   -- A (Neo)vim plugin for formatting code.
-  use {
-    "sbdchd/neoformat",
-    cmd = "Neoformat",
-  }
+  use "sbdchd/neoformat"
 
   -- A simple rss reader plugin for neovim
   -- use "empat94/nvim-rss"
@@ -147,15 +153,11 @@ require "plugins.telescope"
 
 require "plugins.treesitter"
 
--- require "plugins.lsp"
-
 require "plugins.lsp-installer"
 
 require "plugins.cmp"
 
 require "plugins.nerdtree"
-
-require "plugins.colorizer"
 
 require "plugins.gitsigns"
 
