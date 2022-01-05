@@ -122,7 +122,10 @@ packer.startup(function(use)
   }
 
   --  Preview Markdown in real-time with a web browser.
-  use "iamcco/markdown-preview.nvim"
+  use {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+  }
 
   -- Distraction-free writing in Vim.
   use {

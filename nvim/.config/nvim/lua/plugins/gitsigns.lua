@@ -21,4 +21,5 @@ require("gitsigns").setup {
       text = "▐",
     },
   },
+  keymaps = {},
 }

@@ -6,6 +6,8 @@ require "mappings"
 
 require "plugins"
 
-require "autocommands"
+require "functions"
+
+require "commands"
 
 require "colorscheme"

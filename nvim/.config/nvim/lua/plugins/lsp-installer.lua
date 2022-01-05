@@ -45,32 +45,30 @@ local function on_attach(client, bufnr)
   buf_set_keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
   buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "<leader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  buf_set_keymap("n", "<leader>a", "<cmd>Telescope lsp_code_actions<CR>", opts)
+  buf_set_keymap("n", "<localleader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  buf_set_keymap("n", "<localleader>a", "<cmd>Telescope lsp_code_actions<CR>", opts)
 end
 
 local enhance_server_opts = {
   -- Provide settings that should only apply to the "eslintls" server
-  ["samplels"] = function(opts)
+  ["tsserver"] = function(opts)
     opts.settings = {
-      format = {
-        enable = true,
-      },
+      root_dir = vim.fn.getcwd()
     }
   end,
 
   ["sumneko_lua"] = function(opts)
     opts.settings = {
       Lua = {
-        -- runtime = {
-        -- version = "LuaJIT",
-        -- },
+        runtime = {
+          version = "LuaJIT",
+        },
         diagnostics = {
           globals = { "vim", "describe", "it" },
         },
-        -- workspace = {
-        -- library = vim.api.nvim_get_runtime_file("", true),
-        -- },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
         telemetry = {
           enable = false,
         },
