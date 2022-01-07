@@ -80,10 +80,19 @@ packer.startup(function(use)
   use "quangnguyen30192/cmp-nvim-ultisnips"
 
   -- A file system explorer for the Vim editor.
-  use "preservim/nerdtree"
+  use {
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require("nvim-tree").setup({})
+    end,
+    requires = { "kyazdani42/nvim-web-devicons" },
+  }
 
   -- A dark theme
-  use "dracula/vim"
+  use {
+    "dracula/vim",
+    as = "dracula",
+  }
 
   -- Provides mappings to easily delete, change and add such surroundings in pairs.
   use "tpope/vim-surround"
@@ -105,7 +114,10 @@ packer.startup(function(use)
   }
 
   -- Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
-  use "tpope/vim-fugitive"
+  use {
+    "tpope/vim-fugitive",
+    cmd = "G",
+  }
 
   -- A minimalist autopairs for Neovim written by Lua.
   use "windwp/nvim-autopairs"
@@ -113,37 +125,22 @@ packer.startup(function(use)
   -- Git signs written in pure lua.
   use "lewis6991/gitsigns.nvim"
 
-  -- Color highlighter for Neovim
-  use {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup({ "css", "html" })
-    end,
-  }
-
-  --  Preview Markdown in real-time with a web browser.
-  use {
-    "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-  }
-
   -- Distraction-free writing in Vim.
   use {
-    "junegunn/goyo.vim",
-    cmd = "Goyo",
+    "folke/zen-mode.nvim",
   }
 
   -- UltiSnips is the ultimate solution for snippets in Vim.
   use "SirVer/ultisnips"
 
   -- A (Neo)vim plugin for formatting code.
-  use "sbdchd/neoformat"
+  use {
+    "sbdchd/neoformat",
+    cmd = "Neoformat",
+  }
 
   -- A simple rss reader plugin for neovim
   -- use "empat94/nvim-rss"
-
-  -- Adds file type icons to Vim plugins
-  use "ryanoasis/vim-devicons"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -160,28 +157,20 @@ require "plugins.lsp-installer"
 
 require "plugins.cmp"
 
-require "plugins.nerdtree"
-
 require "plugins.gitsigns"
 
 require "plugins.nvim-autopairs"
 
 require "plugins.nvim-rss"
 
-require "plugins.goyo"
-
 require "plugins.neoformat"
 
 require "plugins.ultisnips"
 
--- Language Servers https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
--- yay -S typescript typescript-language-server
--- yay -S bash-language-server
--- yay -S vscode-langservers-extracted
--- yay -S vim-language-server
--- yay -S lua-language-server
--- yay -S haskell-language-server _disabled in current config_
---
+require "plugins.nvim-tree"
+
+require "plugins.zen-mode"
+
 -- Providers, Formatters, Linters
 -- npm i -g neovim
 -- npm i -g prettier
