@@ -127,7 +127,8 @@ packer.startup(function(use)
 
   -- Distraction-free writing in Vim.
   use {
-    "folke/zen-mode.nvim",
+    "junegunn/goyo.vim",
+    cmd = "Goyo",
   }
 
   -- UltiSnips is the ultimate solution for snippets in Vim.
@@ -137,6 +138,12 @@ packer.startup(function(use)
   use {
     "sbdchd/neoformat",
     cmd = "Neoformat",
+  }
+
+  -- navigate seamlessly between vim and kitty splits
+  use {
+    "knubie/vim-kitty-navigator",
+    run = "cp ./*.py ~/.config/kitty",
   }
 
   -- A simple rss reader plugin for neovim
@@ -169,7 +176,9 @@ require "plugins.ultisnips"
 
 require "plugins.nvim-tree"
 
-require "plugins.zen-mode"
+require "plugins.goyo"
+
+require "plugins.vim-kitty-navigator"
 
 -- Providers, Formatters, Linters
 -- npm i -g neovim
