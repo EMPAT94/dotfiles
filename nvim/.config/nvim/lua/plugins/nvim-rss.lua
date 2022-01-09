@@ -1,5 +1,6 @@
 local ok, rss = pcall(require, "nvim-rss")
 if not ok then
+  print("nvim-rss not loaded")
   return
 end
 

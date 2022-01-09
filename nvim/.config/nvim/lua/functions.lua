@@ -2,9 +2,16 @@ vim.cmd [=[
 
 function! MyHighlights()
   highlight! Normal guibg=none
+
+  highlight! StatusLine gui=bold guibg=none guifg=#6272A4
+  highlight! StatusLineNC guibg=none guifg=#424450
+  highlight! StatusLineTerm gui=bold guibg=none guifg=#6272A4
+  highlight! StatusLineTermNC guibg=none guifg=#424450
+
   highlight! Tabline gui=none guibg=none guifg=#6272A4
   highlight! TablineFill gui=none guifg=none guibg=none
   highlight! TablineSel gui=bold guibg=none guifg=#F1FA8C
+
   highlight! Folded gui=bold guibg=NONE guifg=#6272A4
   highlight! SpecialKey guibg=NONE
   highlight! SignColumn guibg=NONE
@@ -26,12 +33,12 @@ function! MyHighlights()
   highlight! link DiagnosticSignInfo NonText
   highlight! link DiagnosticVirtualTextHint NonText
   highlight! link DiagnosticVirtualTextInfo NonText
-  highlight! link LspDiagnosticsDefaultHint NonText
-  highlight! link LspDiagnosticsDefaultInformation NonText
   highlight! link DiagnosticUnderlineHint NONE
   highlight! link DiagnosticUnderlineInfo NONE
   highlight! link DiagnosticUnderlineError NONE
   highlight! link DiagnosticUnderlineWarn NONE
+  highlight! link LspDiagnosticsDefaultHint NonText
+  highlight! link LspDiagnosticsDefaultInformation NonText
   highlight! link LspDiagnosticsUnderlineHint NONE
   highlight! link LspDiagnosticsUnderlineInformation NONE
   highlight! link LspDiagnosticsUnderlineError NONE

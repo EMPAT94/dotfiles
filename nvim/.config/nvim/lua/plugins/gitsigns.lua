@@ -21,5 +21,19 @@ require("gitsigns").setup {
       text = "▐",
     },
   },
-  keymaps = {},
+  keymaps = {
+    noremap = true,
+    ["n ]c"] = {
+      expr = true,
+      "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'",
+    },
+    ["n [c"] = {
+      expr = true,
+      "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'",
+    },
+    ["n <localleader>p"] = "<cmd>Gitsigns preview_hunk<CR>",
+    ["n <localleader>s"] = "<cmd>Gitsigns stage_hunk<CR>",
+    ["n <localleader>u"] = "<cmd>Gitsigns undo_stage_hunk<CR>",
+    ["n <localleader>r"] = "<cmd>Gitsigns reset_hunk<CR>",
+  },
 }

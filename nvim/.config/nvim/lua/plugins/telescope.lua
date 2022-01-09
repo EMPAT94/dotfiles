@@ -14,6 +14,7 @@ telescope.setup {
     find_files = {
       theme = "dropdown",
       previewer = false,
+      no_ignore = true,
     },
     buffers = {
       prompt_title = "Find Buffer",

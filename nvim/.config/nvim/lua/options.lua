@@ -3,8 +3,9 @@ local set = vim.opt
 -- Enables full color mode
 set.termguicolors = true
 
--- Very clean UI, no statusline at all
-set.laststatus = 0
+-- Minimal UI
+set.laststatus = 1
+set.statusline = "%t"
 set.ruler = false
 set.showmode = false
 
