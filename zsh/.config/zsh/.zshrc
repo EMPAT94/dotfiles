@@ -88,6 +88,7 @@ alias a="agenda"
 alias w="wiki"
 alias n="note"
 alias l="exa --icons --long --header --all"
+alias y="yay"
 
 alias ls="exa --icons"
 alias cp="cp -uv"
@@ -95,6 +96,7 @@ alias mv="mv -uv"
 alias top="bpytop";
 alias open="xdg-open"
 alias tree="exa --icons --tree"
+alias ssh="kitty +kitten ssh"
 # alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
 
 alias vi="nvim";
@@ -131,5 +133,3 @@ zstyle ':vcs_info:*' enable git
 ################
 
 eval "$(rbenv init -)"
-
-echo; fortune -s | figlet -ctf term; echo;
