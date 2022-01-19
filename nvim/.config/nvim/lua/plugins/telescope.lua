@@ -4,24 +4,13 @@ telescope.setup {
   defaults = {
     selection_caret = " ",
     prompt_prefix = "",
-    mappings = {
-      i = {
-        ["<esc>"] = require("telescope.actions").close,
-      },
-    },
+    highlight = false,
+    mappings = { i = { ["<esc>"] = require("telescope.actions").close } },
   },
   pickers = {
-    find_files = {
-      theme = "dropdown",
-      previewer = false,
-      no_ignore = true,
-    },
-    buffers = {
-      prompt_title = "Find Buffer",
-    },
-    lsp_code_actions = {
-      theme = "cursor",
-    },
+    find_files = { theme = "dropdown", previewer = false, no_ignore = false },
+    buffers = { prompt_title = "Find Buffer" },
+    lsp_code_actions = { theme = "cursor" },
   },
   extensions = {
     fzf = {
@@ -35,12 +24,10 @@ telescope.setup {
 
 telescope.load_extension("fzf")
 
-local s = {
-  noremap = true,
-  silent = true,
-}
+local s = { noremap = true, silent = true }
 local k = vim.api.nvim_set_keymap
 
 k("n", "<C-t>", "<cmd>Telescope find_files<CR>", s)
+k("n", "<C-S-t>", "<cmd>Telescope find_files no_ignore=true<CR>", s)
 k("n", "<C-p>", "<cmd>Telescope buffers<CR>", s)
 k("n", "<C-s>", "<cmd>Telescope live_grep<CR>", s)

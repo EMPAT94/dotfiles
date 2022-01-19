@@ -99,5 +99,7 @@ cmp.setup({
     {
       name = "path",
     },
+  }, {
+    name = "buffer"
   }),
 })

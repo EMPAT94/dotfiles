@@ -151,10 +151,10 @@ packer.startup(function(use)
 
   -- A simple rss reader plugin for neovim
   -- use "empat94/nvim-rss"
-  use {
-    "~/Projects/nvim-rss",
-    requires = { "tami5/sqlite.lua" },
-  }
+  -- use {
+  --   "~/Projects/nvim-rss",
+  --   requires = { "tami5/sqlite.lua" },
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -184,8 +184,6 @@ require "plugins.ultisnips"
 require "plugins.nvim-tree"
 
 require "plugins.goyo"
-
--- require "plugins.vim-kitty-navigator"
 
 -- Providers, Formatters, Linters
 -- npm i -g neovim
