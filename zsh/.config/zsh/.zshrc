@@ -21,6 +21,7 @@ setopt inc_append_history                                       # save commands 
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 ######################
 ##### COMPLETION #####
@@ -97,6 +98,8 @@ alias top="bpytop";
 alias open="xdg-open"
 alias tree="exa --icons --tree"
 alias ssh="kitty +kitten ssh"
+alias ruby="ruby2.7"
+alias bundle="bundle-2.7"
 # alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
 
 alias vi="nvim";
@@ -107,7 +110,7 @@ alias notes="nvim -S ~/MEGASync/notes.vim"
 alias story="nvim -S ~/MEGASync/story.vim"
 
 alias show-public-ip="curl ifconfig.co";
-alias show-private-ip="ip addr"; # TODO get only ip from output
+alias show-private-ip="ip addr | rg '192.*/'";
 alias adb-connect="adb connect 192.168.0.190:5555";
 alias http-server="echo Starting server on 8889; python3 -m http.server 8889 &";
 alias scrcap="adb shell screencap /sdcard/scrcap.png && \
@@ -125,11 +128,5 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' formats '%F{yellow}%b'
+zstyle ':vcs_info:git:*' formats '%F{blue}%b'
 zstyle ':vcs_info:*' enable git
-
-################
-##### INIT #####
-################
-
-eval "$(rbenv init -)"
