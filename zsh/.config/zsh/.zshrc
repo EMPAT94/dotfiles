@@ -98,7 +98,7 @@ alias top="bpytop";
 alias open="xdg-open"
 alias tree="exa --icons --tree"
 alias ssh="kitty +kitten ssh"
-alias ruby="ruby2.7"
+alias ruby="ruby-2.7"
 alias bundle="bundle-2.7"
 # alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
 
