@@ -5,16 +5,18 @@ local servers = {
   "html",
   "cssls",
   "tsserver", -- javascript, typescript, react
-  "jsonls",
   "sumneko_lua",
+  "dockerls",
+  "jsonls",
+  "yamlls",
+  -- "bashls",
   -- "zk", -- markdown
   -- "sourcekit", -- swift
-  "kotlin_language_server",
-  "bashls",
-  "hls", -- haskel
-  "pyright", -- python
-  "vuels",
-  "yamlls",
+  -- "kotlin_language_server",
+  -- "hls", -- haskel
+  -- "pyright", -- python
+  -- "vuels",
+
 }
 
 for _, name in pairs(servers) do
@@ -35,10 +37,7 @@ local function on_attach(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
 
-  local opts = {
-    noremap = true,
-    silent = true,
-  }
+  local opts = { noremap = true, silent = true }
 
   buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
   buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementation<CR>", opts)
@@ -50,42 +49,26 @@ local function on_attach(client, bufnr)
 end
 
 local enhance_server_opts = {
-  -- Provide settings that should only apply to the "eslintls" server
   ["tsserver"] = function(opts)
-    opts.settings = {
-      root_dir = vim.fn.getcwd()
-    }
+    opts.single_file_support = true
   end,
 
   ["sumneko_lua"] = function(opts)
     opts.settings = {
       Lua = {
-        runtime = {
-          version = "LuaJIT",
-        },
-        diagnostics = {
-          globals = { "vim", "describe", "it" },
-        },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        telemetry = {
-          enable = false,
-        },
+        runtime = { version = "LuaJIT" },
+        diagnostics = { globals = { "vim", "describe", "it" } },
+        -- workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+        telemetry = { enable = false },
       },
     }
   end,
 }
 
 lsp_installer.on_server_ready(function(server)
-  -- Specify the default options which we'll use to setup all servers
-  local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  local opts = { on_attach = on_attach, capabilities = capabilities }
 
   if enhance_server_opts[server.name] then
-    -- Enhance the default opts with the server-specific ones
     enhance_server_opts[server.name](opts)
   end
 
