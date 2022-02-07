@@ -34,7 +34,8 @@ map("n", "<leader>e", ":vsp ~/.config/nvim/lua<CR>", s)
 
 -- Save and quit
 map("n", "<leader>s", ":update<CR>", s)
-map("n", "<leader>q", ":Sayonara<CR>", s)
+map("n", "<leader>q", ":Sayonara!<CR>", s) -- Keep window
+map("n", "Q", ":Sayonara<CR>", s) -- Close window
 
 -- Split window jumps
 map("", "<M-h>", "<C-w>h", s)
@@ -78,4 +79,6 @@ map("n", "gx", "yiW:!xdg-open <cWORD><CR> <C-r>-- & <CR><CR>", o)
 
 -- Create a new zettel note
 map("n", "<leader>n", ":call CreateZettel()<CR>", s)
-map("n", "<leader>h", ":CreateZettelHub ", s)
+
+-- Open path under cursor in vertical split
+map("n", "gf", ":vsplit <cfile><CR>", s)

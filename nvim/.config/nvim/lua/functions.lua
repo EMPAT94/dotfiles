@@ -71,20 +71,27 @@ function! EmptyCmdline(timer)
 endfunction
 
 " Create a zettel hub (A collection of zettels)
-function! CreateZettelHub(name)
-  let title = a:name . ".md"
+" This creates a file name with decorated title and 
+" a folder with same name to store related zettels
+function! CreateZettelHub()
+  let cline = getline(".")
+  let line = substitute(tolower(cline), " ", "-", "g")
+  let file = "./" . line . ".md"
 
   " Add markdown link to new zettel hub
-  execute "normal! i[".title."](./" . title . ")"
+  execute "normal! 0i[$a](" . file . ")"
 
   " open new hub in vertical split
-  execute "vsp  ~/MEGASync/notes/" . title
+  execute "vsp " . file
 
-  " Add decorated title on top
-  execute "r!figlet -ck " . a:name
+  " Add decorated title on top -c = center
+  execute "r!figlet -c " . cline
 
   "Format to remove padding
   execute "Neoformat"
+
+  " Create a directory
+  execute "!mkdir " . line
 
 endfunction
 
@@ -92,12 +99,20 @@ endfunction
 function! CreateZettel()
 
   " Get current time in seconds
-  let now = strftime("%s")
+  " let now = strftime("%s")
+
+  " Get parent buffer name :t = tail, :r = root (w/o extension)
+  " Buffer name is same as directory in which zettels will be stored
+  let dir = expand("%:t:r")
+
+  if dir == "index"
+    let dir = "zettels"
+  endif
 
   " Put line under cursor as title/file-name
   let cline = getline(".")
   let line = tolower(cline)
-  let file = "./zettels/" . substitute(line, " ", "-", "g") . "-" . now . ".md"
+  let file = "./" . dir . "/" . substitute(line, " ", "-", "g") . ".md"
 
   " Add markdown link to new zettel
   execute "normal! 0i[$a](" . file . ")"
@@ -105,8 +120,8 @@ function! CreateZettel()
   " open new zettel in vertical split
   execute "vsp " . file
 
-  " Add title and date
-  execute "normal! i# " . cline . "o## " . strftime("%c", now)
+  " Add title
+  execute "normal! i# " . cline
 
 endfunction
 
