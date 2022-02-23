@@ -71,7 +71,7 @@ function! EmptyCmdline(timer)
 endfunction
 
 " Create a zettel hub (A collection of zettels)
-" This creates a file name with decorated title and 
+" This creates a file name with decorated title and
 " a folder with same name to store related zettels
 function! CreateZettelHub()
   let cline = getline(".")
@@ -79,46 +79,45 @@ function! CreateZettelHub()
   let file = "./" . line . ".md"
 
   " Add markdown link to new zettel hub
-  execute "normal! 0i[$a](" . file . ")"
+  execute "silent normal! 0i- [$a](" . file . ")"
 
   " open new hub in vertical split
-  execute "vsp " . file
+  execute "silent vsp " . file
 
   " Add decorated title on top -c = center
-  execute "r!figlet -c " . cline
+  execute "silent r!figlet -ck " . cline
 
   "Format to remove padding
-  execute "Neoformat"
+  execute "silent Neoformat"
 
   " Create a directory
-  execute "!mkdir " . line
+  execute "silent!mkdir " . line
 
 endfunction
 
-" Create a zettel note (An atomic piece of info)
+" Create a zettel (An atomic piece of info)
 function! CreateZettel()
-
-  " Get current time in seconds
-  " let now = strftime("%s")
-
   " Get parent buffer name :t = tail, :r = root (w/o extension)
   " Buffer name is same as directory in which zettels will be stored
-  let dir = expand("%:t:r")
+  let dir = expand("%:p:r")
+  let rdir = expand("%:t:r")
 
-  if dir == "index"
-    let dir = "zettels"
+  if rdir == "index"
+    let dir = "./zettels"
   endif
 
   " Put line under cursor as title/file-name
   let cline = getline(".")
   let line = tolower(cline)
-  let file = "./" . dir . "/" . substitute(line, " ", "-", "g") . ".md"
+
+  let path =  dir . "/" . substitute(line, " ", "-", "g") . ".md"
+  let link = "./" . rdir . "/" . substitute(line, " ", "-", "g") . ".md"
 
   " Add markdown link to new zettel
-  execute "normal! 0i[$a](" . file . ")"
+  execute "normal! 0i- [$a](" . link . ")"
 
   " open new zettel in vertical split
-  execute "vsp " . file
+  execute "vsp " . path
 
   " Add title
   execute "normal! i# " . cline

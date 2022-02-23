@@ -1,12 +1,6 @@
-local o = {
-  noremap = true,
-  silent = false,
-}
+local o = { noremap = true, silent = false }
 
-local s = {
-  noremap = true,
-  silent = true,
-}
+local s = { noremap = true, silent = true }
 
 local map = vim.api.nvim_set_keymap
 
@@ -81,4 +75,7 @@ map("n", "gx", "yiW:!xdg-open <cWORD><CR> <C-r>-- & <CR><CR>", o)
 map("n", "<leader>n", ":call CreateZettel()<CR>", s)
 
 -- Open path under cursor in vertical split
-map("n", "gf", ":vsplit <cfile><CR>", s)
+map("n", "gf", ":execute 'vsplit' substitute(expand('<cfile>'), '.', expand('%:h'), '')<CR>", s)
+
+-- Use telescope whenever possible for consistent flow
+map("n", "z=", ":Telescope spell_suggest<CR>", s)
