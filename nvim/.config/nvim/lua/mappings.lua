@@ -69,7 +69,7 @@ map("t", "<Esc>", [[<C-\><C-n>]], s)
 
 -- Sigh... Things were not supposed to break like this
 -- Open url under cursor into browser
-map("n", "gx", "yiW:!xdg-open <cWORD><CR> <C-r>-- & <CR><CR>", o)
+map("n", "gx", "!xdg-open <cfile>", o)
 
 -- Create a new zettel note
 map("n", "<leader>n", ":call CreateZettel()<CR>", s)

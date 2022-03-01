@@ -47,14 +47,8 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-e>"] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    ["<CR>"] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    }),
+    ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+    ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Abort }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -83,23 +77,12 @@ cmp.setup({
       return vim_item
     end,
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  },
+  documentation = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
   sources = cmp.config.sources({
-    {
-      name = "nvim_lsp",
-    },
-    {
-      name = "ultisnips",
-    },
-    {
-      name = "treesitter",
-    },
-    {
-      name = "path",
-    },
-  }, {
-    name = "buffer"
+    { name = "nvim_lsp" },
+    { name = "ultisnips" },
+    { name = "treesitter" },
+    { name = "path" },
+    { name = "buffer" },
   }),
 })
