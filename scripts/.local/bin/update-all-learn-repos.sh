@@ -3,7 +3,7 @@
 # This script pulls latest commits for all the repos
 # inside ~/Project/learn directory
 
-pushd /home/pritesh/Projects/learn > /dev/null
+pushd /home/pritesh/Projects/learn-docs > /dev/null
 
 # Note: the '\' in '\ls' is to use original ls command
 # since I have it aliased to exa.
