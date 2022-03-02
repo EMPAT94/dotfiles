@@ -1,6 +1,7 @@
 [user]
   name = Pritesh Tupe
-  email = priteshtupe@gmail.com
+  email = mail@priteshtupe.com
+	signingkey = 2CB695256E32FF9E
 [init]
   defaultBranch = main
 [advice]
@@ -8,4 +9,4 @@
 [core]
   editor = nvim
 [pull]
-  rebase = false
+  rebase = true
