@@ -53,8 +53,6 @@ export EDITOR="$VISUAL"
 export TERMINAL="kitty"
 export BROWSER="brave"
 export KEYTIMEOUT=1
-export SSH_ASKPASS=/usr/bin/ksshaskpass
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
 
 #######################
 ##### KEYBINDINGS #####
