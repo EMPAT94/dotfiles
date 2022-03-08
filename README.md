@@ -24,29 +24,30 @@ As you can see, I use [dracula](https://draculatheme.com/) theme for most of my 
 
 I'd recommend going through the files and cherry-picking the stuff you want to include instead of wholesale copy-paste, this means you don't get surprise changes and can tweak to your liking.
 
-Programs I use -
+## Programs I Use
 
-1. [kitty terminal](https://sw.kovidgoyal.net/kitty/)
-1. [zsh shell](https://en.wikipedia.org/wiki/Z_shell)
-1. [firefox web browser](https://www.mozilla.org/en-US/firefox/new/)
-1. [mocp - music on console player](https://moc.daper.net/)
-1. [neovim text editor](https://neovim.io/)
-1. [bpytop system monitor](https://github.com/aristocratos/bpytop)
+1. [terminak: kitty](https://sw.kovidgoyal.net/kitty/)
+1. [shell: zsh](https://en.wikipedia.org/wiki/Z_shell)
+1. [web browser 1: brave](https://brave.com/)
+1. [web browser 2: firefox](https://www.mozilla.org/en-US/firefox/new/)
+1. [music player: mocp](https://moc.daper.net/)
+1. [text editor: neovim](https://neovim.io/)
+1. [system monitor: bpytop](https://github.com/aristocratos/bpytop)
+1. [password manager: bitwarden](https://bitwarden.com/)
+1. [2FA app: authy](https://authy.com/)
 
 I use this setup on a Manjaro KDE machine.
 
 ## Screenshots
 
-* mocp:
+- mocp:
 
 ![mocp image](./mocp.webp)
 
-
-* neovim:
+- neovim:
 
 ![nvim image](./nvim.webp)
 
-
-* bpytop:
+- bpytop:
 
 ![bpytop image](./bpytop.webp)
