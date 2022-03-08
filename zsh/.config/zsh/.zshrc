@@ -53,6 +53,8 @@ export EDITOR="$VISUAL"
 export TERMINAL="kitty"
 export BROWSER="brave"
 export KEYTIMEOUT=1
+export SSH_ASKPASS=/usr/bin/ksshaskpass
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
 
 #######################
 ##### KEYBINDINGS #####
@@ -71,13 +73,13 @@ bindkey '^[[6~' history-beginning-search-forward                # Page down key
 ################
 
 export PATH="$HOME/.local/bin/\
-:$HOME/.local/npm/bin\
-:/usr/local/bin\
-:/usr/local/sbin\
-:/usr/bin\
-:/usr/sbin\
-:/bin\
-:/sbin";
+  :$HOME/.local/npm/bin\
+  :/usr/local/bin\
+  :/usr/local/sbin\
+  :/usr/bin\
+  :/usr/sbin\
+  :/bin\
+  :/sbin";
 
 #################
 ##### ALIAS #####
@@ -113,10 +115,14 @@ alias show-public-ip="curl ifconfig.co";
 alias show-private-ip="ip addr | rg '192.*/'";
 alias adb-connect="adb connect 192.168.0.190:5555";
 alias http-server="echo Starting server on 8889; python3 -m http.server 8889 &";
+alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
 alias scrcap="adb shell screencap /sdcard/scrcap.png && \
   adb pull /sdcard/scrcap.png ~/Documents/scr/$(date '+%s').png && \
   adb shell rm /sdcard/scrcap.png"
-alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
+
+alias encrypt="gpg -er Pritesh" # file -> file.gpg asymmetric
+alias decrypt="gpg -d" # file.gpg -> file
+
 
 ##################
 ##### PROMPT #####

@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=ssh-add -q ~/.ssh/github
+Name=ssh-add
+Type=Application
