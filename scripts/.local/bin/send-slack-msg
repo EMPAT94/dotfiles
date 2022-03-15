@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#
+# DESCRIPTION:
+#
+# This little script sends a notification with contents
+# read from cli arguments to the slack webhook api endpoint saved in
+# file WEBHOOK_FILE, usually as ~/.local/share/slack-webhook-url
+#
+# USAGE:
+#
+# send-slack-msg <msg>
+#
+# EXAMPLE:
+#
+# send-slack-msg Hello, World!
+#
+# NOTE:
+#
+# Webhook have a rate limit of 1 msg per sec per channel.
+#
+# link: https://slack.com/intl/en-in/help/articles/115005265063-Incoming-webhooks-for-Slack
+#
+
+WEBHOOK_FILE="${HOME}/.local/share/slack-webhook-url"
+data="{\"text\": \"$@\"}"
+url=$(cat $WEBHOOK_FILE)
+ curl -X POST -H 'Content-type: application/json' --data "$data" $url >/dev/null 2>&1

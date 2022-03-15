@@ -11,4 +11,4 @@ nvim/.config/nvim/spell
 zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zcompdump
 
-scripts/.local/bin/slack-webhook-url
+scripts/.local/share/slack-webhook-url
