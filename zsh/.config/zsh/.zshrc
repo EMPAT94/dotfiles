@@ -71,13 +71,13 @@ bindkey '^[[6~' history-beginning-search-forward                # Page down key
 ################
 
 export PATH="$HOME/.local/bin/\
-  :$HOME/.local/npm/bin\
-  :/usr/local/bin\
-  :/usr/local/sbin\
-  :/usr/bin\
-  :/usr/sbin\
-  :/bin\
-  :/sbin";
+:$HOME/.local/npm/bin\
+:/usr/local/bin\
+:/usr/local/sbin\
+:/usr/bin\
+:/usr/sbin\
+:/bin\
+:/sbin";
 
 #################
 ##### ALIAS #####
@@ -121,6 +121,9 @@ alias scrcap="adb shell screencap /sdcard/scrcap.png && \
 alias encrypt="gpg -er Pritesh" # file -> file.gpg asymmetric
 alias decrypt="gpg -d" # file.gpg -> file
 
+clear_zsh_history() {
+  echo > ~/.config/zsh/.zhistory
+}
 
 ##################
 ##### PROMPT #####
