@@ -22,9 +22,7 @@ end
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float {
-        border = "rounded",
-      }
+      return require("packer.util").float { border = "rounded" }
     end,
   },
 }
@@ -55,18 +53,12 @@ packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
 
   -- fzf-native is a c port of fzf
-  use {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    run = "make",
-  }
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
   -- Wraps the Neovim treesitter API to provide functionalities
   -- such as highlighting and incremental selection,
   -- and a command to easily install parsers.
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
   -- A completion engine plugin for neovim written in Lua.
   use "hrsh7th/nvim-cmp"
@@ -85,17 +77,13 @@ packer.startup(function(use)
     config = function()
       require("nvim-tree").setup({
         disable_netrw = false,
-        -- hijack_netrw = false,
       })
     end,
     requires = { "kyazdani42/nvim-web-devicons" },
   }
 
   -- A dark theme
-  use {
-    "dracula/vim",
-    as = "dracula",
-  }
+  use { "dracula/vim", as = "dracula" }
 
   -- Provides mappings to easily delete, change and add such surroundings in pairs.
   use "tpope/vim-surround"
@@ -111,16 +99,10 @@ packer.startup(function(use)
   }
 
   -- Provides a single command that deletes the current buffer in a smart way.
-  use {
-    "mhinz/vim-sayonara",
-    cmd = "Sayonara",
-  }
+  use { "mhinz/vim-sayonara", cmd = "Sayonara" }
 
   -- Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
-  use {
-    "tpope/vim-fugitive",
-    cmd = "G",
-  }
+  use { "tpope/vim-fugitive", cmd = "G" }
 
   -- A minimalist autopairs for Neovim written by Lua.
   use "windwp/nvim-autopairs"
@@ -129,32 +111,24 @@ packer.startup(function(use)
   use "lewis6991/gitsigns.nvim"
 
   -- Distraction-free writing in Vim.
-  use {
-    "junegunn/goyo.vim",
-    cmd = "Goyo",
-  }
+  use { "junegunn/goyo.vim", cmd = "Goyo" }
 
   -- UltiSnips is the ultimate solution for snippets in Vim.
   use "SirVer/ultisnips"
 
   -- A (Neo)vim plugin for formatting code.
-  use {
-    "sbdchd/neoformat",
-    cmd = "Neoformat",
-  }
+  use { "sbdchd/neoformat", cmd = "Neoformat" }
 
   -- navigate seamlessly between vim and kitty splits
-  use {
-    "knubie/vim-kitty-navigator",
-    run = "cp ./*.py ~/.config/kitty",
-  }
+  use { "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty" }
 
   -- A simple rss reader plugin for neovim
-  -- use "empat94/nvim-rss"
-  -- use {
-  --   "~/Projects/nvim-rss",
-  --   requires = { "tami5/sqlite.lua" },
-  -- }
+  use {
+    -- "empat94/nvim-rss",
+    "~/Projects/nvim-rss",
+    requires = { "tami5/sqlite.lua" },
+    rocks = { "luaexpat" },
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
