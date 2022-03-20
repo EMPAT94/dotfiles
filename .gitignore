@@ -13,3 +13,5 @@ zsh/.config/zsh/.zcompdump
 
 scripts/.local/share/slack-webhook-url
 scripts/.local/bin/backup-badass-server
+
+firefox/.config/psd/.psd.conf
