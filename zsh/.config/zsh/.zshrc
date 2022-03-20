@@ -137,3 +137,5 @@ setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{blue}%b'
 zstyle ':vcs_info:*' enable git
+
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
