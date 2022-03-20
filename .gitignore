@@ -12,3 +12,4 @@ zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zcompdump
 
 scripts/.local/share/slack-webhook-url
+scripts/.local/bin/backup-badass-server
