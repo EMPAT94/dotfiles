@@ -27,9 +27,10 @@ map("v", ";", ":", o)
 map("n", "<leader>e", ":vsp ~/.config/nvim/lua<CR>", s)
 
 -- Save and quit
-map("n", "<leader>s", ":update<CR>", s)
-map("n", "<leader>q", ":Sayonara!<CR>", s) -- Keep window
-map("n", "Q", ":Sayonara<CR>", s) -- Close window
+map("n", "<leader>s", ":update<CR>", s) -- Save only
+map("n", "<leader>q", ":Sayonara!<CR>", s) -- Close buffer but keep window
+map("n", "Q", ":Sayonara<CR>", s) -- Close buffer and window
+map("n", "<leader>w", "ZZ", s) -- Save and close buffer and window
 
 -- Split window jumps
 map("", "<M-h>", "<C-w>h", s)
