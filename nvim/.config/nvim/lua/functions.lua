@@ -104,6 +104,7 @@ function! CreateZettel()
 
   if rdir == "index"
     let dir = "./zettels"
+    let rdir = "zettels"
   endif
 
   " Put line under cursor as title/file-name

@@ -9,14 +9,13 @@ local servers = {
   "dockerls",
   "jsonls",
   "yamlls",
-  -- "bashls",
+  "bashls",
+  "hls", -- haskel
+  "pyright", -- python
+  "vuels",
   -- "zk", -- markdown
   -- "sourcekit", -- swift
   -- "kotlin_language_server",
-  -- "hls", -- haskel
-  -- "pyright", -- python
-  -- "vuels",
-
 }
 
 for _, name in pairs(servers) do

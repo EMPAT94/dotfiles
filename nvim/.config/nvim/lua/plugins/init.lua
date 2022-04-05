@@ -37,6 +37,9 @@ vim.cmd [=[
 
 packer.startup(function(use)
 
+  -- Speed up loading Lua modules in Neovim to improve startup time.
+  use "lewis6991/impatient.nvim"
+
   -- Have package manager manage package manager
   use "wbthomason/packer.nvim"
 
@@ -72,13 +75,7 @@ packer.startup(function(use)
   use "quangnguyen30192/cmp-nvim-ultisnips"
 
   -- A file system explorer for the Vim editor.
-  use {
-    "kyazdani42/nvim-tree.lua",
-    config = function()
-      require("nvim-tree").setup({ disable_netrw = false })
-    end,
-    requires = { "kyazdani42/nvim-web-devicons" },
-  }
+  use { "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } }
 
   -- A dark theme
   use { "dracula/vim", as = "dracula" }
@@ -89,18 +86,7 @@ packer.startup(function(use)
   -- Vim sugar for the UNIX shell commands
   use "tpope/vim-eunuch"
 
-  use {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  }
-
-  -- Provides a single command that deletes the current buffer in a smart way.
-  use { "mhinz/vim-sayonara", cmd = "Sayonara" }
-
-  -- Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
-  use { "tpope/vim-fugitive", cmd = "G" }
+  use { "numToStr/Comment.nvim" }
 
   -- A minimalist autopairs for Neovim written by Lua.
   use "windwp/nvim-autopairs"
@@ -108,14 +94,8 @@ packer.startup(function(use)
   -- Git signs written in pure lua.
   use "lewis6991/gitsigns.nvim"
 
-  -- Distraction-free writing in Vim.
-  use { "junegunn/goyo.vim", cmd = "Goyo" }
-
   -- UltiSnips is the ultimate solution for snippets in Vim.
   use "SirVer/ultisnips"
-
-  -- A (Neo)vim plugin for formatting code.
-  use { "sbdchd/neoformat", cmd = "Neoformat" }
 
   -- navigate seamlessly between vim and kitty splits
   use { "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty" }
@@ -128,12 +108,36 @@ packer.startup(function(use)
     rocks = { "luaexpat" },
   }
 
+  -- This (neo)vim plugin makes scrolling nice and smooth.
+  use "psliwka/vim-smoothie"
+
+  -- Draw ASCII diagrams in Neovim.
+  use { "jbyuki/venn.nvim", cmd = "VBox" }
+
+  -- Distraction-free writing in Vim.
+  use { "junegunn/goyo.vim", cmd = "Goyo" }
+
+  -- A (Neo)vim plugin for formatting code.
+  use { "sbdchd/neoformat", cmd = "Neoformat" }
+
+  -- Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
+  use { "tpope/vim-fugitive", cmd = "G" }
+
+  -- Provides a single command that deletes the current buffer in a smart way.
+  use { "mhinz/vim-sayonara", cmd = "Sayonara" }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
 end)
+
+require "impatient"
+
+require"nvim-tree".setup({ disable_netrw = false })
+
+require"Comment".setup()
 
 require "plugins.telescope"
 
@@ -159,6 +163,6 @@ require "plugins.goyo"
 
 -- Providers, Formatters, Linters
 -- npm i -g neovim
--- npm i -g prettier
 -- pip install pynvim
+-- prettier (npm -i | yay -S)
 -- luarocks install --server=https://luarocks.org/dev luaformatter
