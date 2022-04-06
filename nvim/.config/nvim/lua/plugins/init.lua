@@ -86,7 +86,8 @@ packer.startup(function(use)
   -- Vim sugar for the UNIX shell commands
   use "tpope/vim-eunuch"
 
-  use { "numToStr/Comment.nvim" }
+  -- Smart and Powerful commenting plugin for neovim
+  use "numToStr/Comment.nvim"
 
   -- A minimalist autopairs for Neovim written by Lua.
   use "windwp/nvim-autopairs"
@@ -99,14 +100,6 @@ packer.startup(function(use)
 
   -- navigate seamlessly between vim and kitty splits
   use { "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty" }
-
-  -- A simple rss reader plugin for neovim
-  use {
-    -- "empat94/nvim-rss",
-    "~/Projects/nvim-rss",
-    requires = { "tami5/sqlite.lua" },
-    rocks = { "luaexpat" },
-  }
 
   -- This (neo)vim plugin makes scrolling nice and smooth.
   use "psliwka/vim-smoothie"
@@ -126,6 +119,14 @@ packer.startup(function(use)
   -- Provides a single command that deletes the current buffer in a smart way.
   use { "mhinz/vim-sayonara", cmd = "Sayonara" }
 
+  -- A simple rss reader plugin for neovim
+  use {
+    -- "empat94/nvim-rss",
+    "~/Projects/nvim-rss",
+    requires = { "tami5/sqlite.lua" },
+    rocks = { "luaexpat" },
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
@@ -134,8 +135,6 @@ packer.startup(function(use)
 end)
 
 require "impatient"
-
-require"nvim-tree".setup({ disable_netrw = false })
 
 require"Comment".setup()
 
@@ -151,8 +150,6 @@ require "plugins.gitsigns"
 
 require "plugins.nvim-autopairs"
 
--- require "plugins.nvim-rss" -- Uncomment when using github uri
-
 require "plugins.neoformat"
 
 require "plugins.ultisnips"
@@ -161,8 +158,9 @@ require "plugins.nvim-tree"
 
 require "plugins.goyo"
 
--- Providers, Formatters, Linters
+-- require "plugins.nvim-rss" -- Uncomment when using github uri
+
+-- Tools
 -- npm i -g neovim
 -- pip install pynvim
--- prettier (npm -i | yay -S)
--- luarocks install --server=https://luarocks.org/dev luaformatter
+-- yay -S prettier luaformatter autopep8 elmformatter hindent lua-format
