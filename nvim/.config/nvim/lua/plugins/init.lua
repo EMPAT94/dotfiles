@@ -61,7 +61,7 @@ packer.startup(function(use)
   -- Wraps the Neovim treesitter API to provide functionalities
   -- such as highlighting and incremental selection,
   -- and a command to easily install parsers.
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use { "nvim-treesitter/nvim-treesitter" }
 
   -- A completion engine plugin for neovim written in Lua.
   use "hrsh7th/nvim-cmp"
@@ -126,6 +126,9 @@ packer.startup(function(use)
     requires = { "tami5/sqlite.lua" },
     rocks = { "luaexpat" },
   }
+
+  -- Syntax highlighting for elixir until tree-sitter gets it right (check when 0.7 goes stable)
+  use "elixir-editors/vim-elixir"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

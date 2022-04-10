@@ -1,4 +1,5 @@
-require("nvim-treesitter.configs").setup {
+-- Do :TSUpdate on change
+require"nvim-treesitter.configs".setup {
   ensure_installed = {
     "python",
     "comment",
@@ -10,7 +11,6 @@ require("nvim-treesitter.configs").setup {
     "make",
     "css",
     "regex",
-    "norg",
     "http",
     "c",
     "java",
@@ -21,21 +21,21 @@ require("nvim-treesitter.configs").setup {
     "vim",
     "cmake",
     "yaml",
-    "zig",
     "jsdoc",
     "tsx",
     "toml",
     "javascript",
     "kotlin",
-    "ruby",
     "dockerfile",
     "html",
     "scss",
     "haskell",
+    -- "elixir", # FIXME Uncomment when better performance
   },
   sync_install = false,
   highlight = { enable = true },
   indent = { enable = true },
+  ignore_install = { "elixir" }, -- # FIXME Remove when better performance
 }
 
 vim.opt.foldmethod = "expr"
