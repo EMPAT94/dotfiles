@@ -134,6 +134,12 @@ scrcap() {
   adb shell rm /sdcard/scrcap.png
 }
 
+clean_package_cache() {
+  yay -Sc
+  yay -cc
+  pamac clean
+}
+
 ##################
 ##### PROMPT #####
 ##################
