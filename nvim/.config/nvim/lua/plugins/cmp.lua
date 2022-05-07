@@ -77,7 +77,6 @@ cmp.setup({
       return vim_item
     end,
   },
-  documentation = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "ultisnips" },

@@ -107,8 +107,8 @@ packer.startup(function(use)
   -- Draw ASCII diagrams in Neovim.
   use { "jbyuki/venn.nvim", cmd = "VBox" }
 
-  -- Distraction-free writing in Vim.
-  use { "junegunn/goyo.vim", cmd = "Goyo" }
+  -- Distraction-free writing for Neovim.
+  use "folke/zen-mode.nvim"
 
   -- A (Neo)vim plugin for formatting code.
   use { "sbdchd/neoformat", cmd = "Neoformat" }
@@ -126,9 +126,6 @@ packer.startup(function(use)
     requires = { "tami5/sqlite.lua" },
     rocks = { "luaexpat" },
   }
-
-  -- Syntax highlighting for elixir until tree-sitter gets it right (check when 0.7 goes stable)
-  use "elixir-editors/vim-elixir"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -159,7 +156,9 @@ require "plugins.ultisnips"
 
 require "plugins.nvim-tree"
 
-require "plugins.goyo"
+-- require "plugins.goyo"
+
+require "plugins.zen-mode"
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 

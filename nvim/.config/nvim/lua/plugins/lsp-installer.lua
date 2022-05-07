@@ -2,17 +2,21 @@ local lsp_installer = require "nvim-lsp-installer"
 
 -- the servers to install by default
 local servers = {
-  "html",
-  "cssls",
-  "tsserver", -- javascript, typescript, react
-  "sumneko_lua",
-  "dockerls",
-  "jsonls",
-  "yamlls",
   "bashls",
-  "hls", -- haskel
-  "pyright", -- python
+  "cssls",
+  "cssmodules_ls",
+  "dockerls",
+  "elixirls",
+  "hls",
+  "html",
+  "jsonls",
+  "pyright",
+  "sumneko_lua",
+  "tailwindcss",
+  "tsserver",
+  "vimls",
   "vuels",
+  "yamlls",
   -- "zk", -- markdown
   -- "sourcekit", -- swift
   -- "kotlin_language_server",
@@ -31,7 +35,7 @@ end
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local function on_attach(client, bufnr)
+local function on_attach(_, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end

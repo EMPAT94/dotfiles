@@ -18,7 +18,7 @@ require"nvim-treesitter.configs".setup {
     "hjson",
     "json5",
     "bash",
-    "vim",
+    -- "vim", -- Causes highlighting errors in vim.cmd [[]]
     "cmake",
     "yaml",
     "jsdoc",
@@ -30,12 +30,11 @@ require"nvim-treesitter.configs".setup {
     "html",
     "scss",
     "haskell",
-    -- "elixir", # FIXME Uncomment when better performance
+    "elixir",
   },
   sync_install = false,
   highlight = { enable = true },
   indent = { enable = true },
-  ignore_install = { "elixir" }, -- # FIXME Remove when better performance
 }
 
 vim.opt.foldmethod = "expr"
