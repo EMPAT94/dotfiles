@@ -43,11 +43,12 @@ cmp.setup({
       vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
-  mapping = {
-    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+  window = { completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered() },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-d>"] = cmp.mapping.scroll_docs(-1),
+    ["<C-u>"] = cmp.mapping.scroll_docs(1),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -69,7 +70,7 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-  },
+  }),
   formatting = {
     fields = { "abbr", "kind" },
     format = function(_, vim_item)
@@ -80,7 +81,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "ultisnips" },
-    { name = "treesitter" },
+    -- { name = "treesitter" },
     { name = "path" },
     { name = "buffer" },
   }),

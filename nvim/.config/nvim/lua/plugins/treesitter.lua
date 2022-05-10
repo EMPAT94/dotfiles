@@ -31,6 +31,8 @@ require"nvim-treesitter.configs".setup {
     "scss",
     "haskell",
     "elixir",
+    "eex",
+    "heex",
   },
   sync_install = false,
   highlight = { enable = true },

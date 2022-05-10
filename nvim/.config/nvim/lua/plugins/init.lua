@@ -156,8 +156,6 @@ require "plugins.ultisnips"
 
 require "plugins.nvim-tree"
 
--- require "plugins.goyo"
-
 require "plugins.zen-mode"
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
@@ -165,4 +163,4 @@ require "plugins.zen-mode"
 -- Tools
 -- npm i -g neovim
 -- pip install pynvim
--- yay -S prettier luaformatter autopep8 elmformatter hindent lua-format
+-- yay -S standard prettier luaformatter autopep8 elmformatter hindent lua-format
