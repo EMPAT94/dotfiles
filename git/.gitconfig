@@ -12,3 +12,5 @@
   rebase = false
 [commit]
 	; gpgsign = true
+[safe]
+	directory = *

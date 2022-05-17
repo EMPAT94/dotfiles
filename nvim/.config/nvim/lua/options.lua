@@ -9,7 +9,7 @@ set.statusline = "%t"
 set.ruler = false
 set.showmode = false
 
--- No tabline either, prefer terminal tabs instead
+-- No tabline, prefer terminal tabs instead
 set.showtabline = 0
 
 -- Enables mouse support for all modes
@@ -88,3 +88,6 @@ set.shortmess = "aosTwAIcFs"
 
 -- Don't fold on high-levels on start.
 set.foldlevel = 10
+
+-- Wrap with line break
+set.linebreak = true
