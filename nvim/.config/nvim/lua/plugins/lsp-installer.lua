@@ -4,7 +4,6 @@ local lsp_installer = require "nvim-lsp-installer"
 local servers = {
   "bashls",
   "cssls",
-  "cssmodules_ls",
   "dockerls",
   "elixirls",
   "hls",
@@ -17,6 +16,7 @@ local servers = {
   "vimls",
   "vuels",
   "yamlls",
+  -- "cssmodules_ls",
   -- "zk", -- markdown
   -- "sourcekit", -- swift
   -- "kotlin_language_server",
