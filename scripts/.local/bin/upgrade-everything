@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+echo "Updating pacman"
+yay -Syyu
+
+echo "Updating npm"
+npm --global update
+
+echo "Updating pip"
+# Upgrades break often, so saving in file to avoid the time-consuming process
+pip list --outdated > /tmp/pip-upgrade-list
+# Cirt is some mysterious thing that is stuck at 0.0.1 and doesn't update.
+cat /tmp/pip-upgrade-list | tail -n +3 | awk '!/crit/ {print $1}' | xargs -n1 pip install --upgrade
+
+echo "Updating nvim"
+nvim --headless +PackerSync +qa
+

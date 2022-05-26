@@ -18,7 +18,6 @@ require"nvim-treesitter.configs".setup {
     "hjson",
     "json5",
     "bash",
-    -- "vim", -- Causes highlighting errors in vim.cmd [[]]
     "cmake",
     "yaml",
     "jsdoc",
@@ -33,6 +32,7 @@ require"nvim-treesitter.configs".setup {
     "elixir",
     "eex",
     "heex",
+    -- "vim", -- Causes highlighting errors in vim.cmd [[]]
   },
   sync_install = false,
   highlight = { enable = true },
