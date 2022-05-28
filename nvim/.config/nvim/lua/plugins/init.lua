@@ -119,6 +119,9 @@ packer.startup(function(use)
   -- Provides a single command that deletes the current buffer in a smart way.
   use { "mhinz/vim-sayonara", cmd = "Sayonara" }
 
+  -- Nim ftdetect and other stuff
+  use "alaviss/nim.nvim"
+
   -- A simple rss reader plugin for neovim
   use {
     -- "empat94/nvim-rss",
