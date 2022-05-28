@@ -72,6 +72,7 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
+:$HOME/.nimble/bin\
 :/usr/local/bin\
 :/usr/local/sbin\
 :/usr/bin\
