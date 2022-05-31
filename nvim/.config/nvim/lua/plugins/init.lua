@@ -122,6 +122,14 @@ packer.startup(function(use)
   -- Nim ftdetect and other stuff
   use "alaviss/nim.nvim"
 
+  -- install without yarn or npm
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  })
+
   -- A simple rss reader plugin for neovim
   use {
     -- "empat94/nvim-rss",
@@ -139,7 +147,7 @@ end)
 
 require "impatient"
 
-require"Comment".setup()
+require "Comment".setup()
 
 require "plugins.telescope"
 
