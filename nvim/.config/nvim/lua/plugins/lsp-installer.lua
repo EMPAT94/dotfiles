@@ -3,20 +3,17 @@ local lsp_installer = require "nvim-lsp-installer"
 -- the servers to install by default
 local servers = {
   "bashls",
-  "clojure_ls",
+  "clojure_lsp",
   "cssls",
   "dockerls",
   "elixirls",
   "html",
   "jsonls",
-  "pyright",
   "sumneko_lua",
   "tailwindcss",
   "tsserver",
-  "vimls",
   "vuels",
   "yamlls",
-  "nimls", -- Ensure nim/nimble is installed through choosenim (package manager route gives compile error)
 }
 
 for _, name in pairs(servers) do

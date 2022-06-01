@@ -58,10 +58,8 @@ packer.startup(function(use)
   -- fzf-native is a c port of fzf
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
-  -- Wraps the Neovim treesitter API to provide functionalities
-  -- such as highlighting and incremental selection,
-  -- and a command to easily install parsers.
-  use { "nvim-treesitter/nvim-treesitter" }
+  -- Wraps the Neovim treesitter API
+  use "nvim-treesitter/nvim-treesitter"
 
   -- A completion engine plugin for neovim written in Lua.
   use "hrsh7th/nvim-cmp"
@@ -104,9 +102,6 @@ packer.startup(function(use)
   -- This (neo)vim plugin makes scrolling nice and smooth.
   use "psliwka/vim-smoothie"
 
-  -- Draw ASCII diagrams in Neovim.
-  use { "jbyuki/venn.nvim", cmd = "VBox" }
-
   -- Distraction-free writing for Neovim.
   use "folke/zen-mode.nvim"
 
@@ -119,24 +114,27 @@ packer.startup(function(use)
   -- Provides a single command that deletes the current buffer in a smart way.
   use { "mhinz/vim-sayonara", cmd = "Sayonara" }
 
-  -- Nim ftdetect and other stuff
-  use "alaviss/nim.nvim"
-
-  -- install without yarn or npm
+  -- Markdown Preview for neovim
   use({
     "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
     end,
+    ft = { "markdown" },
+    cmd = "MarkdownPreview",
   })
 
+  -- Interactive repl
+  use "hkupty/iron.nvim"
+
   -- A simple rss reader plugin for neovim
-  use {
-    -- "empat94/nvim-rss",
-    "~/Projects/nvim-rss",
-    requires = { "tami5/sqlite.lua" },
-    rocks = { "luaexpat" },
-  }
+  -- use {
+  --   -- "empat94/nvim-rss",
+  --   "~/Projects/nvim-rss",
+  --   requires = { "tami5/sqlite.lua" },
+  --   rocks = { "luaexpat" },
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -147,7 +145,7 @@ end)
 
 require "impatient"
 
-require "Comment".setup()
+require"Comment".setup()
 
 require "plugins.telescope"
 
@@ -169,9 +167,11 @@ require "plugins.nvim-tree"
 
 require "plugins.zen-mode"
 
+require "plugins.iron-nvim"
+
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 
 -- Tools
 -- npm i -g neovim
 -- pip install pynvim
--- yay -S standard prettier luaformatter autopep8 elmformatter hindent lua-format
+-- yay -S prettier luaformatter autopep8 elmformatter hindent lua-format

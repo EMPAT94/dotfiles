@@ -23,9 +23,6 @@ map("v", "k", "gk", s)
 map("n", ";", ":", o)
 map("v", ";", ":", o)
 
--- Config change
-map("n", "<leader>e", ":vsp ~/.config/nvim/lua<CR>", s)
-
 -- Save and quit
 map("n", "<leader>s", ":update<CR>", s) -- Save only
 map("n", "<leader>q", ":Sayonara!<CR>", s) -- Close buffer but keep window
@@ -71,12 +68,10 @@ map("t", "<Esc>", [[<C-\><C-n>]], s)
 -- Sigh... Things were not supposed to break like this
 -- Open url under cursor into browser
 map("n", "gx", "!xdg-open <cfile>", o)
-
 -- Create a new zettel note
 map("n", "<leader>n", ":call CreateZettel()<CR>", s)
 
 -- Open path under cursor in vertical split
-map("n", "gf", ":execute 'vsplit' substitute(expand('<cfile>'), '.', expand('%:h'), '')<CR>", s)
 
 -- Use telescope whenever possible for consistent flow
 map("n", "z=", ":Telescope spell_suggest<CR>", s)
