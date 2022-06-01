@@ -50,6 +50,10 @@ local enhance_server_opts = {
     opts.single_file_support = true
   end,
 
+  ["clojure_lsp"] = function(opts)
+    opts.single_file_support = true
+  end,
+
   ["sumneko_lua"] = function(opts)
     opts.settings = {
       Lua = {
