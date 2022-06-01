@@ -1,0 +1,3 @@
+The file `userChrome.css` is linked to `~/.mozilla/firefox/<blah>.default-relese/chrome/userChrome.css`
+
+<blah> is dynamic so cannot stow directly
