@@ -7,13 +7,15 @@ echo "\nUpdating npm..."
 npm --location=global update
 
 echo "\nUpdating pip..."
-# Upgrades break often, so saving in file to avoid the time-consuming process
-pip list --outdated > /tmp/pip-upgrade-list
 # Cirt is some mysterious thing that is stuck at 0.0.1 and doesn't update.
-cat /tmp/pip-upgrade-list | tail -n +3 | awk '!/crit/ {print $1}' | xargs -n1 pip install --upgrade
+pip list --outdated | tail -n +3 | awk '!/crit/ {print $1}'  > /tmp/pip-upgrade-list
+if [ -s /tmp/pip-upgrade-list ]
+then cat /tmp/pip-upgrade-list | xargs -n1 pip install --upgrade
+else echo "Nothing to update..."
+fi
 
-echo "\nUpdating nvim..."
+# echo "\nUpdating nvim..."
 # This may not work
-nvim --headless +PackerSync +qa
+# nvim --headless +PackerSync +qa
 
 echo "\nAll Done!"
