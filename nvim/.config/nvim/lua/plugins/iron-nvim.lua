@@ -8,15 +8,18 @@ iron.setup {
     repl_definition = { sh = { command = { "zsh" } }, clojure = require("iron.fts.clojure").clj },
   },
   keymaps = {
-    send_motion = "<localleader>eo",
+    -- mark_motion = "<localleader>mc",
+    -- send_motion = "<localleader>ev",
+
     visual_send = "<localleader>ev",
     send_line = "<localleader>el",
-    send_mark = "<localleader>em",
-    -- mark_motion = "<localleader>mc",
-    -- mark_visual = "<localleader>mc",
-    -- remove_mark = "<localleader>md>",
-    -- cr = "<localleader>s<cr>",
-    -- interrupt = "<localleader>s<localleader>",
+
+    mark_visual = "<localleader>emn",
+    remove_mark = "<localleader>emd",
+    send_mark = "<localleader>eme",
+
+    cr = "<localleader>s<cr>",
+    interrupt = "<localleader>e<localleader>",
     exit = "<localleader>eq",
     clear = "<localleader>ec",
   },
@@ -28,5 +31,22 @@ iron.setup {
 local s = { noremap = true, silent = true }
 local map = vim.api.nvim_set_keymap
 
-map("n", "<localleader>e<CR>", ":IronRepl<CR>", s)
-map("n", "<localleader>ee", [[:execute "normal va(,ev"<CR>]], s)
+map("n", "<localleader>ee", [[:execute "normal {jva(,ev"<CR>]], s)
+--
+-- What does the above mapping do?
+--
+-- It is meant to execute "full" lisp functions from anywhere inside the body.
+--
+-- If your cursor is somewhere here, like so:
+--
+-- (defn [args]
+--   (body1)
+--   (body2) <cursor-here>
+--   (body3))
+--
+--  Upon executing `,ee` cursor jumps a paragraph up, as designated by `{`
+--  and drops down on the opening paragraph by `j`
+--  Then selects the entire function by `va(`
+--  And sends it for eval in repl (opens if not already so) using `,ev`
+--
+--  TODO: This albeit works only in lisps. Need to use tree-sitter to select objects later

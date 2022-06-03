@@ -128,6 +128,9 @@ packer.startup(function(use)
   -- Interactive repl
   use "hkupty/iron.nvim"
 
+  -- Rainbow parentheses for neovim using tree-sitter.
+  use "p00f/nvim-ts-rainbow"
+
   -- A simple rss reader plugin for neovim
   -- use {
   --   -- "empat94/nvim-rss",
