@@ -5,17 +5,22 @@ iron.setup {
     should_map_plug = false,
     scratch_repl = true,
     repl_open_cmd = "vsp",
-    repl_definition = { sh = { command = { "zsh" } }, clojure = require("iron.fts.clojure").clj },
+    repl_definition = {
+      sh = { command = { "zsh" } },
+      clojure = require("iron.fts.clojure").clj,
+      python = require("iron.fts.python").ipython,
+    },
   },
   keymaps = {
     -- mark_motion = "<localleader>mc",
     -- send_motion = "<localleader>ev",
 
-    visual_send = "<localleader>ev",
+    send_file = "<localleader>ef",
     send_line = "<localleader>el",
 
-    mark_visual = "<localleader>emn",
-    remove_mark = "<localleader>emd",
+    visual_send = "<localleader>ev",
+    mark_visual = "<localleader>ema",
+    remove_mark = "<localleader>emr",
     send_mark = "<localleader>eme",
 
     cr = "<localleader>s<cr>",

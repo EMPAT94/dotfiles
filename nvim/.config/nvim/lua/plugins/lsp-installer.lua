@@ -3,14 +3,14 @@ local lsp_installer = require "nvim-lsp-installer"
 -- the servers to install by default
 local servers = {
   "bashls",
-  "clojure_lsp",
+  -- "clojure_lsp",
   "cssls",
   "dockerls",
-  "elixirls",
+  -- "elixirls",
   "html",
   "jsonls",
   "sumneko_lua",
-  "tailwindcss",
+  -- "tailwindcss",
   "tsserver",
   "vuels",
   "yamlls",

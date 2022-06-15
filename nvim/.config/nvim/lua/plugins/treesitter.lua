@@ -20,12 +20,12 @@ local rainbow_config = {
 require"nvim-treesitter.configs".setup {
   ensure_installed = {
     "bash",
-    "clojure",
+    -- "clojure",
     "css",
     "dockerfile",
-    "eex",
-    "elixir",
-    "heex",
+    -- "eex",
+    -- "elixir",
+    -- "heex",
     "html",
     "javascript",
     "jsdoc",
