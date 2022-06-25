@@ -1,32 +1,20 @@
-local lsp_installer = require "nvim-lsp-installer"
-
--- the servers to install by default
 local servers = {
   "bashls",
-  -- "clojure_lsp",
   "cssls",
   "dockerls",
-  -- "elixirls",
+  "denols",
   "html",
   "jsonls",
   "sumneko_lua",
-  -- "tailwindcss",
+  "tailwindcss",
   "tsserver",
   "vuels",
   "yamlls",
 }
 
-for _, name in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found then
-    if not server:is_installed() then
-      print("Installing " .. name)
-      server:install()
-    end
-  end
-end
+require"nvim-lsp-installer".setup { automatic_installation = true }
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require"cmp_nvim_lsp".update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local function on_attach(_, bufnr)
@@ -45,13 +33,33 @@ local function on_attach(_, bufnr)
   buf_set_keymap("n", "<localleader>a", "<cmd>Telescope lsp_code_actions<CR>", opts)
 end
 
+local lspconfig = require "lspconfig"
+
+-- Extra config for some servers
 local enhance_server_opts = {
-  ["tsserver"] = function(opts)
-    opts.single_file_support = true
+
+  ["tailwindcss"] = function(opts)
+    opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js", "tailwind.config.ts")
   end,
 
-  ["clojure_lsp"] = function(opts)
-    opts.single_file_support = true
+  -- If deno project, do not enable tsserver
+  ["tsserver"] = function(opts)
+    opts.root_dir = function(fname)
+      local deno_root = lspconfig.util.root_pattern("deno.json")(fname)
+
+      if (deno_root ~= nil) then
+        return nil
+      end
+
+      local ts_root = lspconfig.util.root_pattern("tsconfig.json", "package.json")(fname)
+
+      if (ts_root == nil) then
+        opts.single_file_support = true
+        return vim.fn.getcwd()
+      end
+
+      return ts_root
+    end
   end,
 
   ["sumneko_lua"] = function(opts)
@@ -66,12 +74,13 @@ local enhance_server_opts = {
   end,
 }
 
-lsp_installer.on_server_ready(function(server)
+-- Start servers
+for _, name in pairs(servers) do
   local opts = { on_attach = on_attach, capabilities = capabilities }
 
-  if enhance_server_opts[server.name] then
-    enhance_server_opts[server.name](opts)
+  if enhance_server_opts[name] then
+    enhance_server_opts[name](opts)
   end
 
-  server:setup(opts)
-end)
+  lspconfig[name].setup(opts)
+end
