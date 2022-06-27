@@ -49,7 +49,7 @@ cmp.setup({
     ["<C-u>"] = cmp.mapping.scroll_docs(1),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- false swallows some completions
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -78,10 +78,13 @@ cmp.setup({
       return vim_item
     end,
   },
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "ultisnips" },
-    { name = "path" },
-    { name = "buffer" },
-  }),
+  -- Each {} is one group, when present excludes other
+  sources = cmp.config.sources({ { name = "nvim_lsp" }, { name = "ultisnips" }, { name = "path" } },
+                               { { name = "buffer" } }),
+})
+
+-- Use cmdline & path source for ':'
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
