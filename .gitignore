@@ -12,8 +12,7 @@ zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zcompdump
 
 scripts/.local/share/slack-webhook-url
-scripts/.local/bin/backup-badass-server
-scripts/.local/bin/backup-personal-server
+/scripts/.local/bin/*.py
 
 firefox/.config/psd/.psd.conf
 
