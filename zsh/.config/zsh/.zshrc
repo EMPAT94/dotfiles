@@ -72,7 +72,6 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
-:$HOME/.nimble/bin\
 :/usr/local/bin\
 :/usr/local/sbin\
 :/usr/bin\
@@ -80,45 +79,45 @@ export PATH="$HOME/.local/bin/\
 :/bin\
 :/sbin";
 
-#################
-##### ALIAS #####
-#################
+###################
+##### ALIASES #####
+###################
 
 alias ...='../..'
-alias v="nvim"
-alias a="agenda"
-alias w="wiki"
 alias l="exa --icons --long --header --all"
+alias v="nvim"
+alias w="wiki"
 alias y="yay"
-alias c="z"
-alias b="bookmarks"
 
-alias ls="exa --icons"
 alias cp="cp --update --verbose"
-alias mv="mv --update --verbose"
-alias top="bpytop";
-alias open="xdg-open"
-alias tree="exa --icons --tree"
-alias fdu="fd --ignore-case --follow --unrestricted" # i = ignore case, L = follow symlinks
 alias fd="fd --ignore-case --follow" # i = ignore case, L = follow symlinks
-alias ruby="ruby-2.7"
-alias bundle="bundle-2.7"
+alias ls="exa --icons"
+alias mv="mv --update --verbose"
+alias py="python"
 alias vi="nvim";
-alias vim="nvim";
-alias wiki="nvim -S ~/MEGASync/wiki.vim"
-alias bookmarks="nvim ~/MEGASync/notes/bookmarks.md"
-alias music="vlc --intf ncurses --random --loop --audio --recursive --no-video ~/Music/"
+
 alias icat="kitty +kitten icat"
 # alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
+alias music="vlci ~/Music"
+alias open="xdg-open"
 # alias ssh="kitty +kitten ssh" # Only required once, when logging first time
+alias top="bpytop";
+alias tree="exa --icons --tree"
+alias vim="nvim";
+alias vlci="vlc --intf ncurses --random --loop --audio --recursive --no-video"
 
-alias show-public-ip="curl ifconfig.co";
-alias show-private-ip="ip addr | rg '192.*/'";
 alias adb-connect="adb connect 192.168.0.190:5555";
-alias http-server="echo Starting server on 8889; python3 -m http.server 8889 &";
-alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
-alias encrypt="gpg -er Pritesh" # file -> file.gpg
 alias decrypt="gpg -d" # file.gpg -> file
+alias encrypt="gpg -er Pritesh" # file -> file.gpg
+alias http-server="echo Starting server on 8889; python3 -m http.server 8889";
+alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
+alias show-private-ip="ip addr | rg '192.*/'";
+alias show-public-ip="curl ifconfig.co";
+
+wiki() {
+  cd ~/Notes
+  nvim index.md +Telescope\ find_files
+}
 
 clear_zsh_history() {
   echo > ~/.config/zsh/.zhistory
