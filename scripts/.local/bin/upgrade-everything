@@ -7,8 +7,7 @@ echo "\nUpdating npm..."
 npm --location=global update
 
 echo "\nUpdating pip..."
-# Cirt is some mysterious thing that is stuck at 0.0.1 and doesn't update.
-pip list --outdated | tail -n +3 | awk '!/crit/ {print $1}'  > /tmp/pip-upgrade-list
+pip list --outdated  > /tmp/pip-upgrade-list
 if [ -s /tmp/pip-upgrade-list ]
 then cat /tmp/pip-upgrade-list | xargs -n1 pip install --upgrade
 else echo "Nothing to update..."
