@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
-echo "Updating pacman..."
+echo -e "\n\nUpdating pacman...\n"
 yay -Syyu
 
-echo "\nUpdating npm..."
+echo -e "\n\nUpdating npm...\n"
 npm --location=global update
 
-echo "\nUpdating pip..."
+echo -e "\n\nUpdating pip...\n"
 pip list --outdated  > /tmp/pip-upgrade-list
 if [ -s /tmp/pip-upgrade-list ]
 then cat /tmp/pip-upgrade-list | xargs -n1 pip install --upgrade
 else echo "Nothing to update..."
 fi
 
-# echo "\nUpdating nvim..."
+# echo -e "\nUpdating nvim..."
 # This may not work
 # nvim --headless +PackerSync +qa
 
