@@ -1,6 +1,0 @@
-{
-  "semi": false,
-  "quoteProps": "consistent",
-  "bracketSameLine": true,
-  "arrowParens": "avoid"
-}

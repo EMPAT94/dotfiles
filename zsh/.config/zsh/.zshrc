@@ -98,7 +98,7 @@ alias vi="nvim";
 
 alias icat="kitty +kitten icat"
 # alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
-alias music="vlci ~/Music"
+alias music="mocp"
 alias open="xdg-open"
 # alias ssh="kitty +kitten ssh" # Only required once, when logging first time
 alias top="bpytop";
