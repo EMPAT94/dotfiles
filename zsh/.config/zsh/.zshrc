@@ -1,19 +1,26 @@
-#!/usr/bin/env zsh
+#!/usr/bin/zsh
+
 
 ###################
 ##### OPTIONS #####
 ###################
 
-setopt extendedglob        # Extended globbing. Allows using regular expressions with *
-setopt nocaseglob          # Case insensitive globbing
-setopt rcexpandparam       # Array expension with parameters
-setopt nocheckjobs         # Don't warn about running processes when exiting
-setopt numericglobsort     # Sort filenames numerically when it makes sense
-setopt nobeep              # No beep
-setopt appendhistory       # Immediately append history instead of overwriting
-setopt histignorealldups   # If a new command is a duplicate, remove the older one
-setopt autocd              # if only directory path is entered, cd there.
-setopt inc_append_history  # save commands are added to the history immediately, otherwise only when shell exits.
+setopt append_history         # Immediately append history instead of overwriting
+setopt auto_cd                # if only directory path is entered, cd there.
+setopt extended_glob          # Extended globbing. Allows using regular expressions with *
+setopt hist_expire_dups_first # Remove dups before uniques when trimming
+setopt hist_find_no_dups      # Do not display dupes when searching through hist
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups       # Do not enter command into the history if they are duplicates
+setopt hist_ignore_space
+setopt hist_save_no_dups      # When writing out the history file, older commands that duplicate newer ones are omitted.
+setopt inc_append_history     # save commands are added to the history immediately, otherwise only when shell exits.
+setopt no_beep                # No beep
+setopt no_case_glob           # Case insensitive globbing
+setopt no_check_jobs          # Don't warn about running processes when exiting
+setopt numeric_glob_sort      # Sort filenames numerically when it makes sense
+setopt rc_expand_param        # Array expension with parameters
+
 
 ###################
 ##### PLUGINS #####
@@ -22,6 +29,7 @@ setopt inc_append_history  # save commands are added to the history immediately,
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
 
 ######################
 ##### COMPLETION #####
@@ -35,6 +43,7 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path /tmp/cache
 zstyle ':completion:*:functions' ignored-patterns '_*'     # Ignore completion functions for commands
+
 
 ##################
 ##### CONFIG #####
@@ -54,6 +63,7 @@ export TERMINAL="kitty"
 export BROWSER="firefox"
 export KEYTIMEOUT=1
 
+
 #######################
 ##### KEYBINDINGS #####
 #######################
@@ -65,6 +75,7 @@ bindkey '^[[C'  forward-char                       # Right key
 bindkey '^[[D'  backward-char                      # Left key
 bindkey '^[[5~' history-beginning-search-backward  # Page up key
 bindkey '^[[6~' history-beginning-search-forward   # Page down key
+
 
 ################
 ##### PATH #####
@@ -78,6 +89,7 @@ export PATH="$HOME/.local/bin/\
 :/usr/sbin\
 :/bin\
 :/sbin";
+
 
 ###################
 ##### ALIASES #####
@@ -123,6 +135,7 @@ clear_zsh_history() {
   echo > ~/.config/zsh/.zhistory
 }
 
+# requires docker and pandoc image
 pandoc() {
    echo pandoc $@
    docker run -it --rm -v "$PWD:/work" -w /work pandoc/core "$@"
@@ -140,6 +153,13 @@ clean_package_cache() {
   pamac clean
 }
 
+# For example, to run a testrunner T on dir change D
+# $ watch_and_do D T
+watch_and_do() {
+  while true; do watch -g ls -l $1 >/dev/null && ${*:2}; sleep 5; done
+}
+
+
 ##################
 ##### PROMPT #####
 ##################
@@ -152,5 +172,10 @@ setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{blue}%b'
 zstyle ':vcs_info:*' enable git
+
+
+###############
+##### INIT ####
+###############
 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
