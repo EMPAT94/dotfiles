@@ -1,7 +1,5 @@
 local o = { noremap = true, silent = false }
-
 local s = { noremap = true, silent = true }
-
 local map = vim.api.nvim_set_keymap
 
 -- Remap space as leader key and comma as localleader
@@ -28,16 +26,6 @@ map("n", "<leader>s", ":update<CR>", s) -- Save only
 map("n", "<leader>q", ":Sayonara!<CR>", s) -- Close buffer but keep window
 map("n", "Q", ":Sayonara<CR>", s) -- Close buffer and window
 map("n", "<leader>w", "ZZ", s) -- Save and close buffer and window
-
--- Split window jumps
-map("", "<M-h>", "<C-w>h", s)
-map("", "<M-j>", "<C-w>j", s)
-map("", "<M-k>", "<C-w>k", s)
-map("", "<M-l>", "<C-w>l", s)
-map("", "<M-h>", [[<C-\><C-n><C-w>h]], s)
-map("", "<M-j>", [[<C-\><C-n><C-w>j]], s)
-map("", "<M-k>", [[<C-\><C-n><C-w>k]], s)
-map("", "<M-l>", [[<C-\><C-n><C-w>l]], s)
 
 -- Quick splits and tabs
 map("n", "<leader>v", ":vsplit<CR>", s)
@@ -72,11 +60,11 @@ map("n", "gx", "!xdg-open <cfile>", o)
 map("n", "<leader>n", ":call CreateZettel()<CR>", s)
 
 -- Open path under cursor in vertical split
+map("n", "gf", ":execute 'vsplit' substitute(expand('<cfile>'), '.', expand('%:h'), '')<CR>", s)
 
 -- Use telescope whenever possible for consistent flow
 map("n", "z=", ":Telescope spell_suggest<CR>", s)
 
 -- Do not copy deleted text in visual mode
 -- I personally use it for replacing in already copied text
-map("v", "p", "\"_dP", s) -- yes it is capital P here too
-map("v", "P", "\"_dP", s)
+map("v", "p", "\"_dP", s) -- yes it is capital P here

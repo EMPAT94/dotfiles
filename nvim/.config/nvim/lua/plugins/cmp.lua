@@ -43,6 +43,8 @@ cmp.setup({
       vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
+  completion = { keyword_length = 3 },
+  experimental = { ghost_text = true },
   window = { completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered() },
   mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping.scroll_docs(-1),

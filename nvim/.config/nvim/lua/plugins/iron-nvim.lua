@@ -36,7 +36,9 @@ iron.setup {
 local s = { noremap = true, silent = true }
 local map = vim.api.nvim_set_keymap
 
-map("n", "<localleader>ee", [[:execute "normal {jva(,ev"<CR>]], s)
+map("n", "<localleader>ee", [[:IronRepl<CR><ESC>]], s)
+
+-- map("n", "<localleader>ee", [[:execute "normal {jva(,ev"<CR>]], s)
 --
 -- What does the above mapping do?
 --

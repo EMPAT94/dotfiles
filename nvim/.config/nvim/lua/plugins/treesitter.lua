@@ -1,5 +1,5 @@
 -- config for p00f/nvim-ts-rainbow plugin, is part of treesitter setup
-local rainbow_paren_enabled_list = { "clojure", "commonlisp" }
+local rainbow_paren_enabled_list = { "clojure", "commonlisp", "racket" }
 local rainbow_config = {
   enable = true,
   -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
@@ -20,12 +20,8 @@ local rainbow_config = {
 require"nvim-treesitter.configs".setup {
   ensure_installed = {
     "bash",
-    -- "clojure",
     "css",
     "dockerfile",
-    -- "eex",
-    -- "elixir",
-    -- "heex",
     "html",
     "javascript",
     "jsdoc",
@@ -41,7 +37,7 @@ require"nvim-treesitter.configs".setup {
   },
   sync_install = false,
   highlight = { enable = true },
-  indent = { enable = true },
+  indent = { enable = true, disable = { "python", "yaml" } },
   rainbow = rainbow_config,
 }
 
