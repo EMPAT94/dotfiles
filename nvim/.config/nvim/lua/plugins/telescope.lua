@@ -5,7 +5,7 @@ telescope.setup {
     selection_caret = " ",
     prompt_prefix = "",
     highlight = false,
-    mappings = { i = { ["<esc>"] = require("telescope.actions").close } },
+    mappings = { i = { ["<ESC>"] = require("telescope.actions").close, ["<C-[>"] = require("telescope.actions").close } },
   },
   pickers = {
     find_files = { theme = "dropdown", previewer = false, no_ignore = false },
