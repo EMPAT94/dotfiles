@@ -27,7 +27,7 @@ Shuffle = yes
 #                     be doubled (i.e., '\\').  (See zshmisc
 #                     documentation for more information.)
 #
-FormatString = "%(A:\[%A\] \| :)%(t:%t:)"
+FormatString = "%t"
 
 # Sound driver - OSS, ALSA, JACK, SNDIO (on OpenBSD) or null (only for
 # debugging).  You can enter more than one driver as a colon-separated
@@ -191,17 +191,17 @@ Layout1 = directory(0,0,20%,100%):playlist(20%,0,FILL,100%)
 #ExecCommand10 =
 
 # Display full paths instead of just file names in the playlist.
-PlaylistFullPaths = no
+                                  PlaylistFullPaths = no
 
 # Use start-song information from SID ('yes') or start at first song
 # ('no').  Songs before the start-song won't be played.  (Note that this
 # option previously took the values 1 and 0; these are now deprecated
 # in favour of 'yes' and 'no'.)
-SidPlay2_StartAtStart = no
+                                  SidPlay2_StartAtStart = no
 
 # Play sub-tunes.  (Note that this option previously took the values 1
 # and 0; these are now deprecated in favour of 'yes' and 'no'.)
-SidPlay2_PlaySubTunes = no
+                                  SidPlay2_PlaySubTunes = no
 
 # Run the OnSongChange command when a new song starts playing.
 # Specify the full path (i.e. no leading '~') of an executable to run.
@@ -220,4 +220,4 @@ SidPlay2_PlaySubTunes = no
 #
 # Example:    OnSongChange = "/home/jack/.moc/myscript %a %r"
 #
-OnSongChange = "/home/pritesh/.dotfiles/moc/.moc/notify.sh %t"
+                                  OnSongChange = "/home/pritesh/.dotfiles/moc/.moc/notify.sh %t"
