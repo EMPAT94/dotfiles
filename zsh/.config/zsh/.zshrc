@@ -95,7 +95,7 @@ export PATH="$HOME/.local/bin/\
 ##### ALIASES #####
 ###################
 
-[[ -r .aliases ]] && source .aliases
+[[ -r ~/.config/zsh/.aliases ]] && source ~/.config/zsh/.aliases
 
 
 ##################
