@@ -1,0 +1,107 @@
+alias ...='../..'
+alias l="exa --icons --long --header --all"
+alias v="nvim"
+alias w="wiki"
+alias y="yay"
+
+alias cp="cp --update --verbose"
+alias fd="fd --ignore-case --follow" # i = ignore case, L = follow symlinks
+alias ls="exa --icons"
+alias mv="mv --update --verbose"
+alias py="python"
+alias vi="nvim";
+
+alias icat="kitty +kitten icat"
+# alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
+alias music="mocp"
+alias open="xdg-open"
+# alias ssh="kitty +kitten ssh" # Only required once, when logging first time
+alias top="bpytop";
+alias tree="exa --icons --tree"
+alias vim="nvim";
+alias vlci="vlc --intf ncurses --ran	dom --loop --audio --recursive --no-video"
+
+alias adb-connect="adb connect 192.168.0.190:5555";
+alias decrypt="gpg -d" # file.gpg -> file
+alias encrypt="gpg -er Pritesh" # file -> file.gpg
+alias http-server="echo Starting server on 8889; python3 -m http.server 8889";
+alias ramfs="su	do mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
+alias show-private-ip="ip addr | rg '192.*/'";
+alias show-public-ip="curl ifconfig.co";
+
+wiki() {
+  cd ~/Notes
+  nvim index.md +Telescope\ find_files
+}
+
+clear_zsh_history() {
+  echo > ~/.config/zsh/.zhistory
+}
+
+scrcap() {
+  adb shell screencap /sdcard/scrcap.png
+  adb pull /sdcard/scrcap.png ~/	documents/scr/$(date '+%s').png
+  adb shell rm /sdcard/scrcap.png
+}
+
+clean_package_cache() {
+  yay -Sc
+  yay -cc
+  pamac clean
+}
+
+# For example, to run a testrunner T on dir change D
+# $ watch_and_	do D T
+watch_and_	do() {
+  while true;	do watch -g ls -l $1 >/dev/null && ${*:2}; sleep 5;	done
+}
+
+# Following require	docker and respective image running
+
+pypy() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pypy pypy "$@"
+}
+
+haskell() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" haskell haskell "$@"
+}
+
+clojure() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" clojure clojure "$@"
+}
+
+nim() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" nimlang/nim nim "$@"
+}
+
+rust() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" rust rust "$@"
+}
+
+golang() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" golang golang "$@"
+}
+
+julia() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" julia julia "$@"
+}
+
+pandoc() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pandoc/core "$@"
+}
+
+javac() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" openjdk javac "$@"
+}
+
+java() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" openjdk java "$@"
+}
+
+swift() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" swift swift "$@"
+}
+
+elixir() {
+	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" elixir elixir "$@"
+}

@@ -95,69 +95,7 @@ export PATH="$HOME/.local/bin/\
 ##### ALIASES #####
 ###################
 
-alias ...='../..'
-alias l="exa --icons --long --header --all"
-alias v="nvim"
-alias w="wiki"
-alias y="yay"
-
-alias cp="cp --update --verbose"
-alias fd="fd --ignore-case --follow" # i = ignore case, L = follow symlinks
-alias ls="exa --icons"
-alias mv="mv --update --verbose"
-alias py="python"
-alias vi="nvim";
-
-alias icat="kitty +kitten icat"
-# alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
-alias music="mocp"
-alias open="xdg-open"
-# alias ssh="kitty +kitten ssh" # Only required once, when logging first time
-alias top="bpytop";
-alias tree="exa --icons --tree"
-alias vim="nvim";
-alias vlci="vlc --intf ncurses --random --loop --audio --recursive --no-video"
-
-alias adb-connect="adb connect 192.168.0.190:5555";
-alias decrypt="gpg -d" # file.gpg -> file
-alias encrypt="gpg -er Pritesh" # file -> file.gpg
-alias http-server="echo Starting server on 8889; python3 -m http.server 8889";
-alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
-alias show-private-ip="ip addr | rg '192.*/'";
-alias show-public-ip="curl ifconfig.co";
-
-wiki() {
-  cd ~/Notes
-  nvim index.md +Telescope\ find_files
-}
-
-clear_zsh_history() {
-  echo > ~/.config/zsh/.zhistory
-}
-
-# requires docker and pandoc image
-pandoc() {
-   echo pandoc $@
-   docker run -it --rm -v "$PWD:/work" -w /work pandoc/core "$@"
-}
-
-scrcap() {
-  adb shell screencap /sdcard/scrcap.png
-  adb pull /sdcard/scrcap.png ~/Documents/scr/$(date '+%s').png
-  adb shell rm /sdcard/scrcap.png
-}
-
-clean_package_cache() {
-  yay -Sc
-  yay -cc
-  pamac clean
-}
-
-# For example, to run a testrunner T on dir change D
-# $ watch_and_do D T
-watch_and_do() {
-  while true; do watch -g ls -l $1 >/dev/null && ${*:2}; sleep 5; done
-}
+[[ -r .aliases ]] && source .aliases
 
 
 ##################
@@ -178,4 +116,4 @@ zstyle ':vcs_info:*' enable git
 ##### INIT ####
 ###############
 
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+ [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
