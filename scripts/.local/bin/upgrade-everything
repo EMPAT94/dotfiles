@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo -e "\n\nUpdating pacman...\n"
-yay -Syyu
+yay -Syuu
 
 echo -e "\n\nUpdating npm...\n"
 npm --location=global update
