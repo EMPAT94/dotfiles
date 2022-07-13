@@ -1,14 +1,18 @@
+# vi: ft=zsh
+
 alias ...='../..'
+alias ....='../../..'
 alias l="exa --icons --long --header --all"
 alias v="nvim"
 alias w="wiki"
 alias y="yay"
 
 alias cp="cp --update --verbose"
-alias fd="fd --ignore-case --follow" # i = ignore case, L = follow symlinks
+alias fd="fd --ignore-case --follow"
 alias ls="exa --icons"
 alias mv="mv --update --verbose"
 alias py="python"
+alias no="node"
 alias vi="nvim";
 
 alias icat="kitty +kitten icat"
@@ -19,13 +23,12 @@ alias open="xdg-open"
 alias top="bpytop";
 alias tree="exa --icons --tree"
 alias vim="nvim";
-alias vlci="vlc --intf ncurses --ran	dom --loop --audio --recursive --no-video"
 
 alias adb-connect="adb connect 192.168.0.190:5555";
 alias decrypt="gpg -d" # file.gpg -> file
 alias encrypt="gpg -er Pritesh" # file -> file.gpg
-alias http-server="echo Starting server on 8889; python3 -m http.server 8889";
-alias ramfs="su	do mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
+alias http-server="python -m http.server 8888";
+alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
 alias show-private-ip="ip addr | rg '192.*/'";
 alias show-public-ip="curl ifconfig.co";
 
@@ -40,7 +43,7 @@ clear_zsh_history() {
 
 scrcap() {
   adb shell screencap /sdcard/scrcap.png
-  adb pull /sdcard/scrcap.png ~/	documents/scr/$(date '+%s').png
+  adb pull /sdcard/scrcap.png ~/documents/scr/$(date '+%s').png
   adb shell rm /sdcard/scrcap.png
 }
 
@@ -51,17 +54,19 @@ clean_package_cache() {
 }
 
 # For example, to run a testrunner T on dir change D
-# $ watch_and_	do D T
-watch_and_	do() {
+# $ watch_and_do D T
+watch_and_do() {
   while true;	do watch -g ls -l $1 >/dev/null && ${*:2}; sleep 5;	done
 }
 
+# TODO Convert all functions to use a single function using list
 # Following require	docker and respective image running
 
 pypy() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pypy pypy "$@"
 }
 
+# FIXME
 haskell() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" haskell haskell "$@"
 }
@@ -74,11 +79,13 @@ nim() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" nimlang/nim nim "$@"
 }
 
+# FIXME
 rust() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" rust rust "$@"
 }
 
-golang() {
+# FIXME
+go() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" golang golang "$@"
 }
 
