@@ -59,56 +59,8 @@ watch_and_do() {
   while true;	do watch -g ls -l $1 >/dev/null && ${*:2}; sleep 5;	done
 }
 
-# TODO Convert all functions to use a single function using list
-# Following require	docker and respective image running
-
-pypy() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pypy pypy "$@"
-}
-
-# FIXME
-haskell() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" haskell haskell "$@"
-}
-
-clojure() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" clojure clojure "$@"
-}
-
-nim() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" nimlang/nim nim "$@"
-}
-
-# FIXME
-rust() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" rust rust "$@"
-}
-
-# FIXME
-go() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" golang golang "$@"
-}
-
-julia() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" julia julia "$@"
-}
-
 pandoc() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pandoc/core "$@"
 }
 
-javac() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" openjdk javac "$@"
-}
-
-java() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" openjdk java "$@"
-}
-
-swift() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" swift swift "$@"
-}
-
-elixir() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" elixir elixir "$@"
-}
+eval $(python ~/.config/zsh/docker_aliases.py)
