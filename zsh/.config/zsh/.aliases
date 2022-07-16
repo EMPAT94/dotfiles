@@ -62,5 +62,3 @@ watch_and_do() {
 pandoc() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pandoc/core "$@"
 }
-
-eval $(python ~/.config/zsh/docker_aliases.py)

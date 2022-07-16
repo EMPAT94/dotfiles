@@ -97,6 +97,8 @@ export PATH="$HOME/.local/bin/\
 
 [[ -r ~/.config/zsh/.aliases ]] && source ~/.config/zsh/.aliases
 
+eval $(python ~/.config/zsh/docker_aliases.py)
+
 
 ##################
 ##### PROMPT #####

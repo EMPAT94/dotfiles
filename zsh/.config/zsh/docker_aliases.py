@@ -1,15 +1,18 @@
 alias_list = (
-    ("pypy", "pypy"),
-    ("clojure", "clojure"),
-    ("nim", "nimlang/nim"),
-    ("julia", "julia"),
     ("cargo", "rust"),
+    ("clojure", "clojure"),
+    ("deno", "denoland/deno"),
+    ("elixir", "elixir"),
     ("go", "golang"),
     ("javac", "openjdk"),
     ("java", "openjdk"),
+    ("julia", "julia"),
+    ("nim", "nimlang/nim"),
+    ("pypy", "pypy"),
+    ("python", "python:3.11-rc-bullseye"),
+    ("racket", "racket/racket"),
+    ("stack", "haskell"),
     ("swift", "swift"),
-    ("elixir", "elixir"),
-    ("deno", "denoland/deno"),
 )
 
 for (cmd, img) in alias_list:
