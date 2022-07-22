@@ -24,13 +24,13 @@ alias top="bpytop";
 alias tree="exa --icons --tree"
 alias vim="nvim";
 
-alias adb-connect="adb connect 192.168.0.190:5555";
+alias adb_connect="adb connect 192.168.0.190:5555";
 alias decrypt="gpg -d" # file.gpg -> file
 alias encrypt="gpg -er Pritesh" # file -> file.gpg
-alias http-server="python -m http.server 8888";
+alias http_server="python -m http.server 8888";
 alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
-alias show-private-ip="ip addr | rg '192.*/'";
-alias show-public-ip="curl ifconfig.co";
+alias show_private_ip="ip addr | rg '192.*/'";
+alias show_public_ip="curl ifconfig.co";
 
 wiki() {
   cd ~/Notes
@@ -53,6 +53,10 @@ clean_package_cache() {
   pamac clean
 }
 
+update_docker_images() {
+  docker images | awk '{print $1":"$2}' | tail -n +2 | xargs -n 1 docker pull
+}
+
 # For example, to run a testrunner T on dir change D
 # $ watch_and_do D T
 watch_and_do() {
@@ -62,3 +66,5 @@ watch_and_do() {
 pandoc() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pandoc/core "$@"
 }
+
+eval $(python ~/.config/zsh/docker_aliases.py)

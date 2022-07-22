@@ -1,6 +1,5 @@
 #!/usr/bin/zsh
 
-
 ###################
 ##### OPTIONS #####
 ###################
@@ -55,13 +54,6 @@ SAVEHIST=1000
 WORDCHARS=${WORDCHARS//\/[&.;]}       # Don't consider certain characters part of the word
 DISABLE_UNTRACKED_FILES_DIRTY="true"  # Disable marking untracked files under VCS as dirty.
 DISABLE_AUTO_TITLE="true";
-export LC_ALL=en_US.UTF-8             # solves locale warnings
-export MANPAGER='nvim +Man!'
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-export TERMINAL="kitty"
-export BROWSER="firefox"
-export KEYTIMEOUT=1
 
 
 #######################
@@ -89,15 +81,6 @@ export PATH="$HOME/.local/bin/\
 :/usr/sbin\
 :/bin\
 :/sbin";
-
-
-###################
-##### ALIASES #####
-###################
-
-[[ -r ~/.config/zsh/.aliases ]] && source ~/.config/zsh/.aliases
-
-eval $(python ~/.config/zsh/docker_aliases.py)
 
 
 ##################
