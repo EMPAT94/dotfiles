@@ -7,14 +7,14 @@ echo -e "\n\nUpdating npm...\n"
 npm --location=global update
 
 echo -e "\n\nUpdating pip...\n"
-pip list --outdated  > /tmp/pip-upgrade-list
+pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 > /tmp/pip-upgrade-list
 if [ -s /tmp/pip-upgrade-list ]
-then cat /tmp/pip-upgrade-list | xargs -n1 pip install --upgrade
+then cat /tmp/pip-upgrade-list | xargs -n1 pip install --user --upgrade
 else echo "Nothing to update..."
 fi
 
 # echo -e "\nUpdating nvim..."
-# This may not work
-# nvim --headless +PackerSync +qa
+# Must do manually
+# nvim +PackerSync +TSUpdate  +LspInstallInfo +qa
 
 echo "\nAll Done!"
