@@ -4,7 +4,7 @@ local servers = {
   "dockerls",
   "html",
   "jsonls",
-  "pyright",
+  "pylsp",
   "sumneko_lua",
   "tailwindcss",
   "tsserver",
@@ -31,6 +31,7 @@ local function on_attach(_, bufnr)
   buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap("n", "<localleader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<localleader>a", "<cmd>Telescope lsp_code_actions<CR>", opts)
+  buf_set_keymap("n", "<localleader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
 local lspconfig = require "lspconfig"
@@ -72,6 +73,14 @@ local enhance_server_opts = {
       },
     }
   end,
+
+  ["pylsp"] = function(opts)
+    opts.settings = {
+      configurationSources = { "pylint" },
+      formatCommand = { "black" },
+      pylsp = { plugins = { pycodestyle = { enabled = true, ignore = { "E501", "E231" }, maxLineLength = 90 } } },
+    }
+  end,
 }
 
 -- Start servers
@@ -84,3 +93,6 @@ for _, name in pairs(servers) do
 
   lspconfig[name].setup(opts)
 end
+
+-- Does not show the diagnostics in buffer (use mapping <localleader>d instead)
+vim.diagnostic.config({ virtual_text = false })

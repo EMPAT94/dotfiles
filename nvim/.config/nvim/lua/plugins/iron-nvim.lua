@@ -33,10 +33,7 @@ iron.setup {
   highlight = { italic = true, bold = true },
 }
 
-local s = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
-
-map("n", "<localleader>ee", [[:IronRepl<CR><ESC>]], s)
+vim.api.nvim_set_keymap("n", "<localleader>ee", [[:IronRepl<CR><ESC>]], { noremap = true, silent = true })
 
 -- map("n", "<localleader>ee", [[:execute "normal {jva(,ev"<CR>]], s)
 --

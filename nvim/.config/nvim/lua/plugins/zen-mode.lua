@@ -1,7 +1,7 @@
 require"zen-mode".setup {
   window = {
     backdrop = 0,
-    width = 80,
+    width = 90,
     height = 1,
     options = { signcolumn = "no", number = false, relativenumber = false },
   },

@@ -8,9 +8,9 @@ function! MyHighlights()
   highlight! StatusLineTerm gui=bold guibg=none guifg=#6272A4
   highlight! StatusLineTermNC guibg=none guifg=#424450
 
-  highlight! Tabline gui=none guibg=none guifg=#6272A4
-  highlight! TablineFill gui=none guifg=none guibg=none
-  highlight! TablineSel gui=bold guibg=none guifg=#F1FA8C
+  highlight! LineNr guifg=#6272A4
+  highlight! LineNrAbove guifg=#424450
+  highlight! LineNrBelow guifg=#424450
 
   highlight! Folded gui=bold guibg=NONE guifg=#6272A4
   highlight! SpecialKey guibg=NONE
