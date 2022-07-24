@@ -34,6 +34,7 @@ require"nvim-treesitter.configs".setup {
     "typescript",
     "vue",
     "yaml",
+    "haskell",
   },
   sync_install = false,
   highlight = { enable = true },

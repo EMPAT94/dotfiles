@@ -10,6 +10,7 @@ local servers = {
   "tsserver",
   "vuels",
   "yamlls",
+  "hls",
 }
 
 require"nvim-lsp-installer".setup { automatic_installation = true }
