@@ -23,6 +23,8 @@ alias open="xdg-open"
 alias top="bpytop";
 alias tree="exa --icons --tree"
 alias vim="nvim";
+alias python="python3"
+alias pip="pip3"
 
 alias adb_connect="adb connect 192.168.0.190:5555";
 alias decrypt="gpg -d" # file.gpg -> file

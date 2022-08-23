@@ -25,9 +25,9 @@ setopt rc_expand_param        # Array expension with parameters
 ##### PLUGINS #####
 ###################
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 
 ######################
@@ -75,6 +75,8 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
+:/opt/homebrew/bin\
+:/opt/homebrew/sbin\
 :/usr/local/bin\
 :/usr/local/sbin\
 :/usr/bin\
@@ -102,3 +104,5 @@ zstyle ':vcs_info:*' enable git
 ###############
 
  [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
+export PATH=":$PATH"

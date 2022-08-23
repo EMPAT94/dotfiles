@@ -1,5 +1,5 @@
 <br />
-<h1 align="center"> .DOTFILES </h1>
+<h1 align="center"> .DOTFILES (Macos) </h1>
 <br />
 
 ## Intro
@@ -12,7 +12,7 @@ I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles. A ni
 
 2. Cd into the dir `cd ~/.dotfiles`
 
-3. Dry-run on a app, eg firefox `stow --verbose --no firefox`
+3. Dry-run on a app, eg firefox `stow --verbose --no zsh`
 
 4. Live-run on a app, eg nvim `stow --verbose nvim`
 
@@ -24,19 +24,18 @@ As you can see, I use [dracula](https://draculatheme.com/) theme for most of my 
 
 I'd recommend going through the files and cherry-picking the stuff you want to include instead of wholesale copy-paste, this means you don't get surprise changes and can tweak to your liking.
 
-## Programs I Use
+## Some of the programs I Use
 
-1. [terminak: kitty](https://sw.kovidgoyal.net/kitty/)
+1. [package manager: homebrew](https://brew.sh/)
+1. [terminal: kitty](https://sw.kovidgoyal.net/kitty/)
 1. [shell: zsh](https://en.wikipedia.org/wiki/Z_shell)
-1. [web browser 1: brave](https://brave.com/)
-1. [web browser 2: firefox](https://www.mozilla.org/en-US/firefox/new/)
-1. [music player: mocp](https://moc.daper.net/)
+1. [web browser: firefox](https://www.mozilla.org/en-US/firefox/new/)
 1. [text editor: neovim](https://neovim.io/)
 1. [system monitor: bpytop](https://github.com/aristocratos/bpytop)
 1. [password manager: bitwarden](https://bitwarden.com/)
 1. [2FA app: authy](https://authy.com/)
 
-I use this setup on a Manjaro KDE machine.
+I use this setup on a Macbook Air M1 machine.
 
 ## Screenshots
 

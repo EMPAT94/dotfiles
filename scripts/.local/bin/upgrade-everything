@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo -e "\n\nUpdating pacman...\n"
-yay -Syuu
+echo -e "\n\nUpdating brew...\n"
+brew update && brew upgrade
 
 echo -e "\n\nUpdating npm...\n"
 npm --location=global update
@@ -13,8 +13,8 @@ then cat /tmp/pip-upgrade-list | xargs -n1 pip install --user --upgrade
 else echo "Nothing to update..."
 fi
 
+# Must do manually for now
 # echo -e "\nUpdating nvim..."
-# Must do manually
 # nvim +PackerSync +TSUpdate  +LspInstallInfo +qa
 
 echo "\nAll Done!"

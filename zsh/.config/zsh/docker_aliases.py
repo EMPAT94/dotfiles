@@ -4,7 +4,7 @@ alias_list = (
     ("clojure", "clojure"),
     ("deno", "denoland/deno"),
     ("elixir", "elixir"),
-    ("go", "golang"),
+    # ("go", "golang"),
     ("javac", "openjdk"),
     ("java", "openjdk"),
     ("julia", "julia"),

@@ -6,11 +6,11 @@ local servers = {
   "jsonls",
   "pylsp",
   "sumneko_lua",
-  "tailwindcss",
+  -- "tailwindcss",
   "tsserver",
   "vuels",
   "yamlls",
-  "hls",
+  -- "hls",
 }
 
 require"nvim-lsp-installer".setup { automatic_installation = true }
