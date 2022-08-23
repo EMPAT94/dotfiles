@@ -103,6 +103,5 @@ zstyle ':vcs_info:*' enable git
 ##### INIT ####
 ###############
 
- [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
-
-export PATH=":$PATH"
+# For z command
+. /opt/homebrew/etc/profile.d/z.sh

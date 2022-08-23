@@ -1,8 +1,6 @@
 #!/bin/zsh
 
 # Global aliases
-export SSH_ASKPASS=/usr/bin/ksshaskpass
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/ssh-agent.socket
 export LC_ALL=en_US.UTF-8             # solves locale warnings
 export MANPAGER='nvim +Man!'
 export VISUAL=nvim
