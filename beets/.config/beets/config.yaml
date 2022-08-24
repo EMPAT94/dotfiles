@@ -1,0 +1,34 @@
+# Path to beetds library file
+library: ~/Music/library.db
+
+asciify_paths: yes
+
+# Directory to which tracks will be copied/moved
+# ~/Music is the default value
+# directory: ~/Music
+
+# scrub: remove non-beets metadata
+# fromfilename: use filename to search
+# chroma: use audio fingerprint to search (https://beets.readthedocs.io/en/stable/plugins/chroma.html)
+# fetchart: get album art along with metadata
+plugins: scrub fromfilename chroma fetchart
+
+match:
+  # List of preferred countries and types in order
+  preferred:
+    countries: ["IN", "US", "GB|UK"]
+    media: ["Digital Media|File", "CD"]
+  max_rec:
+    missing_tracks: none
+
+# Save albums/track as follows
+paths:
+  # Album, Artist Present
+  default: $album ($original_year)%aunique{}%asciify{}/$title
+  # No Artist
+  comp: $album%aunique{}/$title
+  # No Album
+  singleton: $artist/$title
+
+ui:
+  color: yes
