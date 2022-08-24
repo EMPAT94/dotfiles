@@ -34,13 +34,13 @@ alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
 alias show_private_ip="ip addr | rg '192.*/'";
 alias show_public_ip="curl ifconfig.co";
 
+notify() {
+  osascript -e "display notification \"$2\" with title \"$1\""
+}
+
 wiki() {
   cd ~/Notes
   nvim index.md +Telescope\ find_files
-}
-
-clear_zsh_history() {
-  echo > ~/.config/zsh/.zhistory
 }
 
 scrcap() {
@@ -49,10 +49,11 @@ scrcap() {
   adb shell rm /sdcard/scrcap.png
 }
 
-clean_package_cache() {
-  yay -Sc
-  yay -cc
-  pamac clean
+cleanup_everything() {
+  echo > ~/.config/zsh/.zhistory
+  brew autoremove && brew cleanup
+  sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
+  rm -rf /Users/pritesh/Library/Caches/*
 }
 
 update_docker_images() {
@@ -69,4 +70,4 @@ pandoc() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pandoc/core "$@"
 }
 
-eval $(python ~/.config/zsh/docker_aliases.py)
+# eval $(python ~/.config/zsh/docker_aliases.py)
