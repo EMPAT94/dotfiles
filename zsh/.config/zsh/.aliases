@@ -14,14 +14,13 @@ alias no="node"
 alias vi="nvim";
 
 alias icat="kitty +kitten icat"
-# alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
 alias music="mocp"
-# alias ssh="kitty +kitten ssh" # Only required once, when logging first time
 alias top="bpytop";
 alias tree="exa --icons --tree"
 alias vim="nvim";
-alias python="python3"
-alias pip="pip3"
+# alias python="python3" # ln -s /opt/homebrew/bin/python3 ~/.local/bin/python
+# alias pip="pip3" # ln -s /opt/homebrew/bin/pip3 ~/.local/bin/pip
+# alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua
 
 alias adb_connect="adb connect 192.168.0.190:5555";
 alias decrypt="gpg -d" # file.gpg -> file
