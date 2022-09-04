@@ -7,15 +7,7 @@
 // @grant       none
 // ==/UserScript==
 
-function like(timer) {
+setInterval(() => {
   let likeBtn = document.getElementsByClassName("like");
-  if (likeBtn && likeBtn[0]) {
-    if (timer) clearInterval(timer);
-    likeBtn[0].click();
-    setTimeout(like, 1000);
-  }
-}
-
-let startTimer = setInterval(() => {
-  like(startTimer);
-}, 3000);
+  if (likeBtn && likeBtn[0]) likeBtn[0].click();
+}, 1000);

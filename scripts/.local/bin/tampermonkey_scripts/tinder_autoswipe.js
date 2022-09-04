@@ -8,13 +8,12 @@
 // @grant        none
 // ==/UserScript==
 
-setInterval(function a() {
-  let i = 0;
+setInterval(() => {
+  let btns = document.getElementsByClassName("button");
 
-  $(".button").each(function a() {
-    if (i == 3) {
-      $(this).click();
-    }
-    i++;
-  });
-}, 100);
+  if (!btns) return;
+
+  for (let btn of btns) {
+    if (btn.innerHTML.includes("background-like")) btn.click();
+  }
+}, 1000);

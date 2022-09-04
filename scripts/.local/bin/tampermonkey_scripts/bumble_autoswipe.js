@@ -8,28 +8,10 @@
 // @grant        none
 // ==/UserScript==
 
-(function () {
-  function eventFire(target, etype) {
-    if (target.fireEvent) {
-      target.fireEvent(`on${etype}`);
-    } else {
-      const evObj = document.createEvent("Events");
-      evObj.initEvent(etype, true, false);
-      target.dispatchEvent(evObj);
-    }
-  }
-
-  function like(timer) {
-    const likeBtn = document.getElementsByClassName("encounters-action--like");
-    if (!likeBtn || !likeBtn[0]) return;
-    if (timer) clearInterval(timer);
-    setTimeout(() => {
-      eventFire(likeBtn, "click");
-      like();
-    }, 8000);
-  }
-
-  let likeTimer = setInterval(() => {
-    like(likeTimer);
-  }, 3000);
-})();
+setInterval(() => {
+  const likeBtn = document.getElementsByClassName("encounters-action--like");
+  if (!likeBtn || !likeBtn[0]) return;
+  const evObj = document.createEvent("Events");
+  evObj.initEvent("click", true, false);
+  likeBtn.dispatchEvent(evObj);
+}, 1000);

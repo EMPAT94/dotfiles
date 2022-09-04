@@ -8,21 +8,7 @@
 // @grant        none
 // ==/UserScript==
 
-(function () {
-  "use strict";
-
-  function like(timer) {
-    console.log("Like function called");
-    let likeBtn = document.getElementById("meetmevotebutton-yes");
-    if (likeBtn) {
-      console.log("Liking now...");
-      clearInterval(timer);
-      likeBtn.click();
-      setTimeout(like, 800);
-    }
-  }
-
-  let likeTimer = setInterval(() => {
-    like(likeTimer);
-  }, 3000);
-})();
+setInterval(() => {
+    let likeBtn = document.getElementById("meetmevotebutton-yes")
+    if (likeBtn) likeBtn.click()
+}, 1000)

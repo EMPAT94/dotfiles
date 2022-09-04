@@ -7,34 +7,23 @@
 // @grant        none
 // ==/UserScript==
 
-(function () {
-  "use strict";
+setInterval(() => {
+  let btns = document.getElementsByTagName("button");
 
-  function like(timer) {
-    let redLikeBtn = document.getElementsByClassName("css-m0z7d6");
-    let blueLikeBtn = document.getElementsByClassName("css-1ky22fc");
-    if ((redLikeBtn && redLikeBtn[0]) || (blueLikeBtn && blueLikeBtn[0])) {
-      if (timer) clearInterval(timer);
-      if (redLikeBtn) redLikeBtn[0].click();
-      else blueLikeBtn[0].click();
-      let skipTimer = setInterval(() => {
-        skip(skipTimer);
-      }, 500);
+  if (!btns) return;
+
+  let nextBtn;
+
+  for (let btn of btns) {
+    if (btn.innerHTML.includes("like")) {
+      nextBtn = btn;
+      break;
+    }
+
+    if (btn.innerHTML.includes("Skip")) {
+      nextBtn = btn;
     }
   }
 
-  function skip(timer) {
-    let skipBtn = document.getElementsByClassName("css-1csl5tt");
-    if (skipBtn && skipBtn[0]) {
-      if (timer) clearInterval(timer);
-      skipBtn[0].click();
-      let likeTimer = setInterval(() => {
-        like(likeTimer);
-      }, 800);
-    }
-  }
-
-  let startTimer = setInterval(() => {
-    like(startTimer);
-  }, 1000);
-})();
+  nextBtn.click();
+}, 1000);
