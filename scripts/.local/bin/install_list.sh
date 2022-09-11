@@ -48,7 +48,7 @@ brew install --cask \
   firefox \
   syncthing \
   zoom \
-  font-fira-mono-nerd-font \
+  font-fira-code \
 
 # At this point, pull dotfiles from git and stow links
 # Ensure pip, python, npm are setup properly

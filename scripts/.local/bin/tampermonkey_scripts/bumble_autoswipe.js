@@ -10,7 +10,9 @@
 
 setInterval(() => {
   const likeBtn = document.getElementsByClassName("encounters-action--like");
+
   if (!likeBtn || !likeBtn[0]) return;
+
   const evObj = document.createEvent("Events");
   evObj.initEvent("click", true, false);
   likeBtn.dispatchEvent(evObj);

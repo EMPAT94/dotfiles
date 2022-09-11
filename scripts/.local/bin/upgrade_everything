@@ -17,4 +17,4 @@ fi
 # echo -e "\nUpdating nvim..."
 # nvim +PackerSync +TSUpdate  +LspInstallInfo +qa
 
-echo "\nAll Done!"
+echo -e "\nAll Done!"
