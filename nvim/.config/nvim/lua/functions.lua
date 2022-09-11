@@ -27,8 +27,8 @@ function! MyHighlights()
   highlight! DiffChange guibg=#292929 guifg=NONE gui=NONE
   highlight! DiffText guibg=#252525 guifg=orange gui=underline
 
-  highlight! link DiagnosticHint NonText
-  highlight! link DiagnosticInfo NonText
+  highlight! link DiagnosticHint white
+  highlight! link DiagnosticInfo white
   highlight! link DiagnosticSignHint NonText
   highlight! link DiagnosticSignInfo NonText
   highlight! link DiagnosticVirtualTextHint NonText
