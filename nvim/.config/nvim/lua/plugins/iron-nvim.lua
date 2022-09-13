@@ -9,6 +9,7 @@ iron.setup({
 		repl_definition = {
 			sh = { command = { "zsh" } },
 			clojure = require("iron.fts.clojure").clj,
+			java = { command = { "jshell" } },
 			python = {
 				command = {
 					"ipython",
