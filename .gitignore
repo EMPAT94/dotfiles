@@ -1,3 +1,5 @@
+.DS_Store
+
 moc/.moc/pid
 moc/.moc/equalizer
 moc/.moc/last_directory
@@ -18,3 +20,5 @@ scripts/.local/share/slack-webhook-url
 firefox/.config/psd/.psd.conf
 
 ssmtp/etc/ssmtp/ssmtp.conf
+
+beets/.config/beets/state.pickle
