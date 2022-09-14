@@ -15,5 +15,5 @@ setInterval(() => {
 
   const evObj = document.createEvent("Events");
   evObj.initEvent("click", true, false);
-  likeBtn.dispatchEvent(evObj);
+  likeBtn[0].dispatchEvent(evObj);
 }, 1000);
