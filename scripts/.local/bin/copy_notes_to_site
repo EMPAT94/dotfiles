@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+rsync \
+  --archive \
+  --quiet \
+  --partial \
+  --recursive \
+  --exclude=README.md \
+  --exclude=LICENSE \
+  --exclude=.git* \
+  ~/Notes/code-notes/ \
+  ~/Projects/empat94.github.io/src/notes/
