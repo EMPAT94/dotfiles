@@ -8,5 +8,5 @@ rsync \
   --exclude=README.md \
   --exclude=LICENSE \
   --exclude=.git* \
-  ~/Notes/code-notes/ \
-  ~/Projects/empat94.github.io/src/notes/
+  $HOME/Notes/code-notes/ \
+  $HOME/Projects/empat94.github.io/src/notes/
