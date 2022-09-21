@@ -12,58 +12,69 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew install \
-  git \
-  node \
-  npm \
-  go \
-  python \
-  fzf \
-  ripgrep \
-  fd \
+  chromaprint \
+  cloudflared \
   exa \
   exercism \
-  neovim \
+  fd \
+  fzf \
+  git \
+  go \
   moc \
+  neovim \
+  node \
+  npm \
+  openjdk \
+  python \
+  ripgrep \
   rsync \
-  watch \
-  z \
+  sqlite \
   stow \
+  stylua \
+  watch \
   wget \
+  z \
   zsh-autosuggestions \
   zsh-syntax-highlighting \
-  chromaprint \
 
 brew install --cask \
   android-studio \
-  gimp \
   authy \
-  kitty \
   bitwarden \
-  megasync \
   breaktimer \
-  nextcloud \
   displaperture \
-  slack \
   docker \
   firefox \
-  syncthing \
-  zoom \
   font-fira-code \
+  gimp \
+  kitty \
+  megasync \
+  microsoft-auto-update \
+  microsoft-office \
+  nextcloud \
+  onyx \
+  slack \
+  syncthing \
+  visual-studio-code \
+  zoom \
 
 # At this point, pull dotfiles from git and stow links
 # Ensure pip, python, npm are setup properly
 
 pip install \
-  black \
-  pynvim \
   beets \
-  pyacoustid \
-  youtube-dl \
-  twine \
-  requests \
-  ipython \
+  black \
   bpytop \
+  ipython \
+  pyacoustid \
+  pynvim \
+  requests \
+  twine \
+  youtube-dl \
+  zettelmerken \
 
 npm --location=global install \
   neovim \
   prettier \
+  prettier-plugin-java \
+  prettier-plugin-kotlin \
