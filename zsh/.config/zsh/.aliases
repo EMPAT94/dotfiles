@@ -14,7 +14,7 @@ alias no="node"
 alias vi="nvim";
 
 alias icat="kitty +kitten icat"
-alias music="brew services start jack && mocp"
+alias music="mocp"
 alias top="bpytop";
 alias tree="exa --icons --tree"
 alias vim="nvim";
@@ -43,10 +43,32 @@ scrcap() {
 }
 
 cleanup_everything() {
-  echo > ~/.config/zsh/.zhistory
-  brew autoremove && brew cleanup
+  # Remove history files
+  rm -rfv ~/.config/zsh/.zhistory
+  rm -rfv ~/.node_repl_history
+  rm -rfv ~/.python_history
+  rm -rfv ~/.lesshst
+  rm -rfv ~/.wget-hsts
+  rm -rfv ~/.ipython
+  # rm -rf ~/.Trash/* # FIXME Gives "no files found" error
+
+  # Trim packages
+  brew autoremove && brew cleanup --prune=all
+
+  # Clean macos tracking
   sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
-  rm -rf /Users/pritesh/Library/Caches/*
+
+  # Clear Cache
+  rm -rfv $HOME/Library/Caches/*
+  rm -rfv ~/.cache/*
+
+  # Delete docker stuff
+  if [ -e unix:///var/run/docker.sock ]
+  then
+    docker image prune --all
+    docker volume prune --all
+    docker network prune --all
+  fi
 }
 
 update_docker_images() {
