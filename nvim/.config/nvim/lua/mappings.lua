@@ -55,16 +55,16 @@ map("t", "<Esc>", [[<C-\><C-n>]], s)
 
 -- Sigh... Things were not supposed to break like this
 -- Open url under cursor into browser
-map("n", "gx", ':!open <cfile><CR>', o)
+map("n", "gx", ":!open <cfile><CR>", o)
 -- Create a new zettel note
 map("n", "<leader>n", ":call CreateZettel()<CR>", s)
 
 -- Open path under cursor in vertical split
-map("n", "gf", ":execute 'vsplit' substitute(expand('<cfile>'), '.', expand('%:h'), '')<CR>", s)
+map("n", "gf", ":call GoToFile()<CR>", s)
 
 -- Use telescope whenever possible for consistent flow
 map("n", "z=", ":Telescope spell_suggest<CR>", s)
 
 -- Do not copy deleted text in visual mode
 -- I personally use it for replacing in already copied text
-map("v", "p", "\"_dP", s) -- yes it is capital P here
+map("v", "p", '"_dP', s) -- yes it is capital P here

@@ -1,4 +1,4 @@
-vim.cmd [=[
+vim.cmd([=[
 
 function! MyHighlights()
   highlight! Normal guibg=none
@@ -125,4 +125,15 @@ function! CreateZettel()
 
 endfunction
 
-]=]
+function! GoToFile()
+  let cwd = expand("%:p:h")
+  let cfile = expand("<cfile>")
+
+  if matchstr(cfile, "../") == "../"
+    :execute 'vsplit' substitute(cfile, '..', expand("%:p:h:h"), '')
+  elseif matchstr(cfile, "./") == "./"
+    :execute 'vsplit' substitute(cfile, '.', cwd, '')
+  endif
+endfunction
+
+]=])
