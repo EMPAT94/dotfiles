@@ -1,4 +1,4 @@
-vim.cmd [=[
+vim.cmd([=[
 
 augroup CustomCmds
   autocmd!
@@ -23,4 +23,4 @@ augroup END
 
 command! -nargs=1 CreateZettelHub :call CreateZettelHub(<args>)
 
-]=]
+]=])

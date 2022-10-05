@@ -60,6 +60,10 @@ set.sidescrolloff = 5
 -- Number of screen lines to use for the command-line.
 set.cmdheight = 2
 
+-- Height/Width of popup menu for completion items
+set.pumheight = 10
+set.pumwidth = 0
+
 -- The screen will not be redrawn while executing macros, registers and other commands that have not been typed.
 -- Also, updating the window title is postponed.
 set.lazyredraw = true
@@ -70,10 +74,10 @@ set.numberwidth = 5
 -- List mode on, with custom chars
 set.list = true
 set.listchars = {
-  tab = "  ",
-  trail = "·",
-  extends = "»",
-  precedes = "«",
+	tab = "  ",
+	trail = "·",
+	extends = "»",
+	precedes = "«",
 }
 
 -- Remove end of buffer ~, diff delted - and fold closed -

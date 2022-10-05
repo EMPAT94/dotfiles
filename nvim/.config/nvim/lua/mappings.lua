@@ -68,3 +68,4 @@ map("n", "z=", ":Telescope spell_suggest<CR>", s)
 -- Do not copy deleted text in visual mode
 -- I personally use it for replacing in already copied text
 map("v", "p", '"_dP', s) -- yes it is capital P here
+map("v", "P", '"_dP', s)
