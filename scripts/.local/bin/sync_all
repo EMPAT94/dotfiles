@@ -3,5 +3,6 @@
 open /Applications/MEGAsync.app
 open /Applications/Nextcloud.app
 open /Applications/Syncthing.app
-
-# python3 ~/.local/bin/backup_servers.py
+~/.local/bin/backup_servers
+~/.local/bin/backup_labs
+~/.local/bin/backup_projects

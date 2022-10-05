@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+rsync \
+  --archive \
+  --quiet \
+  --partial \
+  --recursive \
+  --exclude=.sync_* \
+  $HOME/Labs \
+  $HOME/Backups

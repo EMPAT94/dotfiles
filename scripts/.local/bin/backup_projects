@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+rsync \
+  --archive \
+  --quiet \
+  --partial \
+  --recursive \
+  $HOME/Projects \
+  $HOME/Backups
