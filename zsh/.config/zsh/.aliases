@@ -44,12 +44,13 @@ scrcap() {
 
 cleanup_everything() {
   # Remove history files
-  rm -rfv ~/.config/zsh/.zhistory
-  rm -rfv ~/.node_repl_history
-  rm -rfv ~/.python_history
-  rm -rfv ~/.lesshst
-  rm -rfv ~/.wget-hsts
-  rm -rfv ~/.ipython
+  rm -rf ~/.config/zsh/.zhistory
+  rm -rf ~/.node_repl_history
+  rm -rf ~/.python_history
+  rm -rf ~/.lesshst
+  rm -rf ~/.wget-hsts
+  rm -rf ~/.ipython
+  rm -rf ~/.sqlite_history
   # rm -rf ~/.Trash/* # FIXME Gives "no files found" error
 
   # Trim packages
@@ -59,8 +60,8 @@ cleanup_everything() {
   sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
 
   # Clear Cache
-  rm -rfv $HOME/Library/Caches/*
-  rm -rfv ~/.cache/*
+  rm -rf $HOME/Library/Caches/*
+  rm -rf ~/.cache/*
 
   # Delete docker stuff
   if [ -e unix:///var/run/docker.sock ]
@@ -83,6 +84,11 @@ watch_and_do() {
 
 pandoc() {
 	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pandoc/core "$@"
+}
+
+sqlite() {
+  /opt/homebrew/opt/sqlite/bin/sqlite3 --header --column
+
 }
 
 # eval $(python ~/.config/zsh/docker_aliases.py)

@@ -76,6 +76,7 @@ export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
 :/opt/homebrew/opt/python@3.10/libexec/bin\
 :/opt/homebrew/opt/openjdk/bin\
+:/opt/homebrew/opt/sqlite/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
 :/usr/local/bin\
