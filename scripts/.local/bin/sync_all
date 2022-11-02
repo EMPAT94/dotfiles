@@ -5,4 +5,3 @@ open /Applications/Nextcloud.app
 open /Applications/Syncthing.app
 ~/.local/bin/backup_servers
 ~/.local/bin/backup_labs
-~/.local/bin/backup_projects

@@ -5,5 +5,7 @@ rsync \
   --quiet \
   --partial \
   --recursive \
+  --exclude='/.git' \
+  --filter="dir-merge,- .gitignore" \
   $HOME/Projects \
   $HOME/Backups
