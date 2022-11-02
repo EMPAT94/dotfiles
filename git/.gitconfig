@@ -8,6 +8,7 @@
   addIgnoredFile = false
 [core]
   editor = nvim
+	autocrlf = true
 [pull]
   rebase = false
 [commit]
