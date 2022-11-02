@@ -38,6 +38,7 @@ require("nvim-treesitter.configs").setup({
 		"java",
 		"kotlin",
 		"swift",
+		"clojure",
 	},
 	sync_install = false,
 	highlight = { enable = true },
