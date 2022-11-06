@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-open https://mail.google.com
-open https://nextcloud.priteshtupe.com
 open https://github.com
 open https://fanshaweonline.ca
+open https://mail.google.com
+open https://slack.com
+open https://web.whatsapp.com
+open https://nextcloud.priteshtupe.com

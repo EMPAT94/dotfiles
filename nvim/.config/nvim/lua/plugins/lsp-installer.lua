@@ -12,6 +12,7 @@ local servers = {
 	"yamlls",
 	-- "hls",
 	"jdtls",
+	"clojure_lsp",
 }
 
 require("nvim-lsp-installer").setup({ automatic_installation = true })

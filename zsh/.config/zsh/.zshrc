@@ -74,9 +74,10 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
-:/opt/homebrew/opt/python@3.10/libexec/bin\
+:/opt/homebrew/opt/python@3.11/libexec/bin\
 :/opt/homebrew/opt/openjdk/bin\
 :/opt/homebrew/opt/sqlite/bin\
+:/opt/homebrew/opt/ncurses/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
 :/usr/local/bin\
@@ -85,7 +86,6 @@ export PATH="$HOME/.local/bin/\
 :/usr/sbin\
 :/bin\
 :/sbin";
-
 
 ##################
 ##### PROMPT #####
@@ -107,3 +107,9 @@ zstyle ':vcs_info:*' enable git
 
 # For z command
 . /opt/homebrew/etc/profile.d/z.sh
+
+# Window manager injection
+if [ -z $YABAI_LOADED ]; then
+  sudo yabai --load-sa
+  export YABAI_LOADED=true
+fi

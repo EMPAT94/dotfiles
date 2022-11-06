@@ -26,6 +26,7 @@ alias http_server="python3 -m http.server 8888";
 alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
 alias show_private_ip="ip addr | rg '192.*/'";
 alias show_public_ip="curl ifconfig.co";
+alias ssh="TERM=xterm-256color ssh"
 
 notify() {
   osascript -e "display notification \"$2\" with title \"$1\""
@@ -43,14 +44,13 @@ scrcap() {
 }
 
 cleanup_everything() {
-  # Remove history files
+  # Remove history files & cache
+  rm -rf ~/.*history
   rm -rf ~/.config/zsh/.zhistory
-  rm -rf ~/.node_repl_history
-  rm -rf ~/.python_history
   rm -rf ~/.lesshst
   rm -rf ~/.wget-hsts
   rm -rf ~/.ipython
-  rm -rf ~/.sqlite_history
+  rm -rf ~/.cljs
   # rm -rf ~/.Trash/* # FIXME Gives "no files found" error
 
   # Trim packages
@@ -60,8 +60,8 @@ cleanup_everything() {
   sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
 
   # Clear Cache
-  rm -rf $HOME/Library/Caches/*
-  rm -rf ~/.cache/*
+  # rm -rf $HOME/Library/Caches/*
+  # rm -rf ~/.cache/*
 
   # Delete docker stuff
   if [ -e unix:///var/run/docker.sock ]
@@ -82,13 +82,8 @@ watch_and_do() {
   while true;	do watch -g ls -l $1 >/dev/null && ${*:2}; sleep 5;	done
 }
 
-pandoc() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pandoc/core "$@"
-}
-
 sqlite() {
-  /opt/homebrew/opt/sqlite/bin/sqlite3 --header --column
-
+  /opt/homebrew/opt/sqlite/bin/sqlite3 --header --column "$@"
 }
 
 # eval $(python ~/.config/zsh/docker_aliases.py)
