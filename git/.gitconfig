@@ -1,17 +1,17 @@
 [user]
   name = Pritesh Tupe
   email = mail@priteshtupe.com
-	signingkey = 2CB695256E32FF9E
+  signingkey = 2CB695256E32FF9E
 [init]
   defaultBranch = main
 [advice]
   addIgnoredFile = false
 [core]
   editor = nvim
-	autocrlf = true
+  autocrlf = input
 [pull]
   rebase = false
 [commit]
-	; gpgsign = true
+  ; gpgsign = true
 [safe]
-	directory = *
+  directory = *
