@@ -20,6 +20,10 @@ require("gitsigns").setup({
 			hl = "DraculaOrange",
 			text = "▐",
 		},
+		untracked = {
+			hl = "DraculaGreen",
+			text = "▐",
+		},
 	},
 	keymaps = {
 		noremap = true,
