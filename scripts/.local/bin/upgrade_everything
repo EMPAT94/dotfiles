@@ -7,7 +7,7 @@ echo -e "\n\nUpdating npm...\n"
 npm --location=global update
 
 echo -e "\n\nUpdating pip...\n"
-pip3 list --outdated | grep -v '^\-e' | cut -d ' ' -f 1 > /tmp/pip-upgrade-list
+pip3 list --outdated | awk 'NR != 1 && NR != 2 { print $1 }' > /tmp/pip-upgrade-list
 if [ -s /tmp/pip-upgrade-list ]
 then cat /tmp/pip-upgrade-list | xargs -n1 pip3 install --user --upgrade
 else echo "Nothing to update..."
