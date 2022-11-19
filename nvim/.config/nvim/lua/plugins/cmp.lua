@@ -4,15 +4,6 @@ if cmp == nil then
 	return
 end
 
-local function t(str)
-	return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local function check_back_space()
-	local col = vim.fn.col(".") - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
-end
-
 local kind_icons = {
 	Text = "",
 	Method = "m",
@@ -41,10 +32,17 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
+local luasnip = require("luasnip")
+
+local has_words_before = function()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			vim.fn["UltiSnips#Anon"](args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	completion = { keyword_length = 1 },
@@ -57,12 +55,12 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- false swallows some completions
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
+			if luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif cmp.visible() then
 				cmp.select_next_item()
-			elseif vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-				vim.fn.feedkeys(t("<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>"))
-			elseif check_back_space() then
-				fallback()
+			elseif has_words_before() then
+				cmp.complete()
 			else
 				fallback()
 			end
@@ -70,8 +68,8 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-				vim.fn.feedkeys(t("<C-R>=UltiSnips#JumpBackwards()<CR>"))
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -85,10 +83,10 @@ cmp.setup({
 		end,
 	},
 	-- Each {} is one group, when present excludes other
-	sources = cmp.config.sources(
-		{ { name = "nvim_lsp" }, { name = "ultisnips" }, { name = "path" } },
-		{ { name = "buffer" } }
-	),
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "path" },
+	}, { { name = "buffer" } }),
 })
 
 -- Use cmdline & path source for ':'

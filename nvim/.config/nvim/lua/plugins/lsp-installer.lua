@@ -6,11 +6,9 @@ local servers = {
 	"jsonls",
 	"pylsp",
 	"sumneko_lua",
-	-- "tailwindcss",
 	"tsserver",
 	"vuels",
 	"yamlls",
-	-- "hls",
 	"jdtls",
 	"clojure_lsp",
 }
@@ -84,6 +82,10 @@ local enhance_server_opts = {
 			formatCommand = { "black" },
 			pylsp = { plugins = { pycodestyle = { enabled = true, ignore = { "E501", "E231" }, maxLineLength = 90 } } },
 		}
+	end,
+
+	["jdtls"] = function(opts)
+		-- TODO Java repeats snippet init words on tab-enter
 	end,
 }
 

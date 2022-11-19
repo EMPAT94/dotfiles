@@ -14,9 +14,6 @@ augroup CustomCmds
   " Clear commandline after 5 seconds
   autocmd CmdlineLeave : call timer_start(2000, funcref('EmptyCmdline'))
 
-  " Start java lsp for java files
-  " autocmd FileType java lua require'jdtls_config'.setup()
-
   " Disable nvim-cmp on the specific buffer
   autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
 augroup END

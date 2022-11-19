@@ -8,8 +8,8 @@ require("zen-mode").setup({
 	plugins = {
 		gitsigns = { enabled = false }, -- disables git signs
 	},
-	on_open = function(win) end,
-	on_close = function() end,
+	-- on_open = function() end,
+	-- on_close = function() end,
 })
 
 vim.api.nvim_set_keymap("n", "<leader>g", ":ZenMode<CR>", { noremap = true, silent = true })

@@ -85,7 +85,7 @@ function! CreateZettelHub()
   execute "silent vsp " . file
 
   " Add decorated title on top -c = center
-  execute "silent r!figlet -ck " . cline
+  execute "silent normal! i " . cline
 
   "Format to remove padding
   execute "silent Neoformat"
@@ -95,7 +95,7 @@ function! CreateZettelHub()
 
 endfunction
 
-" Create a zettel (An atomic piece of info)
+" Create a zettel/note
 function! CreateZettel()
   " Get parent buffer name :t = tail, :r = root (w/o extension)
   " Buffer name is same as directory in which zettels will be stored

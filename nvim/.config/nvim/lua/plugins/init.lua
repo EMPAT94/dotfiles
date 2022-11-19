@@ -27,14 +27,6 @@ packer.init({
 	},
 })
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([=[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]=])
-
 packer.startup(function(use)
 	-- Speed up loading Lua modules in Neovim to improve startup time.
 	use("lewis6991/impatient.nvim")
@@ -69,7 +61,7 @@ packer.startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("ray-x/cmp-treesitter")
-	use("quangnguyen30192/cmp-nvim-ultisnips")
+	use("L3MON4D3/LuaSnip")
 
 	-- A file system explorer for the Vim editor.
 	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
@@ -92,8 +84,8 @@ packer.startup(function(use)
 	-- Git signs written in pure lua.
 	use("lewis6991/gitsigns.nvim")
 
-	-- UltiSnips is the ultimate solution for snippets in Vim.
-	use("SirVer/ultisnips")
+	-- Snippet engine in LUA
+	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
 
 	-- navigate seamlessly between vim and kitty splits
 	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty" })
@@ -163,8 +155,6 @@ require("plugins.nvim-autopairs")
 
 require("plugins.neoformat")
 
-require("plugins.ultisnips")
-
 require("plugins.nvim-tree")
 
 require("plugins.zen-mode")
@@ -176,4 +166,3 @@ require("plugins.iron-nvim")
 -- Tools
 -- npm i -g neovim
 -- pip install pynvim
--- yay -S prettier luaformatter autopep8 elmformatter hindent lua-format
