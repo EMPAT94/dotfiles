@@ -14,7 +14,6 @@ alias no="node"
 alias vi="nvim";
 
 alias icat="kitty +kitten icat"
-alias music="mocp"
 alias top="bpytop";
 alias tree="exa --icons --tree"
 alias vim="nvim";
@@ -30,6 +29,22 @@ alias ssh="TERM=xterm-256color ssh"
 
 notify() {
   osascript -e "display notification \"$2\" with title \"$1\""
+}
+
+music() {
+  nohup /opt/homebrew/bin/vlc \
+    --quiet \
+    --no-video \
+    --recursive=expand \
+    --no-media-library \
+    --playlist-autostart \
+    --playlist-tree \
+    --no-repeat \
+    --loop \
+    --random\
+    ~/Music > /dev/null &
+
+  disown
 }
 
 wiki() {
@@ -53,6 +68,9 @@ cleanup_everything() {
   rm -rf ~/.cljs
   # rm -rf ~/.Trash/* # FIXME Gives "no files found" error
 
+  # Remove .DS_Store trash
+  \fd -t f -HIL ".DS_Store" | xargs -n1 rm
+
   # Trim packages
   brew autoremove && brew cleanup --prune=all
 
@@ -64,7 +82,10 @@ cleanup_everything() {
   # rm -rf ~/.cache/*
 
   # Delete docker stuff
-  if [ -e unix:///var/run/docker.sock ]
+  #   This is for docker desktop
+  # if [ -e unix:///var/run/docker.sock ]
+  #   When using colima (FIXME)
+  if [ -e unix:///Users/pritesh/.colima/default/docker.sock ]
   then
     docker image prune --all
     docker volume prune --all
@@ -79,7 +100,7 @@ update_docker_images() {
 # For example, to run a testrunner T on dir change D
 # $ watch_and_do D T
 watch_and_do() {
-  while true;	do watch -g ls -l $1 >/dev/null && ${*:2}; sleep 5;	done
+  while true;	do watch -g ls -l $1 >/dev/null && clear; ${*:2}; sleep 1; done
 }
 
 sqlite() {
