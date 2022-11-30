@@ -22,3 +22,7 @@ firefox/.config/psd/.psd.conf
 ssmtp/etc/ssmtp/ssmtp.conf
 
 beets/.config/beets/state.pickle
+
+zettel_merken/.config/zettel_merken/config.json
+
+.luarc.json
