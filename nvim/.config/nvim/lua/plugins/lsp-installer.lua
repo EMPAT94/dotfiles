@@ -11,6 +11,7 @@ local servers = {
 	"yamlls",
 	"jdtls",
 	"clojure_lsp",
+	"ltex",
 }
 
 require("nvim-lsp-installer").setup({ automatic_installation = true })
@@ -78,14 +79,15 @@ local enhance_server_opts = {
 
 	["pylsp"] = function(opts)
 		opts.settings = {
-			configurationSources = { "pylint" },
+			configurationSources = { "ruff" },
 			formatCommand = { "black" },
 			pylsp = { plugins = { pycodestyle = { enabled = true, ignore = { "E501", "E231" }, maxLineLength = 90 } } },
 		}
 	end,
 
-	["jdtls"] = function(opts)
-		-- TODO Java repeats snippet init words on tab-enter
+	["ltex"] = function(opts)
+		-- this is like the grammarly thingy
+		opts.filetypes = { "markdown", "text", "latex" }
 	end,
 }
 

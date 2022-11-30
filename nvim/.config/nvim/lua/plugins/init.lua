@@ -122,6 +122,9 @@ packer.startup(function(use)
 	-- Rainbow parentheses for neovim using tree-sitter.
 	use("p00f/nvim-ts-rainbow")
 
+  -- Useless QoL plugin
+	use("eandrju/cellular-automaton.nvim")
+
 	-- A simple rss reader plugin for neovim
 	-- use {
 	--   -- "empat94/nvim-rss",
