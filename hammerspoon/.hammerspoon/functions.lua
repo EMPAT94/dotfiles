@@ -68,6 +68,19 @@ function M.openTerminal(); _openApp("kitty"); end
 function M.openMusic(); _openApp("vlc"); end
 function M.openEditor(); _openApp("kitty nvim"); end
 
+local function _moveWinToSpace(sp)
+  local win = hs.window.focusedWindow()
+  local uuid = win:screen():getUUID()
+  local spaceID = hs.spaces.allSpaces()[uuid][sp]
+  hs.spaces.moveWindowToSpace(win:id(), spaceID)
+end
+
+function M.moveWinToSpace1(); _moveWinToSpace(1); end
+function M.moveWinToSpace2(); _moveWinToSpace(2); end
+function M.moveWinToSpace3(); _moveWinToSpace(3); end
+function M.moveWinToSpace4(); _moveWinToSpace(4); end
+function M.moveWinToSpace5(); _moveWinToSpace(5); end
+
 function M.mapKeys(mappings)
 	for i in pairs(mappings) do
 		local modifiers = mappings[i]["modifiers"]
