@@ -1,3 +1,4 @@
+.luarc.json
 .DS_Store
 
 moc/.moc/pid
@@ -14,8 +15,8 @@ zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zcompdump
 
 scripts/.local/share/slack-webhook-url
-/scripts/.local/bin/*.py
-/scripts/.local/bin/__pycache__
+scripts/.local/bin/*.py
+scripts/.local/bin/__pycache__
 
 firefox/.config/psd/.psd.conf
 
@@ -24,5 +25,3 @@ ssmtp/etc/ssmtp/ssmtp.conf
 beets/.config/beets/state.pickle
 
 zettel_merken/.config/zettel_merken/config.json
-
-.luarc.json
