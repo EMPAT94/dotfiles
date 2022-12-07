@@ -7,56 +7,61 @@
 # developer tool chain.
 # If not whole xcode, just download the binaries for xcode-select
 
+# xcode-select --install
+
 # Using Homebrew as package manager
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew install \
   chromaprint \
-  cloudflared \
+  colima \
+  docker \
   exa \
   exercism \
   fd \
+  ffmpeg \
   fzf \
   git \
+  gnupg \
   go \
-  moc \
+  jq \
+  koekeishiya/formulae/yabai \
+  libyaml \
   neovim \
   node \
-  npm \
   openjdk \
-  python \
+  python@3.11 \
   ripgrep \
   rsync \
-  sqlite \
   stow \
   stylua \
   watch \
   wget \
   z \
   zsh-autosuggestions \
-  zsh-syntax-highlighting \
+  zsh-syntax-highlighting
 
 brew install --cask \
-  android-studio \
+  alt-tab \
   authy \
   bitwarden \
   breaktimer \
   displaperture \
-  docker \
   firefox \
-  font-fira-code \
+  font-jetbrains-mono \
+  font-jetbrains-mono-nerd-font \
   gimp \
+  hammerspoon \
   kitty \
   megasync \
   microsoft-auto-update \
   microsoft-office \
   nextcloud \
-  onyx \
-  slack \
+  qbittorrent \
   syncthing \
-  visual-studio-code \
-  zoom \
+  vlc \
+  zoom
 
 # At this point, pull dotfiles from git and stow links
 # Ensure pip, python, npm are setup properly
@@ -69,12 +74,15 @@ pip install \
   pyacoustid \
   pynvim \
   requests \
+  ruff \
   twine \
   youtube-dl \
   zettelmerken \
 
 npm --location=global install \
   neovim \
+  nodemon \
+  npm@latest \
   prettier \
   prettier-plugin-java \
   prettier-plugin-kotlin \
