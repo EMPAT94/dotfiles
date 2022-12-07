@@ -12,6 +12,7 @@ local servers = {
 	"jdtls",
 	"clojure_lsp",
 	"ltex",
+	"gopls",
 }
 
 require("nvim-lsp-installer").setup({ automatic_installation = true })
