@@ -1,5 +1,11 @@
 local f = require("./functions")
 
+local Shade = hs.loadSpoon("Shade")
+
+hs.hotkey.bind({ "cmd", "ctrl" }, "h", function()
+	Shade:toggleShade()
+end)
+
 local mappings = {
 	{ modifiers = { "cmd" }, key = "b", fn = f.openBrowser },
 	{ modifiers = { "cmd" }, key = "return", fn = f.openTerminal },
@@ -19,7 +25,7 @@ local mappings = {
 
 f.mapKeys(mappings)
 
--- hs.hotkey.bind({ "alt" }, "r", function()
--- 	hs.reload()
--- end)
--- hs.alert.show("Config loaded")
+hs.hotkey.bind({ "alt" }, "r", function()
+	hs.reload()
+end)
+hs.alert.show("Config loaded")
