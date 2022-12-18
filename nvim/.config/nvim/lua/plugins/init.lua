@@ -61,7 +61,6 @@ packer.startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("ray-x/cmp-treesitter")
-	use("L3MON4D3/LuaSnip")
 
 	-- A file system explorer for the Vim editor.
 	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
@@ -85,7 +84,7 @@ packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 
 	-- Snippet engine in LUA
-	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
+	use({ "L3MON4D3/LuaSnip" })
 
 	-- navigate seamlessly between vim and kitty splits
 	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty" })
@@ -122,7 +121,7 @@ packer.startup(function(use)
 	-- Rainbow parentheses for neovim using tree-sitter.
 	use("p00f/nvim-ts-rainbow")
 
-  -- Useless QoL plugin
+	-- Useless QoL plugin
 	use("eandrju/cellular-automaton.nvim")
 
 	-- A simple rss reader plugin for neovim
