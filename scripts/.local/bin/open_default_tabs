@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
-open https://github.com
-open https://fanshaweonline.ca
-open https://mail.google.com
-open https://app.slack.com/client/T03UN9VRX
-open https://web.whatsapp.com
-open https://nextcloud.priteshtupe.com
+sites=(
+  "mail.google.com"
+  "github.com"
+  "fanshaweonline.ca"
+  "nextcloud.priteshtupe.com"
+  "toptal.com"
+  "app.slack.com/client/T03UN9VRX"
+  "web.whatsapp.com"
+)
+
+for site in ${sites[*]}; do open "https://$site"; done
