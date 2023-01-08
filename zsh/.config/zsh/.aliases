@@ -42,7 +42,7 @@ music() {
     --no-repeat \
     --loop \
     --random\
-    ~/Music > /dev/null &
+    ${1:-'/Users/pritesh/Music'} > /dev/null &
 
   disown
 }

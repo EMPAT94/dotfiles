@@ -74,6 +74,8 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
+:$HOME/Library/Android/sdk/tools\
+:$HOME/Library/Android/sdk/platform-tools\
 :/opt/homebrew/opt/python@3.11/libexec/bin\
 :/opt/homebrew/opt/openjdk/bin\
 :/opt/homebrew/opt/sqlite/bin\
@@ -110,6 +112,6 @@ zstyle ':vcs_info:*' enable git
 
 # Window manager injection
 if [ -z $YABAI_LOADED ]; then
-  sudo yabai --load-sa
+  # sudo yabai --load-sa
   export YABAI_LOADED=true
 fi
