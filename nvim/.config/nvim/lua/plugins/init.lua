@@ -61,6 +61,7 @@ packer.startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("ray-x/cmp-treesitter")
+	use("saadparwaiz1/cmp_luasnip")
 
 	-- A file system explorer for the Vim editor.
 	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
