@@ -59,17 +59,23 @@ scrcap() {
 }
 
 cleanup_everything() {
-  # Remove history files & cache
+  # Remove histories files
   rm -rf ~/.*history
   rm -rf ~/.config/zsh/.zhistory
   rm -rf ~/.lesshst
   rm -rf ~/.wget-hsts
   rm -rf ~/.ipython
   rm -rf ~/.cljs
-  # rm -rf ~/.Trash/* # FIXME Gives "no files found" error
+
+  # Clean trash
+  pushd ~/.Trash/
+  rm -rf *
+  popd
 
   # Remove .DS_Store trash
-  \fd -t f --unrestricted --glob --follow --quiet --show-errors --type file ".DS_Store" --exec rm
+  \fd --unrestricted --glob --follow \
+    --quiet --show-errors --type file ".DS_Store" \
+    --exec rm
 
   # Trim packages
   brew autoremove && brew cleanup --prune=all
@@ -82,14 +88,11 @@ cleanup_everything() {
   # rm -rf ~/.cache/*
 
   # Delete docker stuff
-  #   This is for docker desktop
-  # if [ -e unix:///var/run/docker.sock ]
-  #   When using colima (FIXME)
-  if [ -e unix:///Users/pritesh/.colima/default/docker.sock ]
+  if (docker stats --no-stream)
   then
-    docker image prune --all
-    docker volume prune --all
-    docker network prune --all
+    docker image prune
+    docker volume prune
+    docker network prune
   fi
 }
 
