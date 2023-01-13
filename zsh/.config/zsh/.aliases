@@ -59,28 +59,32 @@ scrcap() {
 }
 
 cleanup_everything() {
-  # Remove histories files
-  rm -rf ~/.*history
-  rm -rf ~/.config/zsh/.zhistory
-  rm -rf ~/.lesshst
-  rm -rf ~/.wget-hsts
-  rm -rf ~/.ipython
-  rm -rf ~/.cljs
+  echo -e "\nCleaning histories"
+  (
+    rm -rf ~/.*history
+    rm -rf ~/.config/zsh/.zhistory
+    rm -rf ~/.lesshst
+    rm -rf ~/.wget-hsts
+    rm -rf ~/.ipython
+    rm -rf ~/.cljs
+  ) >/dev/null 2>&1
 
-  # Clean trash
-  pushd ~/.Trash/
-  rm -rf *
-  popd
+  echo -e "\nEmptying trash"
+  (
+    pushd ~/.Trash/
+    rm -rf *
+    popd
+  ) 2> /dev/null
 
-  # Remove .DS_Store trash
-  \fd --unrestricted --glob --follow \
-    --quiet --show-errors --type file ".DS_Store" \
+  echo -e "\nRemoving .DS_Store files"
+  \fd --unrestricted --glob --follow --prune \
+    --quiet --type file ".DS_Store" \
     --exec rm
 
-  # Trim packages
+  echo -e "\nPruning brew packages"
   brew autoremove && brew cleanup --prune=all
 
-  # Clean macos tracking
+  echo -e "\nDeleting macos tracking"
   sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
 
   # Clear Cache
@@ -88,12 +92,15 @@ cleanup_everything() {
   # rm -rf ~/.cache/*
 
   # Delete docker stuff
-  if (docker stats --no-stream)
+  if (docker stats --no-stream >/dev/null 2>&1)
   then
+    echo -e "\nClearing docker stuff - be careful if prompted!"
     docker image prune
     docker volume prune
     docker network prune
   fi
+
+  echo -e "\nAll Done!\n"
 }
 
 update_docker_images() {
