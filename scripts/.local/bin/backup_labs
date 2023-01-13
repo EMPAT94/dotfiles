@@ -5,6 +5,7 @@ rsync \
   --quiet \
   --partial \
   --recursive \
-  --exclude=.sync_* \
+  --exclude=.* \
+  --exclude=node_modules \
   $HOME/Labs \
   $HOME/Backups

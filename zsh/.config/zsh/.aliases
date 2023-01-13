@@ -69,7 +69,7 @@ cleanup_everything() {
   # rm -rf ~/.Trash/* # FIXME Gives "no files found" error
 
   # Remove .DS_Store trash
-  \fd -t f -HIL ".DS_Store" | xargs -n1 rm
+  \fd -t f --unrestricted --glob --follow --quiet --show-errors --type file ".DS_Store" --exec rm
 
   # Trim packages
   brew autoremove && brew cleanup --prune=all
