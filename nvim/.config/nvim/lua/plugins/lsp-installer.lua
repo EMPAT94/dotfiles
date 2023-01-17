@@ -13,6 +13,7 @@ local servers = {
 	"clojure_lsp",
 	"ltex",
 	"gopls",
+	"sourcekit",
 }
 
 require("nvim-lsp-installer").setup({ automatic_installation = true })
@@ -89,6 +90,10 @@ local enhance_server_opts = {
 	["ltex"] = function(opts)
 		-- this is like the grammarly thingy
 		opts.filetypes = { "markdown", "text", "latex" }
+	end,
+
+	["sourcekit"] = function(opts)
+		opts.single_file_support = true
 	end,
 }
 
