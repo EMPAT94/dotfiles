@@ -7,6 +7,7 @@ iron.setup({
 		repl_open_cmd = "vsp",
 		close_window_on_exit = true,
 		repl_definition = {
+			swift = { command = { "swift", "repl" } },
 			sh = { command = { "zsh" } },
 			clojure = require("iron.fts.clojure").clj,
 			java = { command = { "jshell" } },
