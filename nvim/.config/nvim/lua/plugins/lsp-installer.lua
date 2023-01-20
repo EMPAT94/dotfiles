@@ -14,6 +14,7 @@ local servers = {
 	"ltex",
 	"gopls",
 	"sourcekit",
+	"kotlin_language_server",
 }
 
 require("nvim-lsp-installer").setup({ automatic_installation = true })
@@ -93,6 +94,10 @@ local enhance_server_opts = {
 	end,
 
 	["sourcekit"] = function(opts)
+		opts.single_file_support = true
+	end,
+
+	["kotlin_language_server"] = function(opts)
 		opts.single_file_support = true
 	end,
 }

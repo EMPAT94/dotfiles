@@ -20,7 +20,10 @@ local mappings = {
 f.mapKeys(mappings)
 
 hs.loadSpoon("Shade")
-hs.loadSpoon("RoundedCorners"):start()
+
+local RoundedCorners = hs.loadSpoon("RoundedCorners")
+RoundedCorners.radius = 8
+RoundedCorners:start()
 
 -- hs.hotkey.bind({ "alt" }, "r", function()
 -- 	hs.reload()
