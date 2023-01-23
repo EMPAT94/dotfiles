@@ -1,35 +1,21 @@
-# vi: ft=zsh
-
 alias ...='../..'
 alias ....='../../..'
 alias l="exa --icons --long --header --all"
 alias v="nvim"
 alias w="wiki"
-alias b="brew"
 
 alias fd="fd --ignore-case --follow"
 alias ls="exa --icons"
-alias py="python"
-alias no="node"
 alias vi="nvim";
 
-alias icat="kitty +kitten icat"
 alias top="bpytop";
 alias tree="exa --icons --tree"
 alias vim="nvim";
 
-alias adb_connect="adb connect 192.168.0.190:5555";
 alias decrypt="gpg -d" # file.gpg -> file
 alias encrypt="gpg -er Pritesh" # file -> file.gpg
 alias http_server="python3 -m http.server 8888";
-alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
-alias show_private_ip="ip addr | rg '192.*/'";
 alias show_public_ip="curl ifconfig.co";
-alias ssh="TERM=xterm-256color ssh"
-
-notify() {
-  osascript -e "display notification \"$2\" with title \"$1\""
-}
 
 music() {
   nohup /opt/homebrew/bin/vlc \
@@ -50,12 +36,6 @@ music() {
 wiki() {
   cd ~/Notes
   nvim index.md +Telescope\ find_files
-}
-
-scrcap() {
-  adb shell screencap /sdcard/scrcap.png
-  adb pull /sdcard/scrcap.png ~/documents/scr/$(date '+%s').png
-  adb shell rm /sdcard/scrcap.png
 }
 
 cleanup_everything() {
@@ -101,10 +81,6 @@ cleanup_everything() {
   fi
 
   echo -e "\nAll Done!\n"
-}
-
-update_docker_images() {
-  docker images | awk '{print $1":"$2}' | tail -n +2 | xargs -n 1 docker pull
 }
 
 # For example, to run a testrunner T on dir change D
