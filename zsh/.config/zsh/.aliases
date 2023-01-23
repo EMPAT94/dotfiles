@@ -16,6 +16,7 @@ alias decrypt="gpg -d" # file.gpg -> file
 alias encrypt="gpg -er Pritesh" # file -> file.gpg
 alias http_server="python3 -m http.server 8888";
 alias show_public_ip="curl ifconfig.co";
+alias emulator="/Users/pritesh/Library/Android/sdk/emulator/emulator"
 
 music() {
   nohup /opt/homebrew/bin/vlc \
