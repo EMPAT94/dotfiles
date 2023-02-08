@@ -34,6 +34,21 @@ music() {
   disown
 }
 
+convert_mov_to_mp4() {
+  mv $1 video.mov
+  ffmpeg -i video.mov -vcodec h264 -acodec mp2 video.mp4
+}
+
+download_english_song() {
+  pushd /tmp
+  mkdir song
+  cd song
+  youtube-dl --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --output '%(title)s.%(ext)s' $1
+  beet -d ~/Music/English import -s *.mp3
+  rm -i *.mp3
+  popd
+  }
+
 wiki() {
   pushd ~/Notes
   nvim index.md +Telescope\ find_files
