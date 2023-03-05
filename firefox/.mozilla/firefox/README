@@ -1,4 +1,4 @@
-The file `userChrome.css` is linked to `~/.mozilla/firefox/<blah>.default-relese/chrome/userChrome.css`
+The file `userChrome.css` is linked to a default profile; check which dir it is in "about:profiles"
 
 <blah> is dynamic so cannot stow directly
 
