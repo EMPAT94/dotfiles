@@ -111,7 +111,4 @@ zstyle ':vcs_info:*' enable git
 . /opt/homebrew/etc/profile.d/z.sh
 
 # Window manager injection
-if [ -z $YABAI_LOADED ]; then
-  # sudo yabai --load-sa
-  export YABAI_LOADED=true
-fi
+# sudo yabai --load-sa

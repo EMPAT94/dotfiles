@@ -5,7 +5,7 @@ local servers = {
 	"html",
 	"jsonls",
 	"pylsp",
-	"sumneko_lua",
+	"lua_ls",
 	"tsserver",
 	"vuels",
 	"yamlls",
@@ -69,7 +69,7 @@ local enhance_server_opts = {
 		end
 	end,
 
-	["sumneko_lua"] = function(opts)
+	["lua_ls"] = function(opts)
 		opts.settings = {
 			Lua = {
 				runtime = { version = "LuaJIT" },

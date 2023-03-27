@@ -19,6 +19,8 @@ alias show_public_ip="curl ifconfig.co";
 alias emulator="/Users/pritesh/Library/Android/sdk/emulator/emulator @Pixel_6_Pro >/dev/null 2>&1 &; disown"
 
 music() {
+  folders=${@:-'/Users/pritesh/Music'}
+
   nohup /opt/homebrew/bin/vlc \
     --quiet \
     --no-video \
@@ -29,25 +31,28 @@ music() {
     --no-repeat \
     --loop \
     --random\
-    ${1:-'/Users/pritesh/Music'} > /dev/null &
+    $folders > /dev/null &
 
   disown
 }
 
 convert_mov_to_mp4() {
-  mv $1 video.mov
-  ffmpeg -i video.mov -vcodec h264 -acodec mp2 video.mp4
+  ffmpeg -i $1 -vcodec h264 -acodec mp2 video.mp4
 }
 
+# youtube-dl is currently installed from git; move to pip package
+# when they fix the download bug
 download_english_song() {
   pushd /tmp
   mkdir song
   cd song
-  youtube-dl --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --output '%(title)s.%(ext)s' $1
+  youtube-dl --verbose --ignore-errors \
+    --format bestaudio --extract-audio --audio-format mp3 \
+    --output '%(title)s.%(ext)s' $1 && \
   beet -d ~/Music/English import -s *.mp3
   rm -i *.mp3
   popd
-  }
+}
 
 wiki() {
   pushd ~/Notes
