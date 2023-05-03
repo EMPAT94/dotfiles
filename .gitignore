@@ -13,6 +13,7 @@ nvim/.config/nvim/spell
 
 zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/.zsh_sessions
 
 scripts/.local/share/slack-webhook-url
 scripts/.local/bin/*.py
