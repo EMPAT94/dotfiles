@@ -74,6 +74,7 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
+:$HOME/.docker/bin\
 :$HOME/Library/Android/sdk/tools\
 :$HOME/Library/Android/sdk/platform-tools\
 :/opt/homebrew/opt/python@3.11/libexec/bin\
