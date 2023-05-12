@@ -112,6 +112,6 @@ zstyle ':vcs_info:*' enable git
 . /opt/homebrew/etc/profile.d/z.sh
 
 # Window manager injection
-if [ ! -f "/tmp/yabai-sa_pritesh.socket" ]; then
+if [ ! -e "/tmp/yabai-sa_pritesh.socket" ]; then
   cat /Users/pritesh/.local/share/xyz | sudo -S yabai --load-sa 2> /dev/null
 fi
