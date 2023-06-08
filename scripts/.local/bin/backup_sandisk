@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+rsync \
+  --archive \
+  --quiet \
+  --partial \
+  --recursive \
+  --delete \
+  --exclude='.git' \
+  --exclude='node_modules' \
+  --exclude='.*' \
+  --filter="dir-merge,- .gitignore" \
+  $HOME/Documents \
+  $HOME/Labs \
+  $HOME/Music \
+  $HOME/Notes \
+  $HOME/Projects \
+  $HOME/Work \
+  /Volumes/sandisk

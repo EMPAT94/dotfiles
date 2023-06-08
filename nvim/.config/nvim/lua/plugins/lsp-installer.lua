@@ -1,7 +1,7 @@
 local servers = {
 	"bashls",
 	"cssls",
-	"denols",
+	-- "denols",
 	"dockerls",
 	"html",
 	"jsonls",
