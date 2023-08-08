@@ -72,9 +72,6 @@ packer.startup(function(use)
 	-- Provides mappings to easily delete, change and add such surroundings in pairs.
 	use("tpope/vim-surround")
 
-	-- Vim sugar for the UNIX shell commands
-	use("tpope/vim-eunuch")
-
 	-- Smart and Powerful commenting plugin for neovim
 	use("numToStr/Comment.nvim")
 
@@ -117,13 +114,7 @@ packer.startup(function(use)
 	})
 
 	-- Interactive repl
-	use("hkupty/iron.nvim")
-
-	-- Rainbow parentheses for neovim using tree-sitter.
-	use("p00f/nvim-ts-rainbow")
-
-	-- Useless QoL plugin
-	use("eandrju/cellular-automaton.nvim")
+	-- use("hkupty/iron.nvim")
 
 	-- A simple rss reader plugin for neovim
 	-- use {
@@ -161,8 +152,6 @@ require("plugins.neoformat")
 require("plugins.nvim-tree")
 
 require("plugins.zen-mode")
-
-require("plugins.iron-nvim")
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 

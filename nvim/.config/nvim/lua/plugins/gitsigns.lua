@@ -25,19 +25,38 @@ require("gitsigns").setup({
 			text = "▐",
 		},
 	},
-	keymaps = {
-		noremap = true,
-		["n ]c"] = {
-			expr = true,
-			"&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'",
-		},
-		["n [c"] = {
-			expr = true,
-			"&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'",
-		},
-		["n <localleader>p"] = "<cmd>Gitsigns preview_hunk<CR>",
-		["n <localleader>s"] = "<cmd>Gitsigns stage_hunk<CR>",
-		["n <localleader>u"] = "<cmd>Gitsigns undo_stage_hunk<CR>",
-		["n <localleader>r"] = "<cmd>Gitsigns reset_hunk<CR>",
-	},
+	on_attach = function(bufnr)
+		local gs = package.loaded.gitsigns
+
+		local function map(mode, l, r, opts)
+			opts = opts or {}
+			opts.buffer = bufnr
+			vim.keymap.set(mode, l, r, opts)
+		end
+
+		map("n", "]c", function()
+			if vim.wo.diff then
+				return "]c"
+			end
+			vim.schedule(function()
+				gs.next_hunk()
+			end)
+			return "<Ignore>"
+		end, { expr = true })
+
+		map("n", "[c", function()
+			if vim.wo.diff then
+				return "[c"
+			end
+			vim.schedule(function()
+				gs.prev_hunk()
+			end)
+			return "<Ignore>"
+		end, { expr = true })
+
+		map("n", "<leader>hs", gs.stage_hunk)
+		map("n", "<leader>hr", gs.reset_hunk)
+		map("n", "<leader>hu", gs.undo_stage_hunk)
+		map("n", "<leader>hp", gs.preview_hunk)
+	end,
 })
