@@ -1,24 +1,15 @@
 local servers = {
 	"bashls",
 	"cssls",
-	-- "denols",
 	"dockerls",
 	"html",
 	"jsonls",
 	"pylsp",
-	-- "sumneko_lua",
 	"tsserver",
-	-- "vuels",
 	"yamlls",
-	-- "jdtls",
-	-- "clojure_lsp",
-	-- "ltex",
-	-- "gopls",
-	-- "sourcekit",
-	-- "kotlin_language_server",
 }
 
-require("nvim-lsp-installer").setup({ automatic_installation = true })
+require("mason-lspconfig").setup({})
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -103,7 +94,6 @@ local enhance_server_opts = {
 	end,
 }
 
--- Start servers
 for _, name in pairs(servers) do
 	local opts = { on_attach = on_attach, capabilities = capabilities }
 

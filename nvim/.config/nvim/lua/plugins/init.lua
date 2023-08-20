@@ -41,7 +41,13 @@ packer.startup(function(use)
 	use("nvim-lua/popup.nvim")
 
 	-- Collection of common configurations for Neovim's built-in language server client.
-	use({ "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer" })
+	use("neovim/nvim-lspconfig")
+
+	-- Easily install and manage LSP servers, DAP servers, linters, and formatters.
+	use("williamboman/mason.nvim")
+
+	-- mason-lspconfig bridges mason.nvim with the lspconfig plugin
+	use("williamboman/mason-lspconfig.nvim")
 
 	-- A highly extendable fuzzy finder over lists.
 	use("nvim-telescope/telescope.nvim")
@@ -138,13 +144,15 @@ end)
 
 require("impatient")
 
+require("mason").setup({})
+
 require("Comment").setup()
 
 require("plugins.telescope")
 
 require("plugins.treesitter")
 
-require("plugins.lsp-installer")
+require("plugins.mason")
 
 require("plugins.cmp")
 
