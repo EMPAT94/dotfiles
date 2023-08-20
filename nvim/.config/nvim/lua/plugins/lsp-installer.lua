@@ -6,16 +6,16 @@ local servers = {
 	"html",
 	"jsonls",
 	"pylsp",
-	"lua_ls",
+	-- "sumneko_lua",
 	"tsserver",
-	"vuels",
+	-- "vuels",
 	"yamlls",
-	"jdtls",
-	"clojure_lsp",
-	"ltex",
-	"gopls",
-	"sourcekit",
-	"kotlin_language_server",
+	-- "jdtls",
+	-- "clojure_lsp",
+	-- "ltex",
+	-- "gopls",
+	-- "sourcekit",
+	-- "kotlin_language_server",
 }
 
 require("nvim-lsp-installer").setup({ automatic_installation = true })
@@ -70,7 +70,7 @@ local enhance_server_opts = {
 		end
 	end,
 
-	["lua_ls"] = function(opts)
+	["sumneko_lua"] = function(opts)
 		opts.settings = {
 			Lua = {
 				runtime = { version = "LuaJIT" },

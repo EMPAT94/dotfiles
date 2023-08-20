@@ -82,7 +82,12 @@ packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 
 	-- Snippet engine in LUA
-	use({ "L3MON4D3/LuaSnip" })
+	use({
+		"L3MON4D3/LuaSnip",
+		tag = "v2.*",
+		run = "make install_jsregexp",
+	})
+	use("rafamadriz/friendly-snippets")
 
 	-- navigate seamlessly between vim and kitty splits
 	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty" })
@@ -152,6 +157,8 @@ require("plugins.neoformat")
 require("plugins.nvim-tree")
 
 require("plugins.zen-mode")
+
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 
