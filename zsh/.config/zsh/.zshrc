@@ -78,7 +78,7 @@ export PATH="$HOME/.local/bin/\
 :$HOME/Library/Android/sdk/tools\
 :$HOME/Library/Android/sdk/platform-tools\
 :/opt/homebrew/opt/python@3.11/libexec/bin\
-:/opt/homebrew/opt/openjdk/bin\
+:/opt/homebrew/opt/openjdk@11/bin\
 :/opt/homebrew/opt/sqlite/bin\
 :/opt/homebrew/opt/ncurses/bin\
 :/opt/homebrew/bin\
