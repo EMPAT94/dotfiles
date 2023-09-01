@@ -7,6 +7,7 @@ local servers = {
 	"pylsp",
 	"tsserver",
 	"yamlls",
+	-- "denols",
 }
 
 require("mason-lspconfig").setup({})
@@ -44,7 +45,7 @@ local enhance_server_opts = {
 	-- If deno project, do not enable tsserver
 	["tsserver"] = function(opts)
 		opts.root_dir = function(fname)
-			local deno_root = lspconfig.util.root_pattern("deno.json")(fname)
+			local deno_root = lspconfig.util.root_pattern("deno.jsonc")(fname)
 
 			if deno_root ~= nil then
 				return nil
