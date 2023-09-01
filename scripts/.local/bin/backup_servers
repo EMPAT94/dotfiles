@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+
+from subprocess import run
+from pathlib import Path
+
+
+def rsync(from_dir, to_dir):
+    try:
+        run(
+            f"rsync -azrq --partial --delete {from_dir} {to_dir}",
+            shell=True,
+            check=True,
+        )
+    except Exception:
+        print(f"An error occured when backing up {from_dir}")
+
+
+def backup_toronto_server():
+    badass_dirs = (
+        "/home/ubuntu/remark42",
+        "/home/ubuntu/caddy",
+        "/home/ubuntu/wg-easy",
+    )
+
+    for dir in badass_dirs:
+        rsync(f"toronto-server:{dir}", Path.home() / "Backups/Servers/toronto-server")
+    pass
+
+
+def backup_badass_server():
+    badass_dirs = (
+        "/home/ubuntu/caddy",
+        "/home/ubuntu/nextcloud",
+        "/home/ubuntu/slack-webhook-proxy",
+        "/home/ubuntu/.config/rclone",
+    )
+
+    for dir in badass_dirs:
+        rsync(f"badass-server:{dir}", Path.home() / "Backups/Servers/badass-server")
+
+
+def main():
+    backup_badass_server()
+    backup_toronto_server()
+
+
+if __name__ == "__main__":
+    main()
