@@ -11,8 +11,6 @@ export KEYTIMEOUT=1
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 # Do not print any hints about changing Homebrew´s behaviour
 export HOMEBREW_NO_ENV_HINTS=1
-# For compilers to find openjdk
-export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 # User aliases
 [[ -r ~/.config/zsh/.aliases ]] && source ~/.config/zsh/.aliases

@@ -107,9 +107,6 @@ packer.startup(function(use)
 	-- A (Neo)vim plugin for formatting code.
 	use({ "sbdchd/neoformat", cmd = "Neoformat" })
 
-	-- Fugitive is the premier Vim plugin for Git. Or maybe it's the premier Git plugin for Vim?
-	use({ "tpope/vim-fugitive", cmd = "G" })
-
 	-- Provides a single command that deletes the current buffer in a smart way.
 	use({ "mhinz/vim-sayonara", cmd = "Sayonara" })
 
@@ -123,6 +120,8 @@ packer.startup(function(use)
 		ft = { "markdown" },
 		cmd = "MarkdownPreview",
 	})
+
+	use({ "NeogitOrg/neogit", requires = { "sindrets/diffview.nvim" } })
 
 	-- Interactive repl
 	-- use("hkupty/iron.nvim")
@@ -167,6 +166,8 @@ require("plugins.nvim-tree")
 require("plugins.zen-mode")
 
 require("luasnip.loaders.from_vscode").lazy_load()
+
+require("neogit").setup()
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 

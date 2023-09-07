@@ -90,6 +90,11 @@ export PATH="$HOME/.local/bin/\
 :/bin\
 :/sbin";
 
+function chpwd() {
+  if [[ $PWD == /Users/pritesh/Work/simpletire/* ]]; then useNode16; fi
+}
+
+
 ##################
 ##### PROMPT #####
 ##################
