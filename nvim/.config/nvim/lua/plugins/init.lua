@@ -165,9 +165,9 @@ require("plugins.nvim-tree")
 
 require("plugins.zen-mode")
 
-require("luasnip.loaders.from_vscode").lazy_load()
+require("plugins.neogit")
 
-require("neogit").setup()
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 
