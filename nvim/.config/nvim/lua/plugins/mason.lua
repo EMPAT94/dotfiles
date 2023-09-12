@@ -1,13 +1,20 @@
 local servers = {
-	"bashls",
-	"cssls",
-	"dockerls",
-	"html",
-	"jsonls",
-	"pylsp",
-	"tsserver",
-	"yamlls",
-	-- "denols",
+	"bash-language-server",
+	"beautysh",
+	"black",
+	"css-lsp",
+	"html-lsp",
+	"json-lsp",
+	"lua-language-server",
+	"markdownlint",
+	"prettierd",
+	"python-lsp-server",
+	"sql-formatter",
+	"sqlls",
+	"stylua",
+	"typescript-language-server",
+	"vim-language-server",
+	"yaml-language-server",
 }
 
 require("mason-lspconfig").setup({})
@@ -107,3 +114,11 @@ end
 
 -- Does not show the diagnostics in buffer (use mapping <localleader>d instead)
 vim.diagnostic.config({ virtual_text = false })
+
+-- Dump installed packages so can access on fresh install
+-- local packages = require("mason-registry").get_installed_package_names()
+-- table.sort(packages)
+--
+-- for _, package in pairs(packages) do
+-- 	print(package)
+-- end

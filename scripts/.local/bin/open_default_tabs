@@ -2,25 +2,24 @@
 
 const { execSync } = require("node:child_process");
 
-const personal = [
-  "mail.google.com",
-  "fanshaweonline.ca",
-  "nextcloud.priteshtupe.com",
-  "web.whatsapp.com",
-];
+const sites = {
+  personal: [
+    "mail.google.com",
+    "fanshaweonline.ca",
+    "nextcloud.priteshtupe.com",
+    "web.whatsapp.com",
+    "github.com",
+  ],
 
-const toptal = [
-  "toptal.slack.com",
-  "mail.google.com",
-  "talent.toptal.com/portal",
-];
+  toptal: ["toptal.slack.com", "mail.google.com", "talent.toptal.com/portal"],
 
-const simpletire = [
-  "simpletire.slack.com",
-  "simpletire.atlassian.net/jira/your-work",
-  "github.com",
-  "mail.google.com",
-];
+  simpletire: [
+    "simpletire.slack.com",
+    "simpletire.atlassian.net/jira/your-work",
+    "github.com",
+    "mail.google.com",
+  ],
+};
 
 const firefox = "/Applications/Firefox.app/Contents/MacOS/firefox";
 
@@ -28,14 +27,13 @@ async function sleep(time) {
   return new Promise((r) => setTimeout(r, time));
 }
 
-async function openSite(sites) {
+async function openSites(sites) {
   execSync(firefox + " --new-window https://" + sites.shift());
   await sleep(3000);
   execSync(firefox + sites.map((s) => " --new-tab https://" + s).join(" "));
 }
 
-console.log("TODO")
+const arg = sites[process.argv[2]];
 
-// openSite(personal)
-//   .then(() => openSite(toptal))
-//   .then(() => openSite(medgeo));
+if (arg) openSites(sites[process.argv[2]]);
+else console.log("Usage: open_default_tabs (personal | toptal | simpletire)");
