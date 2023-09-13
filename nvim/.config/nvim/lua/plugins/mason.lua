@@ -1,20 +1,16 @@
 local servers = {
-	-- "bash-language-server",
-	-- "beautysh",
-	-- "black",
-	-- "css-lsp",
-	-- "html-lsp",
-	-- "json-lsp",
-	-- "lua-language-server",
-	-- "markdownlint",
-	-- "prettierd",
-	-- "python-lsp-server",
-	-- "sql-formatter",
-	-- "sqlls",
-	-- "stylua",
-	-- "typescript-language-server",
-	-- "vim-language-server",
-	-- "yaml-language-server",
+	"bashls",
+	"cssls",
+	"html",
+	"jsonls",
+	"lua_ls",
+	"pylsp",
+	"tsserver",
+	"vimls",
+	"yamlls",
+	"dockerls",
+	"docker_compose_language_service",
+	"cssmodules_ls",
 }
 
 require("mason-lspconfig").setup({})
@@ -115,10 +111,23 @@ end
 -- Does not show the diagnostics in buffer (use mapping <localleader>d instead)
 vim.diagnostic.config({ virtual_text = false })
 
--- Dump installed packages so can access on fresh install
--- local packages = require("mason-registry").get_installed_package_names()
--- table.sort(packages)
---
--- for _, package in pairs(packages) do
--- 	print(package)
--- end
+-- Installed packages list:
+-- ◍ bash-language-server bashls (keywords: bash)
+-- ◍ beautysh (keywords: bash, csh, ksh, sh, zsh)
+-- ◍ black (keywords: python)
+-- ◍ css-lsp cssls (keywords: css, scss, less)
+-- ◍ cssmodules-language-server cssmodules_ls (keywords: css)
+-- ◍ docker-compose-language-service docker_compose_language_service (keywords: docker)
+-- ◍ dockerfile-language-server dockerls (keywords: docker)
+-- ◍ html-lsp html (keywords: html)
+-- ◍ json-lsp jsonls (keywords: json)
+-- ◍ lua-language-server lua_ls (keywords: lua)
+-- ◍ markdownlint (keywords: markdown)
+-- ◍ prettierd (keywords: angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml)
+-- ◍ python-lsp-server pylsp (keywords: python)
+-- ◍ sql-formatter (keywords: sql)
+-- ◍ sqlls (keywords: sql)
+-- ◍ stylua (keywords: lua, luau)
+-- ◍ typescript-language-server tsserver (keywords: typescript, javascript)
+-- ◍ vim-language-server vimls (keywords: vimscript)
+-- ◍ yaml-language-server yamlls (keywords: yaml)
