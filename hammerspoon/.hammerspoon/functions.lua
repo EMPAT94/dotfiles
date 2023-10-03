@@ -90,4 +90,15 @@ function M.mapKeys(mappings)
 	end
 end
 
+local function _goToSpace(number)
+  local cmd = "/opt/homebrew/bin/yabai -m space --focus " .. number
+  hs.execute(cmd)
+end
+
+function M.goToSpace1(); _goToSpace(1); end
+function M.goToSpace2(); _goToSpace(2); end
+function M.goToSpace3(); _goToSpace(3); end
+function M.goToSpace4(); _goToSpace(4); end
+function M.goToSpace5(); _goToSpace(5); end
+
 return M

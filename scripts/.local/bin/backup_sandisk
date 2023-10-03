@@ -11,9 +11,9 @@ rsync \
   --exclude='.*' \
   --filter="dir-merge,- .gitignore" \
   $HOME/Documents \
-  $HOME/Labs \
   $HOME/Music \
   $HOME/Notes \
   $HOME/Projects \
   $HOME/Work \
+  $HOME/Pictures \
   /Volumes/sandisk
