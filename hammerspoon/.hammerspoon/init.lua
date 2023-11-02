@@ -10,11 +10,11 @@ local mappings = {
 	{ modifiers = { "alt" }, key = "k", fn = f.slideTop },
 	{ modifiers = { "alt" }, key = "l", fn = f.slideRight },
 
-	{ modifiers = { "alt" }, key = "1", fn = f.goToSpace1 },
-	{ modifiers = { "alt" }, key = "2", fn = f.goToSpace2 },
-	{ modifiers = { "alt" }, key = "3", fn = f.goToSpace3 },
-	{ modifiers = { "alt" }, key = "4", fn = f.goToSpace4 },
-	{ modifiers = { "alt" }, key = "5", fn = f.goToSpace5 },
+	-- { modifiers = { "alt" }, key = "1", fn = f.goToSpace1 },
+	-- { modifiers = { "alt" }, key = "2", fn = f.goToSpace2 },
+	-- { modifiers = { "alt" }, key = "3", fn = f.goToSpace3 },
+	-- { modifiers = { "alt" }, key = "4", fn = f.goToSpace4 },
+	-- { modifiers = { "alt" }, key = "5", fn = f.goToSpace5 },
 
 	{ modifiers = { "alt", "shift" }, key = "1", fn = f.moveWinToSpace1 },
 	{ modifiers = { "alt", "shift" }, key = "2", fn = f.moveWinToSpace2 },
@@ -31,7 +31,7 @@ hs.loadSpoon("Shade")
 -- RoundedCorners.radius = 8
 -- RoundedCorners:start()
 
-hs.hotkey.bind({ "alt" }, "r", function()
-	hs.reload()
-end)
-hs.alert.show("Config loaded")
+-- hs.hotkey.bind({ "alt" }, "r", function()
+-- 	hs.reload()
+-- end)
+-- hs.alert.show("Config loaded")

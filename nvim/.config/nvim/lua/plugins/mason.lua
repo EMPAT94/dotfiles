@@ -9,6 +9,7 @@ local servers = {
 	"vimls",
 	"yamlls",
 	"dockerls",
+	-- "denols",
 	"docker_compose_language_service",
 	-- "cssmodules_ls",
 }

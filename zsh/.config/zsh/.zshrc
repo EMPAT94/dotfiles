@@ -91,7 +91,9 @@ export PATH="$HOME/.local/bin/\
 :/sbin";
 
 function chpwd() {
-  if [[ $PWD == /Users/pritesh/Work/simpletire/* ]]; then useNode16; fi
+  if [[ $PWD == /Users/pritesh/Work/simpletire/steer ]]; then useNode16; fi
+  if [[ $PWD == /Users/pritesh/Work/simpletire/steer-search-widget ]]; then useNode16; fi
+  if [[ $PWD == /Users/pritesh/Work/simpletire/steer-api-definition ]] then useNode14; fi
 }
 
 
