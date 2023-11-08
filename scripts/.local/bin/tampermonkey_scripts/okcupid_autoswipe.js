@@ -7,7 +7,10 @@
 // @grant       none
 // ==/UserScript==
 
-setInterval(() => {
-  let likeBtn = document.getElementsByClassName("like");
-  if (likeBtn && likeBtn[0]) likeBtn[0].click();
-}, 1000);
+(function () {
+  "use strict";
+  setInterval(() => {
+    let likeBtn = document.getElementsByClassName("like");
+    if (likeBtn && likeBtn[0]) likeBtn[0].click();
+  }, 1000);
+})();
