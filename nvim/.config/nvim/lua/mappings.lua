@@ -70,3 +70,9 @@ map("n", "z=", ":Telescope spell_suggest<CR>", s)
 -- I personally use it for replacing in already copied text
 map("v", "p", '"_dP', s) -- yes it is capital P here
 map("v", "P", '"_dP', s)
+
+-- Open current file in nvim tree
+map("n", "<leader>f", ":NvimTreeFindFileToggle<CR>", s)
+
+-- Start music player
+map("n", "<leader>m", ":!music<CR>", s)

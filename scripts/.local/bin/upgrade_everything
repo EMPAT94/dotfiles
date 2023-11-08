@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo -e "\n\nUpdating brew...\n"
-brew update && brew upgrade --greedy
+brew update && brew upgrade --greedy --no-quarantine
 
 echo -e "\n\nUpdating npm...\n"
 npm --location=global update
@@ -13,8 +13,7 @@ then cat /tmp/pip-upgrade-list | xargs -n1 pip3 install --user --upgrade
 else echo "Nothing to update..."
 fi
 
-# Must do manually for now
-# echo -e "\nUpdating nvim..."
-# nvim +PackerSync +TSUpdate  +LspInstallInfo +qa
+echo -e "\n\nUpdating nvim...\n"
+nvim --headless +PackerSync +MasonUpdate +TSUpdate +qa
 
-echo -e "\nAll Done!"
+echo -e "\n\nAll Done!\n\n"
