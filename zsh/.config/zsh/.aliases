@@ -3,6 +3,7 @@ alias ....='../../..'
 alias l="exa --icons --long --header --all"
 alias v="nvim"
 alias w="wiki"
+alias d="daily"
 
 alias fd="fd --ignore-case --follow"
 alias ls="exa --icons"
@@ -34,6 +35,8 @@ music() {
     $folders > /dev/null &
 
   disown
+
+  /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
 }
 
 mov2mp4() {
@@ -67,6 +70,12 @@ download_english_song() {
 wiki() {
   pushd ~/Notes
   nvim index.md +Telescope\ find_files
+  popd
+}
+
+daily() {
+  pushd ~/Notes
+  nvim  my-ethos.md +'vsp objectives.md' +'vsp routine.md' 
   popd
 }
 

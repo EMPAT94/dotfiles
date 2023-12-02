@@ -118,7 +118,10 @@ zstyle ':vcs_info:*' enable git
 # For z command
 . /opt/homebrew/etc/profile.d/z.sh
 
-# Window manager injection
-if [ ! -e "/tmp/yabai-sa_pritesh.socket" ]; then
+if [ ! -e "/tmp/run_once" ]; then
+  # Window manager injection
   cat /Users/pritesh/.local/share/xyz | sudo -S yabai --load-sa 2> /dev/null
+  # SSH Keys
+  /usr/bin/ssh-add --apple-load-keychain 2> /dev/null
+  touch /tmp/run_once
 fi

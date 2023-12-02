@@ -27,11 +27,16 @@ f.mapKeys(mappings)
 
 hs.loadSpoon("Shade")
 
--- local RoundedCorners = hs.loadSpoon("RoundedCorners")
--- RoundedCorners.radius = 8
--- RoundedCorners:start()
+-- Start a 55 min interval auto lock timer
+hs.caffeinate.watcher
+	.new(function(event)
+		if event == hs.caffeinate.watcher.screensDidUnlock then
+			hs.loadSpoon("Cherry"):start()
+		end
+	end)
+	:start()
 
--- hs.hotkey.bind({ "alt" }, "r", function()
--- 	hs.reload()
--- end)
--- hs.alert.show("Config loaded")
+hs.hotkey.bind({ "alt" }, "r", function()
+	hs.reload()
+	-- hs.execute("music")
+end)

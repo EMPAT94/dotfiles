@@ -65,8 +65,8 @@ local function _openApp(name); hs.application.launchOrFocus(name); end
 
 function M.openBrowser(); _openApp("firefox"); end
 function M.openTerminal(); _openApp("kitty"); end
-function M.openMusic(); _openApp("vlc"); end
-function M.openEditor(); _openApp("kitty nvim"); end
+-- function M.openMusic(); _openApp("kitty music"); end
+-- function M.openEditor(); _openApp("kitty nvim"); end
 
 local function _moveWinToSpace(sp)
   local win = hs.window.focusedWindow()
