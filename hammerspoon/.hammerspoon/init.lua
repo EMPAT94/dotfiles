@@ -27,16 +27,22 @@ f.mapKeys(mappings)
 
 hs.loadSpoon("Shade")
 
+local Cherry = hs.loadSpoon("Cherry")
+
 -- Start a 55 min interval auto lock timer
 hs.caffeinate.watcher
 	.new(function(event)
-		if event == hs.caffeinate.watcher.screensDidUnlock then
-			hs.loadSpoon("Cherry"):start()
+		if
+			event == hs.caffeinate.watcher.screensDidUnlock
+			or event == hs.caffeinate.watcher.screensDidWake
+			or event == hs.caffeinate.watcher.systemDidWake
+		then
+			Cherry:reset()
+			Cherry:start(false)
 		end
 	end)
 	:start()
 
-hs.hotkey.bind({ "alt" }, "r", function()
-	hs.reload()
-	-- hs.execute("music")
-end)
+-- hs.hotkey.bind({ "alt" }, "r", function()
+-- 	hs.reload()
+-- end)
