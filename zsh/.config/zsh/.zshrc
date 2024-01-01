@@ -91,7 +91,7 @@ export PATH="$HOME/.local/bin/\
 :/sbin";
 
 function chpwd() {
-  if [[ $PWD == /Users/pritesh/Work/simpletire/steer ]]; then useNode16; fi
+  if [[ $PWD == /Users/pritesh/Work/simpletire/steer ]]; then useNode18; fi
   if [[ $PWD == /Users/pritesh/Work/simpletire/steer-search-widget ]]; then useNode16; fi
   if [[ $PWD == /Users/pritesh/Work/simpletire/steer-api-definition ]] then useNode14; fi
 }
@@ -119,9 +119,12 @@ zstyle ':vcs_info:*' enable git
 . /opt/homebrew/etc/profile.d/z.sh
 
 if [ ! -e "/tmp/run_once" ]; then
-  # Window manager injection
-  cat /Users/pritesh/.local/share/xyz | sudo -S yabai --load-sa 2> /dev/null
-  # SSH Keys
-  /usr/bin/ssh-add --apple-load-keychain 2> /dev/null
+  (
+  # Inject Window Manager
+  cat /Users/pritesh/.local/share/xyz | sudo -S yabai --load-sa &
+  # Load SSH Keys
+  /usr/bin/ssh-add --apple-load-keychain &
+  # Mark it done
   touch /tmp/run_once
+  ) 2> /dev/null
 fi

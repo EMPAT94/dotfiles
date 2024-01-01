@@ -43,13 +43,13 @@ mov2mp4() {
   ffmpeg -i $1 video.mp4
 }
 
-useNode16() {
-  export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+useNodeVersion() {
+  export PATH="/opt/homebrew/opt/node@${1}/bin:$PATH"
 }
 
-useNode14() {
-  export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
-}
+alias useNode18="useNodeVersion 18"
+alias useNode16="useNodeVersion 16"
+alias useNode14="useNodeVersion 14"
 
 # youtube-dl is currently installed from git; move to pip package
 # when they fix the download bug
@@ -74,9 +74,9 @@ wiki() {
 }
 
 daily() {
-  pushd ~/Notes
-  nvim  my-ethos.md +'vsp objectives.md' +'vsp routine.md' 
-  popd
+  cd ~/Notes
+  nvim  my-ethos.md +'vsp objectives.md' +'vsp routine.md' +'tabnew workout.md' +'vsp finance/transactions.md'
+  cd - > /dev/null
 }
 
 cleanup_everything() {
