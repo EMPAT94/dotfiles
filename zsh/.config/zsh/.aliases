@@ -47,6 +47,7 @@ useNodeVersion() {
   export PATH="/opt/homebrew/opt/node@${1}/bin:$PATH"
 }
 
+alias useNode20="useNodeVersion 20"
 alias useNode18="useNodeVersion 18"
 alias useNode16="useNodeVersion 16"
 alias useNode14="useNodeVersion 14"
