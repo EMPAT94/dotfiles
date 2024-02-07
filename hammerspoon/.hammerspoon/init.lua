@@ -37,7 +37,6 @@ hs.caffeinate.watcher
 			or event == hs.caffeinate.watcher.screensDidWake
 			or event == hs.caffeinate.watcher.systemDidWake
 		then
-			Cherry:reset()
 			Cherry:start(false)
 		end
 	end)

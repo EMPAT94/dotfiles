@@ -151,7 +151,7 @@ require("plugins.telescope")
 
 require("plugins.treesitter")
 
-require("plugins.mason")
+require("plugins.mason-config")
 
 require("plugins.cmp")
 

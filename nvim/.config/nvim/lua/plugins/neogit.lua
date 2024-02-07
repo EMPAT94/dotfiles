@@ -20,6 +20,6 @@ neogit.setup({
 
 	-- Open commit in same window as status
 	commit_editor = {
-		kind = "replace",
+		kind = "vsplit",
 	},
 })

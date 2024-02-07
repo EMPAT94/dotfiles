@@ -11,7 +11,7 @@ augroup CustomCmds
   " Set custom terminal options on open
   autocmd TermOpen * call TermOptions()
 
-  " Clear commandline after 5 seconds
+  " Clear commandline after 2 seconds
   autocmd CmdlineLeave : call timer_start(2000, funcref('EmptyCmdline'))
 
   " Disable nvim-cmp on the specific buffer

@@ -76,3 +76,6 @@ map("n", "<leader>f", ":NvimTreeFindFileToggle<CR>", s)
 
 -- Start music player
 map("n", "<leader>m", ":!music<CR>", s)
+
+-- Neogit
+map("n", "<leader>G", ":Neogit<CR>", s)

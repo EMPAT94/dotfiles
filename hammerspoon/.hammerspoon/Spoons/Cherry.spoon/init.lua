@@ -37,9 +37,7 @@ obj.notification = nil
 obj.sound = nil
 -- obj.sound = hs.sound.getByFile("System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds")
 
-obj.defaultMapping = {
-	start = { { "cmd", "ctrl", "alt" }, "C" },
-}
+obj.defaultMapping = {}
 
 --- Cherry:bindHotkeys(mapping)
 --- Method
