@@ -77,7 +77,7 @@ wiki() {
 daily() {
   cd ~/Notes
   nvim  my-ethos.md +'vsp objectives.md' +'vsp routine.md' +'tabnew workout.md' +'vsp finance/transactions.md'
-  cd - > /dev/null
+  cd - >/dev/null
 }
 
 cleanup_everything() {

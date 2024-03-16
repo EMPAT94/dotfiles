@@ -102,17 +102,18 @@ function! CreateZettel()
   let dir = expand("%:p:r")
   let rdir = expand("%:t:r")
 
-  if rdir == "index"
-    let dir = "./zettels"
-    let rdir = "zettels"
-  endif
-
   " Put line under cursor as title/file-name
   let cline = getline(".")
   let line = tolower(cline)
+  let sub = substitute(line, " ", "-", "g") . ".md"
 
-  let path =  dir . "/" . substitute(line, " ", "-", "g") . ".md"
-  let link = "./" . rdir . "/" . substitute(line, " ", "-", "g") . ".md"
+  let path =  dir . "/" . sub
+  let link = "./" . rdir . "/" . sub
+
+  if rdir == "index"
+    let path =  "./" . sub
+    let link = "./" . sub
+  endif
 
   " Add markdown link to new zettel
   execute "normal! 0i- [$a](" . link . ")"
