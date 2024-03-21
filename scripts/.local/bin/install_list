@@ -14,49 +14,31 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew install \
-  chromaprint \
-  colima \
   docker \
   exa \
-  exercism \
   fd \
   ffmpeg \
   fzf \
   git \
   gnupg \
-  go \
-  jq \
   koekeishiya/formulae/yabai \
-  libyaml \
   neovim \
   node \
-  openjdk \
-  python@3.11 \
+  python \
   ripgrep \
-  rsync \
   stow \
-  stylua \
-  watch \
-  wget \
   z \
   zsh-autosuggestions \
-  zsh-syntax-highlighting
+  zsh-syntax-highlighting \
 
 brew install --cask \
   alt-tab \
-  authy \
   bitwarden \
-  breaktimer \
-  displaperture \
   firefox \
-  font-jetbrains-mono \
-  font-jetbrains-mono-nerd-font \
   gimp \
   hammerspoon \
   kitty \
   megasync \
-  microsoft-auto-update \
-  microsoft-office \
   nextcloud \
   qbittorrent \
   syncthing \
@@ -68,9 +50,8 @@ brew install --cask \
 
 pip install \
   beets \
-  black \
+  chromaprint \
   bpytop \
-  ipython \
   pyacoustid \
   pynvim \
   requests \
@@ -83,6 +64,4 @@ npm --location=global install \
   neovim \
   nodemon \
   npm@latest \
-  prettier \
-  prettier-plugin-java \
-  prettier-plugin-kotlin \
+  prettier

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# TODO: Make interactive, add error handling
+
+pushd ~/mnt
+
+sshfs -o allow_other,default_permissions tod-miricyl-server:/root tod-miricyl-server
+
+sshfs -o allow_other,default_permissions toronto-server:/home/ubuntu toronto-server
+
+sshfs -o allow_other,default_permissions badass-server:/home/ubuntu badass-server
+
+s3fs storj-bucket ./storj-bucket -o passwd_file=${HOME}/.passwd-s3fs -o url=https://gateway.storjshare.io -o use_path_request_style
+
+s3fs nextcould-backup ./nextcould-backup -o passwd_file=${HOME}/.passwd-s3fs -o url=https://gateway.storjshare.io -o use_path_request_style
+
+popd

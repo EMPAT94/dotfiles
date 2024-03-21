@@ -50,7 +50,7 @@ packer.startup(function(use)
 	use("williamboman/mason-lspconfig.nvim")
 
 	-- A highly extendable fuzzy finder over lists.
-	use("nvim-telescope/telescope.nvim")
+	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 
 	-- fzf-native is a c port of fzf
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
