@@ -33,7 +33,6 @@ I'd recommend going through the files and cherry-picking the stuff you want to i
 1. [text editor: neovim](https://neovim.io/)
 1. [system monitor: bpytop](https://github.com/aristocratos/bpytop)
 1. [password manager: bitwarden](https://bitwarden.com/)
-1. [2FA app: authy](https://authy.com/)
 
 I use this setup on a Macbook Air M1 machine.
 

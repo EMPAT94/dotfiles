@@ -53,7 +53,6 @@ map("n", "<leader><CR>", ":nohls<CR>", s)
 -- Inbuild terminal ESC normal mode
 map("t", "<Esc>", [[<C-\><C-n>]], s)
 
--- Sigh... Things were not supposed to break like this
 -- Open url under cursor into browser
 map("n", "gx", ":!open <cfile><CR>", o)
 
@@ -68,8 +67,7 @@ map("n", "z=", ":Telescope spell_suggest<CR>", s)
 
 -- Do not copy deleted text in visual mode
 -- I personally use it for replacing in already copied text
-map("v", "p", '"_dP', s) -- yes it is capital P here
-map("v", "P", '"_dP', s)
+map("v", "p", "P", s)
 
 -- Open current file in nvim tree
 map("n", "<leader>f", ":NvimTreeFindFileToggle<CR>", s)

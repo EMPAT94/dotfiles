@@ -16,6 +16,9 @@ augroup CustomCmds
 
   " Disable nvim-cmp on the specific buffer
   autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
+
+  " Create note mapping only if markdown
+  autocmd FileType markdown noremap <buffer><silent><leader>n :call CreateZettel()<CR>
 augroup END
 
 command! -nargs=1 CreateZettelHub :call CreateZettelHub(<args>)
