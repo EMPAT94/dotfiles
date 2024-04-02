@@ -10,5 +10,5 @@
 
 (function () {
   "use strict";
-  setInterval(likeUser, 1000);
+  setInterval(() => document.querySelector("div.w-16:nth-child(3)").click(), 1000);
 })();
