@@ -14,9 +14,6 @@ obj.author = "Leonardo Shibata"
 obj.homepage = "https://github.com/Hammerspoon/Spoons"
 obj.license = "MIT - https://opensource.org/licenses/MIT"
 
-
-
-
 --String containing an ASCII diagram to be rendered as a menu bar icon for when Shade is OFF.
 obj.iconOff = "ASCII:" ..
 ". . . . . . . . . . . . . . . . . . . . .\n" ..
@@ -74,14 +71,8 @@ obj.iconOn = "ASCII:" ..
 --Find out screen size. Currently using only the primary screen
 obj.screenSize = hs.screen.primaryScreen()
 
---Returns a hs.geometry rect describing screen's frame in absolute coordinates, including the dock and menu. 
+--Returns a hs.geometry rect describing screen's frame in absolute coordinates, including the dock and menu.
 obj.shade = hs.drawing.rectangle(obj.screenSize:fullFrame())
-
-
-
-
-
-
 
 --- Shade.shadeTransparency
 --- Variable
@@ -89,35 +80,19 @@ obj.shade = hs.drawing.rectangle(obj.screenSize:fullFrame())
 --- transparent to 1.0 (completely opaque). Default is 0.5.
 obj.shadeTransparency = 0.5
 
-
-
-
-
-
-
 --shade characteristics
 --white - the ratio of white to black from 0.0 (completely black) to 1.0 (completely white); default = 0.
 --alpha - the color transparency from 0.0 (completely transparent) to 1.0 (completely opaque)
-obj.shade:setFillColor({["white"]=0, ["alpha"] = obj.shadeTransparency })
+obj.shade:setFillColor({ ["white"] = 0, ["alpha"] = obj.shadeTransparency })
 obj.shade:setStroke(false):setFill(true)
-
-
 
 --set to cover the whole screen, all spaces and expose
 obj.shade:bringToFront(true):setBehavior(17)
-
-
-
-
 
 --- Shade.shadeIsOn
 --- Variable
 --- Flag for Shade status, 'false' means shade off, 'true' means on.
 obj.shadeIsOn = nil
-
-
-
-
 
 --- Shade:init()
 --- Method
@@ -129,50 +104,48 @@ obj.shadeIsOn = nil
 --- Returns:
 ---  * None
 function obj:init()
-  --create icon on the menu bar and set flag to 'false'
-  self.shadeMenuIcon = hs.menubar.new()
-  self.shadeMenuIcon:setIcon(obj.iconOff)
-  -- self.shadeMenuIcon:setClickCallback(obj.toggleShade)
-  self.shadeMenuIcon:setTooltip('Shade')
+	--create icon on the menu bar and set flag to 'false'
+	self.shadeMenuIcon = hs.menubar.new()
+	self.shadeMenuIcon:setIcon(obj.iconOff)
+	-- self.shadeMenuIcon:setClickCallback(obj.toggleShade)
+	self.shadeMenuIcon:setTooltip("Shade")
 
-  --when clicked show menu with different transparency options (25, 50 and 75%)
-  menuTable = {
-                { 
-                  title = "25%",
-                  fn = function()
-                    obj.shadeTransparency = .25
-                    obj.start()
-                  end 
-                },
-                { 
-                  title = "50%", 
-                  fn = function() 
-                    obj.shadeTransparency = .5
-                    obj.start()  
-                  end 
-                },
-                { 
-                  title = "75%",
-                  fn = function() 
-                    obj.shadeTransparency = .75
-                    obj.start() 
-                  end 
-                },
-                {
-                  title = "off",
-                  fn = function()
-                    obj.stop()
-                    self.checked = true 
-                  end
-                },
-              }
+	--when clicked show menu with different transparency options (25, 50 and 75%)
+	menuTable = {
+		{
+			title = "25%",
+			fn = function()
+				obj.shadeTransparency = 0.25
+				obj.start()
+			end,
+		},
+		{
+			title = "50%",
+			fn = function()
+				obj.shadeTransparency = 0.5
+				obj.start()
+			end,
+		},
+		{
+			title = "75%",
+			fn = function()
+				obj.shadeTransparency = 0.75
+				obj.start()
+			end,
+		},
+		{
+			title = "off",
+			fn = function()
+				obj.stop()
+				self.checked = true
+			end,
+		},
+	}
 
-  self.shadeMenuIcon:setMenu(menuTable)
+	self.shadeMenuIcon:setMenu(menuTable)
 
-
-  self.shadeIsOn = false
+	self.shadeIsOn = false
 end
-
 
 --- Shade:start()
 --- Method
@@ -184,21 +157,20 @@ end
 --- Returns:
 ---  * None
 function obj:start()
-  --In case there is already a shade on the screen, first hide this one
-  obj.shade:hide()
-  
-  --Find out screen size. Currently using only the primary screen
-  obj.screenSize = hs.screen.primaryScreen()
+	--In case there is already a shade on the screen, first hide this one
+	obj.shade:hide()
 
-  --Returns a hs.geometry rect describing screen's frame in absolute coordinates, including the dock and menu. 
-  obj.shade = hs.drawing.rectangle(obj.screenSize:fullFrame())
-  
-  obj.shade:setFillColor({["alpha"] = obj.shadeTransparency })
-  obj.shade:show()
-  obj.shadeIsOn = true
-  obj.shadeMenuIcon:setIcon(obj.iconOn)
+	--Find out screen size. Currently using only the primary screen
+	obj.screenSize = hs.screen.primaryScreen()
+
+	--Returns a hs.geometry rect describing screen's frame in absolute coordinates, including the dock and menu.
+	obj.shade = hs.drawing.rectangle(obj.screenSize:fullFrame())
+
+	obj.shade:setFillColor({ ["alpha"] = obj.shadeTransparency })
+	obj.shade:show()
+	obj.shadeIsOn = true
+	obj.shadeMenuIcon:setIcon(obj.iconOn)
 end
-
 
 --- Shade:stop()
 --- Method
@@ -210,13 +182,10 @@ end
 --- Returns:
 ---  * None
 function obj:stop()
-  obj.shade:hide()
-  obj.shadeIsOn = false
-  obj.shadeMenuIcon:setIcon(obj.iconOff)
+	obj.shade:hide()
+	obj.shadeIsOn = false
+	obj.shadeMenuIcon:setIcon(obj.iconOff)
 end
-
-
-
 
 --- Shade:toggleShade()
 --- Function
@@ -228,7 +197,6 @@ end
 --- Returns:
 ---  * None
 function obj:toggleShade()
-   
 	--Is Shade off? If so, turn it on darkening the screen
 	if obj.shadeIsOn == false then
 		obj.start()
@@ -236,19 +204,10 @@ function obj:toggleShade()
 	--If shade is on, turn it off brightening the screen
 	elseif obj.shadeIsOn == true then
 		obj.stop()
-
 	else
 		-- print('you shouldnt be here') --for debug purposes
 	end
-
 end
-
-
-
-
-
-
-
 
 --- Shade:bindHotkeys(map)
 --- Method
@@ -262,24 +221,19 @@ end
 --- Returns:
 ---  * None
 function obj:bindHotkeys(map)
-  local def = { toggleShade = obj.toggleShade }
-  hs.spoons.bindHotkeysToSpec(def, map)
+	local def = { toggleShade = obj.toggleShade }
+	hs.spoons.bindHotkeysToSpec(def, map)
 end
-
-
 
 --check if there was any change in screen resolution
 obj.screenWatcher = hs.screen.watcher.new(function()
-  if obj.shadeIsOn == true then
-    -- hs.alert.show("screen change")
-    obj.shade:hide()
-    obj.start()
-  end
+	if obj.shadeIsOn == true then
+		-- hs.alert.show("screen change")
+		obj.shade:hide()
+		obj.start()
+	end
 end)
 obj.screenWatcher:start()
-
-
-
 
 --[[ Features being tested (start)
 
@@ -287,18 +241,7 @@ obj.screenWatcher:start()
   hs.fnutils.each(allScreens, function(screen) print(screen:fullFrame()) end)
   hs.fnutils.each(allScreens, function(screen) print(hs.inspect(screen:fullFrame().table)) end)
 
---]] --Features being tested (end)
-
-
-
-
-
-
-
-
-
+--]]
+--Features being tested (end)
 
 return obj
-
-
-

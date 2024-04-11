@@ -55,17 +55,11 @@ alias useNode14="useNodeVersion 14"
 # youtube-dl is currently installed from git; move to pip package
 # when they fix the download bug
 download_english_song() {
-  pushd /tmp
-  mkdir song
-  cd song
-
   youtube-dl --verbose --ignore-errors \
     --format bestaudio --extract-audio --audio-format mp3 \
     --output '%(title)s.%(ext)s' $1 && \
-    beet -d ~/Music/English import -s *.mp3
-
-  rm -i *.mp3
-  popd
+    beet -d ~/Music/English import -s *.mp3 && \
+    rm -f *.mp3
 }
 
 wiki() {
