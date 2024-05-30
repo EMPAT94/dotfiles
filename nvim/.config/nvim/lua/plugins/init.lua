@@ -121,7 +121,20 @@ packer.startup(function(use)
 		cmd = "MarkdownPreview",
 	})
 
+  -- Git plugin
 	use({ "NeogitOrg/neogit", requires = { "sindrets/diffview.nvim" } })
+
+  -- Codeim AI code helper
+	use({
+		"Exafunction/codeium.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+		config = function()
+			require("codeium").setup({})
+		end,
+	})
 
 	-- Interactive repl
 	-- use("hkupty/iron.nvim")

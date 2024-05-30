@@ -30,6 +30,7 @@ local kind_icons = {
 	Event = "",
 	Operator = " ",
 	TypeParameter = " ",
+	Codeium = " ",
 }
 
 local luasnip = require("luasnip")
@@ -85,6 +86,7 @@ cmp.setup({
 	-- Each {} is one group, when present excludes other
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
+		{ name = "codeium" },
 		{ name = "luasnip" },
 		{ name = "path" },
 	}, { { name = "buffer" } }),
