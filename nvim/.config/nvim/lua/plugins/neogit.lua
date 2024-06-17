@@ -8,7 +8,7 @@ neogit.setup({
 	disable_context_highlighting = true,
 
 	-- Open in a split window below
-	kind = "split",
+	kind = "auto",
 
 	-- Don't show recent commits in status
 	status = {
@@ -17,9 +17,4 @@ neogit.setup({
 
 	-- Disables signs for sections/items/hunks
 	disable_signs = true,
-
-	-- Open commit in same window as status
-	commit_editor = {
-		kind = "vsplit",
-	},
 })
