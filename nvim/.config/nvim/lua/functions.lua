@@ -21,7 +21,10 @@ function! MyHighlights()
   highlight! Trail guifg=#FF5555
   match Trail /\s\+$/
 
-  highlight! link GitSignsAdd NONE
+  highlight! link GitSignsAdd DraculaGreen
+  highlight! link GitSignsChange DraculaYellow
+  highlight! link GitSignsDelete DraculaRed
+  highlight! link GitSignsChangeDelete DraculaOrange
   highlight! DiffAdd guibg=#254035 guifg=NONE gui=NONE
   highlight! DiffDelete guibg=#440000 guifg=NONE gui=NONE
   highlight! DiffChange guibg=#292929 guifg=NONE gui=NONE
