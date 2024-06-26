@@ -78,6 +78,7 @@ export PATH="$HOME/.local/bin/\
 :$HOME/.docker/bin\
 :/opt/homebrew/opt/python@3.12/libexec/bin\
 :/opt/homebrew/opt/sqlite/bin\
+:/opt/homebrew/opt/ruby/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
 :/usr/local/bin\
