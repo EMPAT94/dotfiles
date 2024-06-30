@@ -126,6 +126,8 @@ if [ ! -e "/tmp/run_once" ]; then
   # Inject Window Manager
   cat /Users/pritesh/.local/share/xyz | sudo -S yabai --load-sa &
   # Load SSH Keys
+  # Add them to keychain using following command:
+  #   ssh-add --apple-use-keychain ~/.ssh/<key>
   /usr/bin/ssh-add --apple-load-keychain &
   # Mark it done
   touch /tmp/run_once

@@ -17,6 +17,10 @@ map("n", "k", "gk", s)
 map("v", "j", "gj", s)
 map("v", "k", "gk", s)
 
+-- Quick start/end in insert mode
+map("i", "<C-e>", "<ESC>A", s)
+map("i", "<C-a>", "<ESC>I", s)
+
 -- Colon switch
 map("n", ";", ":", o)
 map("v", ";", ":", o)
