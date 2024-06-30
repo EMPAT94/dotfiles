@@ -28,13 +28,17 @@ map("v", ";", ":", o)
 -- Save and quit
 map("n", "<leader>s", ":update<CR>", s) -- Save only
 map("n", "<leader>q", ":Sayonara!<CR>", s) -- Close buffer but keep window
-map("n", "Q", ":Sayonara<CR>", s) -- Close buffer and window
+map("n", "<leader>Q", ":Sayonara<CR>", s) -- Close buffer and window
 map("n", "<leader>w", "ZZ", s) -- Save and close buffer and window
 
 -- Quick splits and tabs
 map("n", "<leader>v", ":vsplit<CR>", s)
 map("n", "<leader>x", ":split<CR>", s)
 map("n", "<leader>t", ":tabnew <CR>", s)
+
+-- Open floating terminal
+map("n", "<C-i>", ":call FloatTerm()<CR>", s)
+map("i", "<C-i>", ":call FloatTerm()<CR>", s)
 
 -- Indents
 map("n", "<", "<<", s)
@@ -43,9 +47,6 @@ map("n", ">", ">>", s)
 -- Blank lines
 map("n", "<leader>j", "o<ESC>k", s)
 map("n", "<leader>k", "O<ESC>j", s)
-
--- Very Magic search
-map("n", "/", [[/\v]], o)
 
 -- Search and replace
 map("n", "<leader>r", ":%s//g<Left><Left>", o)
