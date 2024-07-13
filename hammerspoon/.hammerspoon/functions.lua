@@ -1,64 +1,23 @@
 local M = {}
 
 function M.zoom()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
-
-	f.x = max.x
-	f.y = max.y
-	f.w = max.w
-	f.h = max.h
-	win:setFrame(f)
+  hs.window.focusedWindow():moveToUnit({0, 0, 1, 1})
 end
 
 function M.slideLeft()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
-
-	f.x = max.x
-	f.y = max.y
-	f.w = max.w / 2
-	f.h = max.h
-	win:setFrame(f)
+  hs.window.focusedWindow():moveToUnit({0, 0, 0.5, 1})
 end
 
 function M.slideBottom()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
-
-	f.y = max.y + max.h / 2
-	f.h = max.h / 2
-	win:setFrame(f)
+  hs.window.focusedWindow():moveToUnit({0, 0.5, 1, 0.5})
 end
 
 function M.slideTop()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
-
-	f.y = max.y
-	f.h = max.h / 2
-	win:setFrame(f)
+  hs.window.focusedWindow():moveToUnit({0, 0, 1, 0.5})
 end
 
 function M.slideRight()
-	local win = hs.window.focusedWindow()
-	local f = win:frame()
-	local screen = win:screen()
-	local max = screen:frame()
-
-	f.x = max.x + max.w / 2
-	f.y = max.y
-	f.w = max.w / 2
-	f.h = max.h
-	win:setFrame(f)
+  hs.window.focusedWindow():moveToUnit({0.5, 0, 0.5, 1})
 end
 
 local function _openApp(name); hs.application.launchOrFocus(name); end

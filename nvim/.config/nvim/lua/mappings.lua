@@ -27,8 +27,8 @@ map("v", ";", ":", o)
 
 -- Save and quit
 map("n", "<leader>s", ":update<CR>", s) -- Save only
-map("n", "<leader>q", ":Sayonara!<CR>", s) -- Close buffer but keep window
-map("n", "<leader>Q", ":Sayonara<CR>", s) -- Close buffer and window
+map("n", "<leader>Q", ":Sayonara!<CR>", s) -- Close buffer but keep window
+map("n", "<leader>q", ":Sayonara<CR>", s) -- Close buffer and window
 map("n", "<leader>w", "ZZ", s) -- Save and close buffer and window
 
 -- Quick splits and tabs
@@ -37,8 +37,8 @@ map("n", "<leader>x", ":split<CR>", s)
 map("n", "<leader>t", ":tabnew <CR>", s)
 
 -- Open floating terminal
-map("n", "<C-i>", ":call FloatTerm()<CR>", s)
-map("i", "<C-i>", ":call FloatTerm()<CR>", s)
+map("n", "<C-'>", ":call FloatTerm()<CR>", s)
+map("i", "<C-'>", ":call FloatTerm()<CR>", s)
 
 -- Indents
 map("n", "<", "<<", s)

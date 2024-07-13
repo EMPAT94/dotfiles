@@ -85,8 +85,8 @@ cmp.setup({
 	},
 	-- Each {} is one group, when present excludes other
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
 		{ name = "codeium" },
+		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },
 	}, { { name = "buffer" } }),

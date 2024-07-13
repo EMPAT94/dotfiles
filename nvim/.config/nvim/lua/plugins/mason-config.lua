@@ -1,6 +1,8 @@
 local servers = {
 	"bashls",
 	"cssls",
+	"dockerls",
+	"elixirls",
 	"html",
 	"jsonls",
 	"lua_ls",
@@ -8,7 +10,6 @@ local servers = {
 	"tsserver",
 	"vimls",
 	"yamlls",
-	"dockerls",
 	-- "denols",
 	"docker_compose_language_service",
 	-- "cssmodules_ls",
