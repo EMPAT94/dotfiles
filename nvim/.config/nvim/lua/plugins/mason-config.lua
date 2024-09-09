@@ -7,7 +7,7 @@ local servers = {
 	"jsonls",
 	"lua_ls",
 	"pylsp",
-	"tsserver",
+	"ts_ls",
 	"vimls",
 	"yamlls",
 	-- "denols",
@@ -42,30 +42,6 @@ local lspconfig = require("lspconfig")
 
 -- Extra config for some servers
 local enhance_server_opts = {
-
-	["tailwindcss"] = function(opts)
-		opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js", "tailwind.config.ts")
-	end,
-
-	-- If deno project, do not enable tsserver
-	["tsserver"] = function(opts)
-		opts.root_dir = function(fname)
-			local deno_root = lspconfig.util.root_pattern("deno.jsonc")(fname)
-
-			if deno_root ~= nil then
-				return nil
-			end
-
-			local ts_root = lspconfig.util.root_pattern("tsconfig.json", "package.json")(fname)
-
-			if ts_root == nil then
-				opts.single_file_support = true
-				return vim.fn.getcwd()
-			end
-
-			return ts_root
-		end
-	end,
 
 	["sumneko_lua"] = function(opts)
 		opts.settings = {
@@ -113,23 +89,24 @@ end
 -- Does not show the diagnostics in buffer (use mapping <localleader>d instead)
 vim.diagnostic.config({ virtual_text = false })
 
--- Installed packages list:
--- ◍ bash-language-server bashls (keywords: bash)
--- ◍ beautysh (keywords: bash, csh, ksh, sh, zsh)
--- ◍ black (keywords: python)
--- ◍ css-lsp cssls (keywords: css, scss, less)
--- ◍ cssmodules-language-server cssmodules_ls (keywords: css)
--- ◍ docker-compose-language-service docker_compose_language_service (keywords: docker)
--- ◍ dockerfile-language-server dockerls (keywords: docker)
--- ◍ html-lsp html (keywords: html)
--- ◍ json-lsp jsonls (keywords: json)
--- ◍ lua-language-server lua_ls (keywords: lua)
--- ◍ markdownlint (keywords: markdown)
--- ◍ prettierd (keywords: angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml)
--- ◍ python-lsp-server pylsp (keywords: python)
--- ◍ sql-formatter (keywords: sql)
--- ◍ sqlls (keywords: sql)
--- ◍ stylua (keywords: lua, luau)
--- ◍ typescript-language-server tsserver (keywords: typescript, javascript)
--- ◍ vim-language-server vimls (keywords: vimscript)
--- ◍ yaml-language-server yamlls (keywords: yaml)
+-- Installed via Mason
+-- ◍ bash-language-server bashls
+-- ◍ beautysh
+-- ◍ black
+-- ◍ css-lsp cssls
+-- ◍ docker-compose-language-service docker_compose_language_service
+-- ◍ dockerfile-language-server dockerls
+-- ◍ elixir-ls elixirls
+-- ◍ gopls
+-- ◍ html-lsp html
+-- ◍ json-lsp jsonls
+-- ◍ lua-language-server lua_ls
+-- ◍ markdownlint
+-- ◍ prettierd
+-- ◍ python-lsp-server pylsp
+-- ◍ sql-formatter
+-- ◍ sqlls
+-- ◍ stylua
+-- ◍ typescript-language-server ts_ls
+-- ◍ vim-language-server vimls
+-- ◍ yaml-language-server yamlls

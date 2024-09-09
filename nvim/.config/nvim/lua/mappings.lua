@@ -82,3 +82,11 @@ map("n", "<leader>m", ":!music<CR>", s)
 
 -- Neogit
 map("n", "<leader>G", ":Neogit<CR>", s)
+
+-- LSP error jumps
+map(
+	"n",
+	"<localleader>g",
+	":lua vim.diagnostic.goto_next({ severity=vim.diagnostic.severity.ERROR, wrap = true })<CR>",
+	s
+)
