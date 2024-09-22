@@ -70,7 +70,7 @@ wiki() {
 
 daily() {
   cd ~/Notes
-    nvim  my-ethos.md +'vsp objectives.md' +'vsp routine.md' +'tabnew workout.md' +'vsp finance/transactions.md'
+    nvim tracking.md -c ':execute "normal @P"'
     cd - >/dev/null
 }
 

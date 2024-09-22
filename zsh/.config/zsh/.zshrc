@@ -76,6 +76,7 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
 :$HOME/.docker/bin\
+:$HOME/.foundry/bin\
 :/opt/homebrew/opt/python@3.12/libexec/bin\
 :/opt/homebrew/opt/sqlite/bin\
 :/opt/homebrew/opt/ruby/bin\
