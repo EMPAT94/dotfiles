@@ -1,3 +1,8 @@
+local alert = require("hs.alert")
+local timer = require("hs.timer")
+local caffeinate = require("hs.caffeinate")
+local hotkey = require("hs.hotkey")
+
 local f = require("./functions")
 
 local mappings = {
@@ -31,19 +36,19 @@ hs.loadSpoon("Shade")
 -- Break Timer --
 -----------------
 
-local breakTimer = hs.timer.doEvery(60 * 50, function()
-	hs.alert.show("Take a break!")
-	hs.timer.doAfter(5, function()
-		hs.caffeinate.lockScreen()
+local breakTimer = timer.doEvery(60 * 50, function()
+	alert.show("Take a break!")
+	timer.doAfter(5, function()
+		caffeinate.lockScreen()
 	end)
 end)
 
-hs.hotkey.bind({ "alt" }, "t", function()
+hotkey.bind({ "alt" }, "t", function()
 	if breakTimer:running() then
-		hs.alert.show("Breaktimer stopped!")
+		alert.show("Breaktimer stopped!")
 		breakTimer:stop()
 	else
-		hs.alert.show("Breaktimer started!")
+		alert.show("Breaktimer started!")
 		breakTimer:start()
 	end
 end)
@@ -52,6 +57,6 @@ end)
 -- Quick reload --
 ------------------
 
--- hs.hotkey.bind({ "alt" }, "r", function()
--- 	hs.reload()
+-- hotkey.bind({ "alt" }, "r", function()
+-- 	reload()
 -- end)

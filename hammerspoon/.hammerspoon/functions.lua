@@ -1,26 +1,30 @@
 local M = {}
 
+local window = require("hs.window")
+local hotkey = require("hs.hotkey")
+local application = require("hs.application")
+
 function M.zoom()
-  hs.window.focusedWindow():moveToUnit({0, 0, 1, 1})
+  window.focusedWindow():moveToUnit({0, 0, 1, 1})
 end
 
 function M.slideLeft()
-  hs.window.focusedWindow():moveToUnit({0, 0, 0.5, 1})
+  window.focusedWindow():moveToUnit({0, 0, 0.5, 1})
 end
 
 function M.slideBottom()
-  hs.window.focusedWindow():moveToUnit({0, 0.5, 1, 0.5})
+  window.focusedWindow():moveToUnit({0, 0.5, 1, 0.5})
 end
 
 function M.slideTop()
-  hs.window.focusedWindow():moveToUnit({0, 0, 1, 0.5})
+  window.focusedWindow():moveToUnit({0, 0, 1, 0.5})
 end
 
 function M.slideRight()
-  hs.window.focusedWindow():moveToUnit({0.5, 0, 0.5, 1})
+  window.focusedWindow():moveToUnit({0.5, 0, 0.5, 1})
 end
 
-local function _openApp(name); hs.application.launchOrFocus(name); end
+local function _openApp(name); application.launchOrFocus(name); end
 
 function M.openBrowser(); _openApp("firefox"); end
 function M.openTerminal(); _openApp("kitty"); end
@@ -28,10 +32,8 @@ function M.openTerminal(); _openApp("kitty"); end
 -- function M.openEditor(); _openApp("kitty nvim"); end
 
 local function _moveWinToSpace(sp)
-  local win = hs.window.focusedWindow()
-  local uuid = win:screen():getUUID()
-  local spaceID = hs.spaces.allSpaces()[uuid][sp]
-  hs.spaces.moveWindowToSpace(win:id(), spaceID)
+  hs.execute("/opt/homebrew/bin/yabai -m window --space " .. sp
+)
 end
 
 function M.moveWinToSpace1(); _moveWinToSpace(1); end
@@ -45,19 +47,19 @@ function M.mapKeys(mappings)
 		local modifiers = mappings[i]["modifiers"]
 		local key = mappings[i]["key"]
 		local fn = mappings[i]["fn"]
-		hs.hotkey.bind(modifiers, key, fn)
+		hotkey.bind(modifiers, key, fn)
 	end
 end
 
-local function _goToSpace(number)
-  local cmd = "/opt/homebrew/bin/yabai -m space --focus " .. number
-  hs.execute(cmd)
-end
+-- local function _goToSpace(number)
+--   local cmd = "/opt/homebrew/bin/yabai -m space --focus " .. number
+--   hs.execute(cmd)
+-- end
 
-function M.goToSpace1(); _goToSpace(1); end
-function M.goToSpace2(); _goToSpace(2); end
-function M.goToSpace3(); _goToSpace(3); end
-function M.goToSpace4(); _goToSpace(4); end
-function M.goToSpace5(); _goToSpace(5); end
+-- function M.goToSpace1(); _goToSpace(1); end
+-- function M.goToSpace2(); _goToSpace(2); end
+-- function M.goToSpace3(); _goToSpace(3); end
+-- function M.goToSpace4(); _goToSpace(4); end
+-- function M.goToSpace5(); _goToSpace(5); end
 
 return M
