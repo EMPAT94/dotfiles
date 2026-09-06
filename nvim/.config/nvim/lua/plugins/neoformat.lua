@@ -26,7 +26,7 @@ local function format()
       return
     end
   end
-  vim.lsp.buf.format()
+  vim.lsp.buf.format({ async = true })
 end
 
 --  Look for a formatter executable in the node_modules/.bin directory

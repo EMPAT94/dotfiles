@@ -120,6 +120,9 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # For fzf
 source <(fzf --zsh)
 
+# For ocaml
+eval $(opam env)
+
 if [ ! -e "/tmp/run_once" ]; then
   (
     # Inject Window Manager

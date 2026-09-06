@@ -37,7 +37,7 @@ for (let { from, to, exclude } of cfg) {
   await (async () =>
     new Promise((res, rej) => {
       exec(
-        `rsync -azrq --partial ${exclude.map((f) => `--exclude '${f}'`).join(" ")} --delete --ignore-errors ${from} ${to}`,
+        `rsync -azrq --partial ${exclude ? exclude.map((f) => `--exclude '${f}'`).join(" ") : " "} --delete --ignore-errors ${from} ${to}`,
         (err) => (err ? rej(err.message) : res("")),
       );
     }))().catch(console.error);

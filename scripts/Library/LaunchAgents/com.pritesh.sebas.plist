@@ -9,7 +9,7 @@
       <string>/usr/bin/ssh</string>
       <string>-N</string>
       <string>-L</string>
-      <string>18789:127.0.0.1:18789</string>
+      <string>9119:127.0.0.1:9119</string>
       <string>toronto-server</string>
     </array>
     <key>RunAtLoad</key>

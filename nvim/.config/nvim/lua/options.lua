@@ -102,6 +102,8 @@ set.conceallevel = 2
 -- Don't use shadafile
 set.shadafile = "NONE"
 
+set.rtp:append("/Users/pritesh/.opam/default/share/ocp-indent/vim")
+
 -- Disable unused stiff
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_tarPlugin = 1

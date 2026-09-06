@@ -1,0 +1,42 @@
+# Dracula Theme for Hermes
+#
+# Set it inside ~/.hermes/skins/dracula.yaml
+
+name: dracula
+description: Dracula — purple, cyan, and pink on deep slate
+
+colors:
+  # No background key. terminal bg (transparent/opaque) shows through
+
+  ui_accent: "#bd93f9"
+  banner_accent: "#bd93f9"
+
+  banner_title: "#8be9fd"
+  banner_text: "#f8f8f2"
+  ui_text: "#f8f8f2"
+  ui_label: "#ff79c6"
+  banner_dim: "#6272a4"
+  banner_border: "#44475a"
+  ui_border: "#44475a"
+
+  ui_ok: "#50fa7b"
+  ui_warn: "#f1fa8c"
+  ui_error: "#ff5555"
+
+  prompt: "#f8f8f2"
+  input_rule: "#ff79c6"
+  response_border: "#bd93f9"
+  status_bar_bg: "#21222c"
+  status_bar_text: "#f8f8f2"
+  status_bar_good: "#50fa7b"
+  status_bar_warn: "#f1fa8c"
+  status_bar_critical: "#ff5555"
+  session_label: "#8be9fd"
+  session_border: "#44475a"
+
+  # Diff: bg tokens = terminal black
+  # only colored text remains.
+  diff_added: "#000000"
+  diff_removed: "#000000"
+  diff_added_word: "#50fa7b"
+  diff_removed_word: "#ff5555"

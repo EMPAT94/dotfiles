@@ -30,6 +30,8 @@ brew "fzf"
 brew "fzf-tab"
 # Distributed revision control system
 brew "git"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
@@ -46,10 +48,12 @@ brew "neovim"
 brew "node"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# OCaml package manager
+brew "opam"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Editor of encrypted files
 brew "sops"
 # Organize software neatly under a single directory tree (e.g. /usr/local)

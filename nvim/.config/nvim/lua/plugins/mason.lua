@@ -13,7 +13,8 @@ local lsp_servers = {
   "jsonls",
   "svelte",
   "ruff",
-  "zls"
+  "zls",
+  "ocamllsp"
 }
 
 vim.lsp.config("lua_ls", {
