@@ -12,6 +12,9 @@ supernote-toolkit
 claude
 godotenv
 ruff
+reverse-proxy
+mac-ocr
 
 *config.json
 *.env
+python*

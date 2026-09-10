@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+
+set -eo pipefail
+
+if [ $NOTIFY ]; then $NOTIFY "Starting reverse mac services..."; fi
+
+# Reverse Proxy
+if ! curl -s --max-time 2 http://127.0.0.1:8000/healthz > /dev/null 2>&1; then
+  pushd /Users/pritesh/.local/bin
+  ./reverse-proxy ./reverse-proxy-config.json &
+  popd
+fi
+
+# Ollama
+if ! curl -s --max-time 2 http://127.0.0.1:11434/api/version > /dev/null 2>&1; then
+    OLLAMA_FLASH_ATTENTION="1" \
+    OLLAMA_KV_CACHE_TYPE="q8_0" \
+    /opt/homebrew/bin/ollama serve &
+fi
+
+# Talk-it-out
+if ! curl -s --max-time 2 http://127.0.0.1:8001/ > /dev/null 2>&1; then
+  pushd "$HOME/Projects/talk-it-out"
+  nohup .venv/bin/uvicorn main:app --host 127.0.0.1 --port 8001 &
+  popd
+fi
+
+# Whisper
+if ! curl -s -o /dev/null --max-time 2 http://127.0.0.1:8002/; then 
+  /opt/homebrew/bin/whisper-server \
+    --model "$HOME/Projects/local/whisper-models/ggml-large-v3-turbo.bin" \
+    --port 8002 \
+    --convert --tmp-dir /tmp &
+fi
+
+# Reverse SSH
+exec /usr/bin/ssh -N -R 8900:localhost:8000 \
+  -o ServerAliveInterval=30 -o ServerAliveCountMax=3 \
+  -o ExitOnForwardFailure=yes toronto-server
+
+if [ $NOTIFY ]; then $NOTIFY "Mac services stopped!"; fi

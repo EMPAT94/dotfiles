@@ -4,8 +4,10 @@
   <dict>
     <key>Label</key>
     <string>com.priteshtupe.ollama-tunnel</string>
+    <key>Description</key>
+    <string>Reverse ssh from Mac to toronto-server</string>
     <key>Program</key>
-    <string>/Users/pritesh/.local/bin/ollama-tunnel</string>
+    <string>/Users/pritesh/.local/bin/reverse-tunnel</string>
     <key>RunAtLoad</key>
     <true/>
     <key>KeepAlive</key>
@@ -14,6 +16,8 @@
     <dict>
       <key>NOTIFY</key>
       <string>/Users/pritesh/.local/bin/notify</string>
+      <key>PATH</key>
+      <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
     </dict>
   </dict>
 </plist>
